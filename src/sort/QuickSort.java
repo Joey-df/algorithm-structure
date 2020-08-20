@@ -43,6 +43,7 @@ public class QuickSort {
             return;
         }
         if (L<R) {
+            swap(arr, L+(int)Math.random()*(R-L+1), R); //随机快排：随机一个数与arr[R]交换
             int[] parts = partition(arr, L, R);
             quickSort(arr, L, parts[0]-1);
             quickSort(arr, parts[1]+1, R);
@@ -50,7 +51,7 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = {1,6,2,5,-1,0,2};
+        int[] arr = {1,6,100,2,5,-1,0,2};
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }

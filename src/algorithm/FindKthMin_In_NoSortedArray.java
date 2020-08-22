@@ -102,8 +102,14 @@ public class FindKthMin_In_NoSortedArray {
     }
 
     public static void main(String[] args) {
-        int arr[] = {7, 2, 3, 100, 5, 99, 0, 9, 9, 9, 9, 9, 9, 8, 9, 9, 9, 0, 9, 9, 9, 6, 11, 9, 9, 9, 9, 9, 9, 9, 3, 4, 6, 5};
-        int k = 18;
+        int arr[] = {7, 2, 3, 100, 5, 99, 0, 9, 3, 4, 6, 5};
+        // 12个数
+        // 第1小  第12大
+        // 第2小  第11大
+        // 第12小 第1大
+        int kthMax = 10; //第3大 同时也是第9小 //m
+        int kthMin = arr.length+1-kthMax; //n  m+n=arr.length+1
+        int k = kthMin;
         System.out.println(findKth(arr, 0, arr.length - 1, k - 1));
         int[] kthMinNums = findKthMinNums(arr, k);
         for (int i = 0; i < kthMinNums.length; i++) {

@@ -5,6 +5,7 @@ package dynamic_programming;
 //注意: 你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。
 //来源：力扣（LeetCode）
 //链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii
+/**带枚举优化的动态规划**/
 
 public class Best_Time_To_Buy_And_Sell_Stock_III {
 

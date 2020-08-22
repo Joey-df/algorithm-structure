@@ -5,6 +5,8 @@ import java.util.PriorityQueue;
 
 /**
  * 在无序数组中找出第k小的数
+ * 或者
+ * 在无序数组中找出最小的k个数
  */
 public class FindKthMin_In_NoSortedArray {
 
@@ -53,6 +55,30 @@ public class FindKthMin_In_NoSortedArray {
         return new int[]{less + 1, more - 1};
     }
 
+    //在无序数组中找出最小的k个数
+    public static int[] findKthMinNums(int arr[], int k) {
+        int kth = findKth(arr, 0, arr.length - 1, k - 1); //先找到第k小的数
+        int[] ans = new int[k];
+        int index = 0;
+        //遍历一遍原数组，收集小于kth的数
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] < kth) {
+                ans[i] = arr[i];
+                index++;
+            }
+        }
+//        System.out.println("index = " + index);
+//        System.out.println("ans.length = " + ans.length);
+//        System.out.println("kth = " + kth);
+        //遍历完了ans没填满的话，用kth补满
+        if (index < ans.length) {
+            for (int i = index; i < ans.length; i++) {
+                ans[i] = kth;
+            }
+        }
+        return ans;
+    }
+
     //方法二：使用大根堆  堆的大小为k  返回堆顶的元素，就是第k小的
     //在无序数组中找第k小的数
     //复杂度o(N*logN)
@@ -60,7 +86,7 @@ public class FindKthMin_In_NoSortedArray {
         PriorityQueue<Integer> heap = new PriorityQueue<>(new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
-                return o2-o1; //降序
+                return o2 - o1; //降序
             }
         });
         for (int i = 0; i < k; i++) {
@@ -76,9 +102,14 @@ public class FindKthMin_In_NoSortedArray {
     }
 
     public static void main(String[] args) {
-        int arr[] = {7, 2, 3, 100, 5, 99, 0, 3, 4, 6, 5};
-        int k = 5;
+        int arr[] = {7, 2, 3, 100, 5, 99, 0, 9, 9, 9, 9, 9, 9, 8, 9, 9, 9, 0, 9, 9, 9, 6, 11, 9, 9, 9, 9, 9, 9, 9, 3, 4, 6, 5};
+        int k = 18;
         System.out.println(findKth(arr, 0, arr.length - 1, k - 1));
+        int[] kthMinNums = findKthMinNums(arr, k);
+        for (int i = 0; i < kthMinNums.length; i++) {
+            System.out.print(kthMinNums[i] + " ");
+        }
+        System.out.println();
         System.out.println(method2(arr, k));
     }
 }

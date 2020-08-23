@@ -15,6 +15,10 @@ import java.util.PriorityQueue;
  * Input: [3,2,3,1,2,4,5,5,6] and k = 4
  * Output: 4
  */
+
+/**
+ * Related Topics: Heap  QuickSort
+ */
 public class Kth_Largest_Element_in_an_Array {
 
     /**在无序数组中找第k大的数

@@ -67,9 +67,7 @@ public class FindKthMin_In_NoSortedArray {
                 index++;
             }
         }
-//        System.out.println("index = " + index);
-//        System.out.println("ans.length = " + ans.length);
-//        System.out.println("kth = " + kth);
+
         //遍历完了ans没填满的话，用kth补满
         if (index < ans.length) {
             for (int i = index; i < ans.length; i++) {
@@ -79,7 +77,8 @@ public class FindKthMin_In_NoSortedArray {
         return ans;
     }
 
-    //方法二：使用大根堆  堆的大小为k  返回堆顶的元素，就是第k小的
+    //方法二：
+    /**使用大根堆  堆的大小为k,放最小的k个数，堆顶的元素，就是第k小的数**/
     //在无序数组中找第k小的数
     //复杂度o(N*logN)
     public static int method2(int arr[], int k) {

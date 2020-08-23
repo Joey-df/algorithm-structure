@@ -16,7 +16,7 @@ public class MergeSort {
     }
 
     //arr[l,mid]有序，arr[mid+1,r]有序
-    //将两段进行合并 让整体有序
+    //将两段 已经有序的片段 进行合并 让整体有序
     private static void merge(int[] arr, int l, int mid, int r) {
         int pL = l;//左半段初始指针
         int pR = mid + 1;//右半段初始指针

@@ -44,6 +44,6 @@ public class Valid_Parentheses {
     public static void main(String[] args) {
         System.out.println("ans = " + isValid("{}{}{}[][[]]"));
         System.out.println("ans = " + isValid("{}{{}{}[][[]]"));
-        System.out.println("ans = " + isValid("{}[[]](){}"));
+        System.out.println("ans = " + isValid("{}[[]](){}{}"));
     }
 }

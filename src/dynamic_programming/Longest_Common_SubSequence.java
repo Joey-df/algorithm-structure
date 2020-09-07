@@ -17,6 +17,7 @@ public class Longest_Common_SubSequence {
         }
         // i1==0 && i2!=0
         if (i1 == 0) { //第一行；
+//            return Math.max(process(str1, str2, i1, i2 - 1), str1[0]==str2[i2] ? 1 : 0);
             return (str1[i1] == str2[i2] || process(str1, str2, i1, i2 - 1) == 1) ? 1 : 0;
         }
         // i1!=0 && i2==0

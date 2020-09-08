@@ -13,9 +13,9 @@ import java.util.Set;
 public class Permutations {
 
     public static void main(String[] args) {
-        String s = "aba";
-//        List<String> list = permutationWithNoRepeate(s);
-        List<String> list = permutationWithRepeate(s);
+        String s = "abc";
+        List<String> list = permutationWithNoRepeate(s);
+//        List<String> list = permutationWithRepeate(s);
         System.out.println("list.size() = " + list.size());
         for (String str : list) {
             System.out.println(str);
@@ -38,7 +38,7 @@ public class Permutations {
      * @param ans   index来到终止位置，str当前的样子就是一种结果，收集到ans中
      */
     private static void noRepeate(char[] str, int index, List<String> ans) {
-        if (index == str.length) {
+        if (index == str.length) { //str[0...str.length-1]之前已经做好决定了
             ans.add(String.valueOf(str));
         }
         //index没有到终止位置

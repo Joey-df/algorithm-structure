@@ -10,7 +10,7 @@ package dynamic_programming;
  * 来源：力扣（LeetCode）
  * 链接：https://leetcode-cn.com/problems/unique-paths
  */
-public class Problem60_Unique_Paths {
+public class Problem62_Unique_Paths {
 
 
     /**

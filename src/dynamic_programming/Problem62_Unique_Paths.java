@@ -10,6 +10,8 @@ package dynamic_programming;
  * 来源：力扣（LeetCode）
  * 链接：https://leetcode-cn.com/problems/unique-paths
  */
+
+//一个样本做行一个样本做列的对应模型
 public class Problem62_Unique_Paths {
 
 

@@ -1,4 +1,4 @@
-package dynamic_programming;
+package dynamic_programming.left_to_right;
 
 /**
  * A message containing letters from A-Z is being encoded to numbers using the following mapping:

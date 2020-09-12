@@ -1,4 +1,4 @@
-package dynamic_programming;
+package dynamic_programming.left_to_right;
 
 /**
  * 0-1背包问题

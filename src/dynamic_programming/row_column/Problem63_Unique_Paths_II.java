@@ -1,4 +1,4 @@
-package dynamic_programming;
+package dynamic_programming.row_column;
 
 /**
  * A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).

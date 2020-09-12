@@ -1,4 +1,4 @@
-package dynamic_programming;
+package dynamic_programming.row_column;
 
 /**
  * Given a m x n grid filled with non-negative numbers,

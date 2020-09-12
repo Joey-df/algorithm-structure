@@ -1,4 +1,4 @@
-package dynamic_programming;
+package dynamic_programming.row_column;
 
 /**
  * 给定两个字符串str1、str2，求两个字符串的最长公共子序列

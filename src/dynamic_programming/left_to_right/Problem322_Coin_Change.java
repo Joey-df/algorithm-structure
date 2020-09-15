@@ -1,0 +1,96 @@
+package dynamic_programming.left_to_right;
+
+/**
+ * You are given coins of different denominations(面值) and a total amount of money amount.
+ * Write a function to compute the fewest number of coins that you need to make up that amount.
+ * If that amount of money cannot be made up by any combination of the coins, return -1.
+ * <p>
+ * Example 1:
+ * <p>
+ * Input: coins = [1, 2, 5], amount = 11
+ * Output: 3
+ * Explanation: 11 = 5 + 5 + 1
+ * <p>
+ * 背包问题
+ * 从左往右的尝试模型
+ */
+
+public class Problem322_Coin_Change {
+
+    public static int ways1(int[] coins, int amount) {
+        if (coins == null || coins.length == 0 || amount < 0) {
+            return -1;
+        }
+        return process(coins, 0, amount);
+    }
+
+    //递归含义：
+    //coins[index...]自由选择，搞定rest所需的最少硬币数量是多少？
+    public static int process(int[] coins, int index, int rest) {
+//        //因为下面的for循环决定了rest不可能取到0以下
+//        if (rest < 0) { //负数无法搞定
+//            return -1;
+//        }
+        if (index == coins.length) {//没钱了，coins[index...]为无效区域了
+            //没有硬币可以选择，搞定0元需要0个硬币，否则没有方案
+            return rest == 0 ? 0 : -1;
+        }
+        //rest > 0 && index < coins.length
+        //普遍位置: 枚举coins[index] 所需的数量k
+        int ways = Integer.MAX_VALUE;
+        for (int k = 0; k * coins[index] <= rest; k++) {
+            //rest - k * coins[index]不可能小于0
+            int p1 = process(coins, index + 1, rest - k * coins[index]);
+            if (p1 != -1) {
+                ways = Math.min(ways, p1 + k);
+            }
+        }
+        return ways == Integer.MAX_VALUE ? -1 : ways;
+    }
+
+    //dp[i][rest]的含义：
+    //coins[i...]自由选择，搞定rest所需最少硬币的数量是多少？
+    //带有枚举行为的dp 待优化
+    public static int dpWay(int[] coins, int amount) {
+        if (coins == null || coins.length == 0 || amount < 0) {
+            return -1;
+        }
+        int N = coins.length;
+        int[][] dp = new int[N + 1][amount + 1];
+        dp[N][0] = 0;
+        for (int j = 1; j <= amount; j++) {
+            dp[N][j] = -1;
+        }
+
+        //从左到右 + 从下往上 填
+        for (int i = N - 1; i >= 0; i--) {
+            for (int rest = 0; rest <= amount; rest++) {
+                int ways = Integer.MAX_VALUE;
+                for (int k = 0; k * coins[i] <= rest; k++) {
+                    //amount - k * coins[index]不可能小于0
+                    int p1 = dp[i + 1][rest - k * coins[i]];
+                    if (p1 != -1) {
+                        ways = Math.min(ways, p1 + k);
+                    }
+                }
+                dp[i][rest] = ways == Integer.MAX_VALUE ? -1 : ways;
+            }
+        }
+        return dp[0][amount];
+    }
+
+    public static int ways2(int coins[], int aim) {
+        if (coins == null || coins.length == 0 || aim < 0) {
+            return -1;
+        }
+        return dpWay(coins, aim);
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 5};
+        int aim = 11;
+        System.out.println(ways1(arr, aim));
+        System.out.println(ways2(arr, aim));
+    }
+
+}

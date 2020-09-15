@@ -51,7 +51,7 @@ public class Problem322_Coin_Change {
     //dp[i][rest]的含义：
     //coins[i...]自由选择，搞定rest所需最少硬币的数量是多少？
     //带有枚举行为的dp 待优化
-    public static int dpWay(int[] coins, int amount) {
+    public static int dpWays1(int[] coins, int amount) {
         if (coins == null || coins.length == 0 || amount < 0) {
             return -1;
         }
@@ -79,18 +79,63 @@ public class Problem322_Coin_Change {
         return dp[0][amount];
     }
 
-    public static int ways2(int coins[], int aim) {
-        if (coins == null || coins.length == 0 || aim < 0) {
+
+    //dp[i][rest]的含义：
+    //coins[i...]自由选择，搞定rest所需最少硬币的数量是多少？
+    //优化掉枚举行为后的dp
+    public static int dpWays2(int[] coins, int amount) {
+        if (coins == null || coins.length == 0 || amount < 0) {
             return -1;
         }
-        return dpWay(coins, aim);
+        int N = coins.length;
+        int[][] dp = new int[N + 1][amount + 1];
+        dp[N][0] = 0;
+        for (int j = 1; j <= amount; j++) {
+            dp[N][j] = -1;
+        }
+
+        //从左到右 + 从下往上 填
+        for (int i = N - 1; i >= 0; i--) {
+            for (int rest = 0; rest <= amount; rest++) {
+                //[1,2,3,5,8]
+                //dp[3][100] = Math.min(dp[4][100] + 0,  //0张5元
+                //             dp[4][95] + 1,   //1张5元
+                //             dp[4][90] + 2,   //2张5元
+                //             dp[4][85] + 3,...//3张5元
+                //             )
+                //            = Math.min(dp[4][100], dp[3][95] + 1)
+
+                //dp[3][95] =  Math.min(dp[4][95] + 0,
+                //             dp[4][90] + 1,   //1张5元
+                //             dp[4][85] + 2,   //2张5元
+                //             dp[4][80] + 3,...   //3张5元
+                //             )
+                dp[i][rest] = -1;
+                if (dp[i + 1][rest] != -1) {
+                    dp[i][rest] = dp[i + 1][rest]; //下面的格子
+                }
+                if (rest - coins[i] >= 0) {
+                    int p1 = dp[i][rest - coins[i]]; //dp[3][95]
+                    if (p1 != -1) {
+                        if (dp[i][rest] == -1) {
+                            dp[i][rest] = p1 + 1;
+                        } else {
+                            dp[i][rest] = Math.min(dp[i][rest], p1 + 1);
+                        }
+                    }
+                }
+            }
+        }
+        return dp[0][amount];
     }
+
 
     public static void main(String[] args) {
         int[] arr = {1, 2, 5};
         int aim = 11;
         System.out.println(ways1(arr, aim));
-        System.out.println(ways2(arr, aim));
+        System.out.println(dpWays1(arr, aim));
+        System.out.println(dpWays2(arr, aim));
     }
 
 }

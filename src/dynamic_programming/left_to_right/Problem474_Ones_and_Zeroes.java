@@ -24,7 +24,7 @@ package dynamic_programming.left_to_right;
  * strs[i] consists only of digits '0' and '1'.
  * 1 <= m, n <= 100
  *
- * 背包问题
+ * 0-1背包问题
  * 从左往右的尝试模型
  */
 public class Problem474_Ones_and_Zeroes {

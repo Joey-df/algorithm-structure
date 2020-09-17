@@ -30,7 +30,50 @@ package dynamic_programming.left_to_right;
  *
  * Credits:
  * Special thanks to @pbrother for adding this problem and creating all test cases.
+ *
+ * 完全背包问题
  */
 public class Problem377_Combination_Sum_IV {
 
+    //递归含义: nums[0...nums.length-1] 范围上 自由选择 组成target的方法数
+    public static int process(int[] nums, int target) {
+        if (nums == null || nums.length == 0 || target < 0) { //组成负数 有0种方法
+            return 0;
+        }
+        if (target == 0) { //组成0有1种方法 这种方法叫什么数也不选
+            return 1;
+        }
+        //rest>0
+        int ans = 0;
+        //枚举第一个数的取值
+        for (int i = 0; i < nums.length; i++) {
+            ans += process(nums, target - nums[i]);
+        }
+        return ans;
+    }
+
+    //nums:固定不变
+    //变量：target
+    //dp[target]的含义：组成target的方法数
+    public static int dpWay(int[] nums, int target) {
+        if (nums == null || nums.length == 0 || target < 0) { //组成负数 有0种方法
+            return 0;
+        }
+        int[] dp = new int[target + 1];
+        dp[0] = 1;
+        for (int i = 1; i <= target; i++) {
+            for (int j = 0; j < nums.length; j++) {
+                if (i - nums[j] >= 0) // 注意这里
+                    dp[i] += dp[i - nums[j]];
+            }
+        }
+        return dp[target];
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 3};
+        int target = 4;
+        System.out.println(process(nums, target));
+        System.out.println(dpWay(nums, target));
+    }
 }

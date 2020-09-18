@@ -54,17 +54,17 @@ public class Problem377_Combination_Sum_IV {
 
     //nums:固定不变
     //变量：target
-    //dp[target]的含义：组成target的方法数
+    //dp[t]的含义：组成t的方法数
     public static int dpWay(int[] nums, int target) {
         if (nums == null || nums.length == 0 || target < 0) { //组成负数 有0种方法
             return 0;
         }
         int[] dp = new int[target + 1];
         dp[0] = 1;
-        for (int i = 1; i <= target; i++) {
+        for (int t = 1; t <= target; t++) {
             for (int j = 0; j < nums.length; j++) {
-                if (i - nums[j] >= 0) // 注意这里
-                    dp[i] += dp[i - nums[j]];
+                if (t - nums[j] >= 0) // 注意这里
+                    dp[t] += dp[t - nums[j]];
             }
         }
         return dp[target];

@@ -1,2 +1,2 @@
-# algorithm-trainingcamp
-my algorithm trainingcamp
+# algorithm-structure
+algorithm-structure learning 

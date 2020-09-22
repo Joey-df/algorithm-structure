@@ -1,4 +1,4 @@
-package dynamic_programming;
+package dynamic_programming.range;
 
 /**
  * Given a string, your task is to count how many palindromic substrings in this string.

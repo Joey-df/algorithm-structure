@@ -17,6 +17,12 @@ import java.util.Map;
  * Follow up:
  * Could you do get and put in O(1) time complexity?
  */
+
+/**
+ * 链表中为什么放Node类型？
+ * 1、map中的值类型为Node，是一个内存地址，可以直接O(1)在链表中找到具体的位置，进行链表调整
+ * 2、cache容量满了的时候，再添加元素时，需要删除头节点，根据头节点中存的key，可以O(1)直接将map中的记录删除
+ */
 public class Problem146_LRU_Cache {
 
     //双向链表中的元素 Node

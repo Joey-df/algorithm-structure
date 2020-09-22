@@ -1,4 +1,4 @@
-package dynamic_programming;
+package dynamic_programming.range;
 
 /**
  * Given a string s, you are allowed to convert it to a palindrome by adding

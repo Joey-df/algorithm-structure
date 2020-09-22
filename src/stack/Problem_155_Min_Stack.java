@@ -10,14 +10,14 @@ import java.util.Stack;
  * top() -- Get the top element.
  * getMin() -- Retrieve the minimum element in the stack.
  */
-public class Problem155_Min_Stack {
+public class Problem_155_Min_Stack {
     Stack<Integer> normal;
     Stack<Integer> minStack;
 
     /**
      * initialize your data structure here.
      */
-    public Problem155_Min_Stack() {
+    public Problem_155_Min_Stack() {
         normal = new Stack<>();
         minStack = new Stack<>();
     }

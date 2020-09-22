@@ -1,6 +1,6 @@
 package dynamic_programming.left_to_right;
 
-public class Problem494_Target_Sum_Zuo {
+public class Problem_494_Target_Sum_Zuo {
     // 题目已知arr中都是非负数
     // arr中每个数都能在之前添加+或者-，想最后的结果是num，返回方法数
     public static int findTargetSumWays1(int[] arr, int num) {

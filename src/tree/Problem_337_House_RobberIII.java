@@ -30,7 +30,7 @@ package tree;
  * Output: 9
  * Explanation: Maximum amount of money the thief can rob = 4 + 5 = 9.
  */
-public class Problem337_House_RobberIII {
+public class Problem_337_House_RobberIII {
 
     public static class TreeNode {
         int val;

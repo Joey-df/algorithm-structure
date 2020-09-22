@@ -1,6 +1,6 @@
 package array;
 
-public class Problem30_Next_Permutation {
+public class Problem_30_Next_Permutation {
 
     //从右往左，找第一个升序的元素下标i
     //从右往左，找以第一个比nums[i]大的元素下标j

@@ -23,7 +23,7 @@ import java.util.PriorityQueue;
  * merging them into one sorted list:
  * 1->1->2->3->4->4->5->6
  */
-public class Merge_K_Sorted_Lists {
+public class Problem_23_Merge_K_Sorted_Lists {
 
     private static class ListNode {
         int val;

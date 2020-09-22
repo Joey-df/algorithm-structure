@@ -17,7 +17,7 @@ package dynamic_programming.row_column;
  * Output: 7
  * Explanation: Because the path 1→3→1→1→1 minimizes the sum.
  */
-public class Problem64_Minimum_Path_Sum {
+public class Problem_64_Minimum_Path_Sum {
 
     /**
      * 递归含义：从[0,0]出发到达[i,j]位置最小的路径和是多少？

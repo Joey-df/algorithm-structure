@@ -36,7 +36,7 @@ package dynamic_programming.left_to_right;
  * 从左往右的尝试模型
  */
 
-public class Problem518_Coin_Change_2 {
+public class Problem_518_Coin_Change_2 {
 
     public static int ways1(int[] coins, int amount) {
         if (coins == null || coins.length == 0) {

@@ -27,7 +27,7 @@ package dynamic_programming.left_to_right;
  * 0-1背包问题
  * 从左往右的尝试模型
  */
-public class Problem474_Ones_and_Zeroes {
+public class Problem_474_Ones_and_Zeroes {
 
     //1 <= m, n <= 100
     //1 <= strs.length <= 600

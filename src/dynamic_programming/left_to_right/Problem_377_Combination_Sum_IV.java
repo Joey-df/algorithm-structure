@@ -33,7 +33,7 @@ package dynamic_programming.left_to_right;
  *
  * 完全背包问题
  */
-public class Problem377_Combination_Sum_IV {
+public class Problem_377_Combination_Sum_IV {
 
     //递归含义: nums[0...nums.length-1] 范围上 自由选择 组成target的方法数
     public static int process(int[] nums, int target) {

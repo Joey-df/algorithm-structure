@@ -20,7 +20,7 @@ package dynamic_programming.left_to_right;
  * Output: 3
  * Explanation: It could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6).
  */
-public class Problem91_Decode_Ways {
+public class Problem_91_Decode_Ways {
 
     //从左往右的尝试模型
     //暴力尝试

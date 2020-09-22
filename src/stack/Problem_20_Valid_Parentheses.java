@@ -16,7 +16,7 @@ import java.util.Stack;
  * Input: s = "()[]{}"
  * Output: true
  */
-public class Problem20_Valid_Parentheses {
+public class Problem_20_Valid_Parentheses {
     public static boolean isValid(String s) {
         if ("".equals(s)|| s.length()==0) return false;
         char[] str = s.toCharArray();

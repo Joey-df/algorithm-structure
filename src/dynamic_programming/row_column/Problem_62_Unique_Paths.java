@@ -12,7 +12,7 @@ package dynamic_programming.row_column;
  */
 
 //一个样本做行一个样本做列的对应模型
-public class Problem62_Unique_Paths {
+public class Problem_62_Unique_Paths {
 
 
     /**

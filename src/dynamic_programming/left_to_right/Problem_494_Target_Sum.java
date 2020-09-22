@@ -31,7 +31,7 @@ import java.util.Map;
  *
  * 从左往后的尝试模型
  */
-public class Problem494_Target_Sum {
+public class Problem_494_Target_Sum {
 
     //nums中的元素均非负
     //S：可正 可负 可0

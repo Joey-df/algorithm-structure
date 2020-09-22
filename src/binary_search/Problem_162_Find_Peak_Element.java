@@ -23,7 +23,7 @@ package binary_search;
  * Follow up: Your solution should be in logarithmic complexity.
  * 二分查找找局部最大值问题
  */
-public class Problem162_Find_Peak_Element {
+public class Problem_162_Find_Peak_Element {
 
     public static int findPeakElement(int[] nums) {
         if (nums == null || nums.length == 0) return -1;

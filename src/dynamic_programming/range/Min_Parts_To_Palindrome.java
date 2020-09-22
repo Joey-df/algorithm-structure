@@ -9,7 +9,7 @@ package dynamic_programming.range;
  * 范围上的尝试模型
  * https://github.com/algorithmzuo/trainingcamp003/blob/master/src/class06/Code07_PMinParts.java
  */
-public class PMinParts {
+public class Min_Parts_To_Palindrome {
 
 
 }

@@ -7,6 +7,6 @@ package dynamic_programming.range;
  *
  * 范围上的尝试模型
  */
-public class PalindromeMinAdd {
+public class MinAdd_To_Palindrome {
 
 }

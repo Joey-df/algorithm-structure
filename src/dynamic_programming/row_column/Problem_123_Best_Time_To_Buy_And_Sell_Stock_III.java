@@ -7,7 +7,7 @@ package dynamic_programming.row_column;
 //链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii
 /**带枚举优化的动态规划**/
 
-public class Best_Time_To_Buy_And_Sell_Stock_III {
+public class Problem_123_Best_Time_To_Buy_And_Sell_Stock_III {
 
     public static int maxProfit(int[] prices, int k) {
         if (prices == null || prices.length < 2) return 0;

@@ -1,9 +1,5 @@
 package binary_search;
 
-import com.sun.org.apache.xerces.internal.util.XMLInputSourceAdaptor;
-
-import javax.xml.bind.annotation.XmlID;
-
 /**
  * A peak element is an element that is greater than its neighbors.
  * 

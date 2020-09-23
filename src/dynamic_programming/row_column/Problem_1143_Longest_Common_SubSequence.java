@@ -5,7 +5,7 @@ package dynamic_programming.row_column;
  * 子序列：保持字符相对顺序，可以不连续
  * 模型：一个样本做行一个样本做列的对应模型
  */
-public class Problem_1143Longest_Common_SubSequence {
+public class Problem_1143_Longest_Common_SubSequence {
 
     //暴力尝试
     //一个样本做行一个样本做列的对应模型

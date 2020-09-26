@@ -1,4 +1,4 @@
-package dynamic_programming;
+package dynamic_programming.left_to_right;
 
 import java.util.ArrayList;
 import java.util.HashSet;

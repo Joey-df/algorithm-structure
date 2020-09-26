@@ -60,7 +60,7 @@ public class Problem_139_Word_Break {
     }
 
     //改动态规划
-    //时间复杂度：O(N^2*K) k为单词的长度
+    //时间复杂度：O(N^3) 2阶调度+1阶求子串并且查hash表
     public static boolean dpWays(String s, Set<String> set) {
         int N = s.length();
         boolean[] dp = new boolean[N + 1];

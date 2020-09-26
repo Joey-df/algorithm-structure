@@ -85,14 +85,82 @@ public class Problem_139_Word_Break {
         return dpWays(s, set);
     }
 
+
+    private static class Node {
+        int p;
+        int e;
+        Node[] nexts;
+
+        public Node() {
+            p = 0;
+            e = 0;
+            nexts = new Node[26];
+        }
+    }
+
+    public static boolean ways3(String s, List<String> wordDict) {
+        if ("".equals(s) || s == null || s.length() == 0) return false;
+        Set<String> set = new HashSet<>();
+        for (String word : wordDict) {
+            set.add(word);
+        }
+        Node root = buildTrie(s, set);
+        return dpWays3(s, set, root);
+    }
+
+    private static Node buildTrie(String s, Set<String> set) {
+        Node root = new Node();
+        Node cur;
+        for (String word : set) {
+            cur = root;//处理每一个word时，都从root开始往下
+            root.p++;
+            char[] str = word.toCharArray();
+            for (int i = 0; i < str.length; i++) {
+                int road = str[i] - 'a';
+                if (cur.nexts[road] == null) {
+                    cur.nexts[road] = new Node();
+                }
+                cur.nexts[road].p++;
+                cur = cur.nexts[road];
+            }
+            //for循环结束，代表一个具体的单词加完前缀树了，此时e++；
+            cur.e++;
+        }
+        return root;
+    }
+
+    //使用前缀树做优化
+    private static boolean dpWays3(String s, Set<String> set, Node root) {
+        int N = s.length();
+        boolean[] dp = new boolean[N + 1];
+        dp[N] = true;
+        char[] str = s.toCharArray();
+        for (int index = N - 1; index >= 0; index--) {
+            Node cur = root;
+            for (int end = index; end < s.length(); end++) {
+                //枚举每一个结束位置
+                //[index...end]
+                int road = str[end] - 'a';
+                if (cur.nexts[road] == null) {
+                    break;
+                }
+                cur = cur.nexts[road];
+                if (cur.e == 1) {
+                    dp[index] |= dp[end + 1];
+                }
+            }
+        }
+        return dp[0];
+    }
+
+
     public static void main(String[] args) {
-        String s = "leetcodeleetcodeleetcodeu";
+        String s = "leetcodeleetcodeleetcodeleet";
         List<String> list = new ArrayList<>();
         list.add("leet");
         list.add("code");
         System.out.println(ways1(s, list));
         System.out.println(ways2(s, list));
+        System.out.println(ways3(s, list));
     }
-
-    //TODO 使用前缀树优化
 }

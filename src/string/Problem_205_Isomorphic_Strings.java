@@ -49,9 +49,11 @@ public class Problem_205_Isomorphic_Strings {
 
     private static boolean process(char[] s, char[] t) {
         Map<Character, Wrap> map1 = new HashMap<>();
+        Wrap tmp = null;
         for (int i = 0; i < s.length; i++) {
             if (map1.get(s[i]) != null) {
-                map1.put(s[i], new Wrap(map1.get(s[i]).index.append(i), map1.get(s[i]).count + 1));
+                tmp = map1.get(s[i]);
+                map1.put(s[i], new Wrap(tmp.index.append(i), tmp.count + 1));
             } else {
                 map1.put(s[i], new Wrap(new StringBuilder(i), 1));
             }
@@ -60,7 +62,8 @@ public class Problem_205_Isomorphic_Strings {
         Map<Character, Wrap> map2 = new HashMap<>();
         for (int i = 0; i < t.length; i++) {
             if (map2.containsKey(t[i])) {
-                map2.put(t[i], new Wrap(map2.get(t[i]).index.append(i), map2.get(t[i]).count + 1));
+                tmp = map2.get(t[i]);
+                map2.put(t[i], new Wrap(tmp.index.append(i), tmp.count + 1));
             } else {
                 map2.put(t[i], new Wrap(new StringBuilder(i), 1));
             }

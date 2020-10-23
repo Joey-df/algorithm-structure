@@ -48,7 +48,7 @@ package dynamic_programming.range;
  * 输入: s1 = "abcde", s2 = "caebd"
  * 输出: false
  *
- *
+ * 第39节、经典面试题(二十三)第二题
  * 来源：力扣（LeetCode）
  * 链接：https://leetcode-cn.com/problems/scramble-string
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。

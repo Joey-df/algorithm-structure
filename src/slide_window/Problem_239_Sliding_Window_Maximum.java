@@ -41,7 +41,8 @@ public class Problem_239_Sliding_Window_Maximum {
     public static int[] process(int[] nums, int k) {
         int L = 0, R = 0;
         LinkedList<Integer> dQueue = new LinkedList<>(); //严格大-->小
-        List<Integer> ans = new ArrayList<>();
+        int[] ans = new int[nums.length - k + 1];
+        int index = 0;
         //[L,R) 初始为[0,0) 即窗口内一个元素也没有
         while (R < nums.length) {
             //元素从尾部进入双端队列
@@ -50,19 +51,15 @@ public class Problem_239_Sliding_Window_Maximum {
             }
             //while退出来的状态为 队列为空，或者队尾元素大于 > nums[R]
             dQueue.offerLast(R);
-            if (R - L == k - 1) {
-                ans.add(nums[dQueue.peekFirst()]);
+            if (R - L == k - 1) { //先让窗口涨到k的长度
+                ans[index++] = nums[dQueue.peekFirst()];
                 if (dQueue.peekFirst() == L) dQueue.pollFirst();
                 L++;
             }
             R++;
         }
 
-        int[] res = new int[ans.size()];
-        for (int i = 0; i < res.length; i++) {
-            res[i] = ans.get(i);
-        }
-        return res;
+        return ans;
     }
 
     public static void main(String[] args) {

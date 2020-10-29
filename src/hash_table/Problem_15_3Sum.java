@@ -34,8 +34,8 @@ import java.util.List;
 public class Problem_15_3Sum {
 
     //求nums[begin...N-1]和为target的所有不重复的二元祖
+    //潜台词：nums必须有序
     private static List<List<Integer>> twoSum(int[] nums, int begin, int target) {
-        Arrays.sort(nums);
         //eg: 求[-1,-1,-1,4,4,4]求和为3的tuple
         List<List<Integer>> ans = new ArrayList<>();
         int L = begin, R = nums.length - 1;

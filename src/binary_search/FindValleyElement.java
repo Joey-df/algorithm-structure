@@ -1,6 +1,7 @@
 package binary_search;
 
 //在无序数组中找局部最小值
+//限制：相邻的数均不相等
 public class FindValleyElement {
     private static int findValleyElement(int[] arr) {
         if (arr == null || arr.length == 0) {

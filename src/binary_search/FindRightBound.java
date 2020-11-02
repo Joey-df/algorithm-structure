@@ -7,6 +7,7 @@ public class FindRightBound {
 
     // 在arr上，找满足<=value的最右位置
     // 如果没找到，R来到-1位置
+    // 例如：如果arr=[1,2,3,4]，value=0，最终结束时R会来到-1的位置。
     public static int nearestIndex(int[] arr, int value) {
         if (arr.length == 0) return -1;
         int L = 0;

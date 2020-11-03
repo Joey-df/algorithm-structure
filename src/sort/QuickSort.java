@@ -13,11 +13,11 @@ public class QuickSort {
     //以arr[R]作为基准值做划分为 < = > 三个区
     //返回值：等于区的左右边界的下标
     public static int[] partition(int[] arr, int L, int R) {
-        if (L>R) {
-            return new int[]{-1,-1};
+        if (L > R) {
+            return new int[]{-1, -1};
         }
-        if (L==R) {
-            return new int[]{L,R};
+        if (L == R) {
+            return new int[]{L, R};
         }
         int less = L - 1;
         int more = R + 1;
@@ -34,7 +34,7 @@ public class QuickSort {
                 swap(arr, i, --more);
             }
         }
-        return new int[]{less+1, more-1};
+        return new int[]{less + 1, more - 1};
     }
 
     //对arr在L...R范围上排序
@@ -42,22 +42,22 @@ public class QuickSort {
         if (arr == null || arr.length < 2) {
             return;
         }
-        if (L<R) {
-            swap(arr, L+(int)Math.random()*(R-L+1), R); //随机快排：随机一个数与arr[R]交换
+        if (L < R) {
+            swap(arr, L + (int) Math.random() * (R - L + 1), R); //随机快排：随机一个数与arr[R]交换
             int[] parts = partition(arr, L, R);
-            quickSort(arr, L, parts[0]-1);
-            quickSort(arr, parts[1]+1, R);
+            quickSort(arr, L, parts[0] - 1);
+            quickSort(arr, parts[1] + 1, R);
         }
     }
 
     public static void main(String[] args) {
-        int[] arr = {1,6,100,2,5,-1,0,2};
+        int[] arr = {1, 6, 100, 2, 5, -1, 0, 2};
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }
         System.out.println();
         System.out.println("--------------");
-        quickSort(arr, 0, arr.length-1);
+        quickSort(arr, 0, arr.length - 1);
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }

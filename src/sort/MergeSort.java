@@ -22,14 +22,16 @@ public class MergeSort {
         int pR = mid + 1;//右半段初始指针
         int help[] = new int[r - l + 1];
         int i = 0;//专为help服务
-        while (pL <= mid && pR <= r) {
+        while (pL <= mid && pR <= r) { //pL、pR都不越界时
+            //谁小拷贝谁
             if (arr[pL] <= arr[pR]) {
                 help[i++] = arr[pL++];//相等先拷贝左边的
             } else {
                 help[i++] = arr[pR++];
             }
         }
-        //有一边越界了
+        //while出来时，一定是其中有一边越界了
+        //以下两个while只会执行一个
         while (pL <= mid) {
             help[i++] = arr[pL++];
         }

@@ -58,4 +58,31 @@ public class Problem_56_Merge_Intervals {
         }
         return ans;
     }
+
+    //[[1,3],[2,6],[8,10],[15,18]]
+    public static int[][] merge2(int[][] intervals) {
+        if (intervals == null || intervals.length == 0) {
+            return new int[0][2];
+        }
+        Arrays.sort(intervals, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return o1[0] - o2[0]; //按L升序排序
+            }
+        });
+
+        int[][] help = new int[intervals.length][2];
+        int size = 0; //表示help中有效元素的个数
+        for (int i = 0; i < intervals.length; i++) {
+            int[] sub = intervals[i];
+            if (size == 0 || help[size - 1][1] < sub[0]) { //此时放心大胆的添加
+                help[size++] = sub;
+            } else {
+                int[] last = help[size - 1]; //help中最后一个元素
+                last[1] = Math.max(last[1], sub[1]);
+            }
+        }
+
+        return Arrays.copyOf(help, size);
+    }
 }

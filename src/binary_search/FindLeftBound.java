@@ -8,6 +8,7 @@ public class FindLeftBound {
     // 在arr上，找满足>=value的最左位置
     // 如果没找到，L来到arr.length的位置
     // 例如：如果arr=[1,2,3,4]，value=5，最终结束时L会来到arr.length的位置。
+    // 如果value在arr中存在，则结束的时候 L==index
     public static int nearestIndex(int[] arr, int value) {
         if (arr.length == 0) return -1;
         int L = 0;
@@ -22,13 +23,14 @@ public class FindLeftBound {
                 L = mid + 1;
             }
         }
+        System.out.println("L: " + L + ", index: " + index);
 
         return index;
     }
 
     public static void main(String[] args) {
         int arr[] = {1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 5, 7};
-        int target = 20;
+        int target = 2;
         System.out.println("arr.length = " + arr.length);
         System.out.println("nearestIndex(arr, " + target + ") = " + nearestIndex(arr, target));
     }

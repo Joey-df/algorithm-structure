@@ -13,23 +13,6 @@ package linked_list;
  */
 public class Problem_206_Reverse_LinkedList {
 
-    private static class ListNode {
-        private int val;
-        private ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        public ListNode(int v, ListNode next) {
-            val = v;
-            this.next = next;
-        }
-    }
-
     public static ListNode reverse(ListNode head) {
         if (head == null || head.next == null) {
             return head;

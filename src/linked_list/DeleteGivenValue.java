@@ -4,22 +4,6 @@ package linked_list;
  * 删除单链表中指定的元素
  */
 public class DeleteGivenValue {
-    private static class ListNode {
-        private int val;
-        private ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        public ListNode(int v, ListNode next) {
-            val = v;
-            this.next = next;
-        }
-    }
 
     public static ListNode delete(ListNode head, int val) {
         //如果删除元素的在头部，换头

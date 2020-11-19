@@ -85,4 +85,38 @@ public class Problem_56_Merge_Intervals {
 
         return Arrays.copyOf(help, size);
     }
+
+
+    //[[1,3],[2,6],[8,10],[15,18]]
+    public static int[][] merge3(int[][] intervals) {
+        if (intervals == null || intervals.length == 0) {
+            return new int[0][2];
+        }
+        Arrays.sort(intervals, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return o1[0] - o2[0];
+            }
+        });
+
+        int[][] help = new int[intervals.length][2];
+        int size = 0;
+        int s = intervals[0][0]; //1
+        int e = intervals[0][1]; //3
+        for (int i = 1; i < intervals.length; i++) {
+            int[] interval = intervals[i];
+            int start = interval[0];//2
+            int end = interval[1];//6
+            if (start <= e) {
+                e = Math.max(e, end);
+            } else {
+                help[size++] = new int[]{s, e};
+                s = start;
+                e = end;
+            }
+        }
+        help[size++] = new int[]{s, e};//最后一组
+
+        return Arrays.copyOf(help, size);
+    }
 }

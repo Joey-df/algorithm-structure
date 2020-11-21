@@ -25,6 +25,8 @@ import java.util.*;
  * 
  * Input: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
  * Output: false
+ *
+ * 前缀树
  */
 public class Problem_139_Word_Break {
 

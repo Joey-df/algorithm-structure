@@ -19,7 +19,7 @@ import java.util.PriorityQueue;
 /**
  * Related Topics: Heap  QuickSort
  */
-public class Kth_Largest_Element_in_an_Array {
+public class Problem_215_Kth_Largest_Element_in_an_Array {
 
     /**在无序数组中找第k大的数
       等价与

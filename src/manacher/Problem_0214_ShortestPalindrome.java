@@ -36,9 +36,8 @@ public class Problem_0214_ShortestPalindrome {
 		int[] pArr = new int[str.length];
 		int C = -1;
 		int R = -1;
-		int N = str.length >> 1;
 		int ans = 0;
-		for (int i = 0; i <= N; i++) {
+		for (int i = 0; i < str.length; i++) {
 			pArr[i] = R > i ? Math.min(pArr[2 * C - i], R - i) : 1;
 			while (i + pArr[i] < str.length && i - pArr[i] > -1) {
 				if (str[i + pArr[i]] == str[i - pArr[i]])
@@ -51,7 +50,8 @@ public class Problem_0214_ShortestPalindrome {
 				R = i + pArr[i];
 				C = i;
 			}
-			if (i - pArr[i] < 0) {
+			// 求必须包含第一个字符的最长回文长度
+			if (i - pArr[i] == -1) {
 				ans = Math.max(ans, pArr[i] - 1);
 			}
 		}

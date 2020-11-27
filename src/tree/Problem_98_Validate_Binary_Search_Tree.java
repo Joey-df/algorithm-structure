@@ -38,4 +38,35 @@ public class Problem_98_Validate_Binary_Search_Tree {
         }
         return new Info(min, max, isAllBst);
     }
+
+    //中序遍历违反严格递增就返回false
+    public static boolean morrisIn(TreeNode root) {
+        if (root == null) return true;
+        TreeNode cur = root;
+        TreeNode mostRight;
+        Integer pre = null;
+        while (cur != null) {
+            mostRight = cur.left;
+            if (mostRight != null) {
+                while (mostRight.right != null && mostRight.right != cur) {
+                    mostRight = mostRight.right; //找到左树最右节点
+                }
+                //while出来时：mostRight.right==null 或者 mostRight.right==cur
+                if (mostRight.right == null) {
+                    mostRight.right = cur;
+                    cur = cur.left;
+                    continue;
+                } else { //mostRight.right==cur
+                    //此处是第二次到达节点
+                    mostRight.right = null;
+                }
+            }
+            if (pre != null && pre >= cur.val) {
+                return false;
+            }
+            pre = cur.val;
+            cur = cur.right;
+        }
+        return true;
+    }
 }

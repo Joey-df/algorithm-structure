@@ -1,4 +1,4 @@
-package dynamic_programming.left_to_right;
+package dynamic_programming.left_to_right.lis;
 
 /**
  * Given an unsorted array of integers, find the length of longest increasing subsequence.

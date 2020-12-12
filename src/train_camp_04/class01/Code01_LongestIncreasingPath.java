@@ -46,6 +46,7 @@ public class Code01_LongestIncreasingPath {
         return ans;
     }
 
+    //时间复杂度 O(N*M)
     public static int maxIncPathLen(int[][] matrix) {
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
             return 0;

@@ -1,6 +1,6 @@
 package backtrack;
 
-
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,20 +9,24 @@ import java.util.Set;
  * 打印字符串的全部子序列
  * 1、字符串不包括重复字符
  * 2、字符串包括重复字符
+ * 
+ * 经典的从左往右的尝试
  */
 public class AllSubSequences {
 
     public static void main(String[] args) {
-        String str = "aa";
+        String str = "abc";
         char[] arr = str.toCharArray();
-//        List<String> ans  =new ArrayList<>();
-//        subSequenceWithNoRepeate(arr, 0, "",ans);
-//        for (int i = 0; i < ans.size(); i++) {
-//            System.out.println(ans.get(i));
-//        }
-        Set<String> ans = new HashSet<>();
-        subSequenceWithRepeate(arr, 0, "", ans);
-        for (String s : ans) {
+        List<String> ans  =new ArrayList<>();
+        subSequenceWithNoRepeate(arr, 0, "",ans);
+        for (int i = 0; i < ans.size(); i++) {
+            System.out.println(ans.get(i));
+        }
+        System.out.println("===========");
+        str = "aaa";
+        Set<String> ans1 = new HashSet<>();
+        subSequenceWithRepeate(str.toCharArray(), 0, "", ans1);
+        for (String s : ans1) {
             System.out.println(s);
         }
     }
@@ -42,9 +46,11 @@ public class AllSubSequences {
             ans.add(path);
             return;
         }
-        //index后面还有字符，分两种情况：1、要当前字符，2、不要当前字符
-        subSequenceWithNoRepeate(str, index + 1, path, ans);
-        subSequenceWithNoRepeate(str, index + 1, path + String.valueOf(str[index]), ans);
+        //index后面还有字符，分两种情况：
+        String no = path; //1、不要当前字符
+        subSequenceWithNoRepeate(str, index + 1, no, ans);
+        String yes = path + str[index]; //2、要当前字符
+        subSequenceWithNoRepeate(str, index + 1, yes, ans);
     }
 
     /**
@@ -62,9 +68,11 @@ public class AllSubSequences {
             ans.add(path);
             return;
         }
-        //index后面还有字符，分两种情况：1、要当前字符，2、不要当前字符
-        subSequenceWithRepeate(str, index + 1, path, ans);
-        subSequenceWithRepeate(str, index + 1, path + String.valueOf(str[index]), ans);
+        //index后面还有字符，分两种情况：
+        String no = path; //1、不要当前字符
+        subSequenceWithRepeate(str, index + 1, no, ans);
+        String yes = path + str[index]; //2、要当前字符
+        subSequenceWithRepeate(str, index + 1, yes, ans);
     }
 
 }

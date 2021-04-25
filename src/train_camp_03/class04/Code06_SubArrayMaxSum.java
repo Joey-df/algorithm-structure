@@ -2,6 +2,8 @@ package train_camp_03.class04;
 
 /**
  * 给定一个数组arr，返回子数组的最大累加和。
+ * LeetCode 53 最大子数组累加和（E）
+ * https://leetcode.com/problems/maximum-subarray/
  */
 public class Code06_SubArrayMaxSum {
 

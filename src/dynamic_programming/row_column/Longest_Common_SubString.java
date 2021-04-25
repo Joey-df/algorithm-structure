@@ -49,6 +49,9 @@ public class Longest_Common_SubString {
         System.out.println(maxLen);
         System.out.println(endIndex);
         System.out.println(res);
+
+        System.out.println("=======");
+        System.out.println(1 << 27);
     }
 
 }

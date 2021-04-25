@@ -70,6 +70,48 @@ public class Code01_CordCoverMaxPoint {
         return max;
     }
 
+    //给定数组arr，绳子长度为K，求在arr中绳子最多能盖住几个点
+    //[1,3,4,6,7,10]
+    //K=4
+    public static int process(int[] arr, int K) {
+        //使用滑动窗口
+        //枚举每个i开头的答案，整体求max
+        /*if(arr==null || arr.length==0) return 0;
+        if (K<0) return 0;
+        int ans = 0;
+        int l=0;
+        int r=0;
+        int N = arr.length;
+        while (l<N) { //枚举开头：从0开始，越界停
+            while (r<N && arr[r]-arr[l]<=K) {
+                r++;//r不越界，并且数组l~r之间的差值没有超过K，r往右动
+            }
+            ans = Math.max(ans, r-l);
+            l++;
+        }
+        return ans;*/
+        //二分法
+        //枚举每个结尾的位置i，在[0,i]上找>=arr[i]-K最左的位置
+        if (arr == null || arr.length == 0 || K < 0) return 0;
+        int ans = 0;
+        for (int i = 0; i < arr.length; i++) {//枚举每个结尾的位置i;结尾的位置包括数组中每个位置
+            int r = i;
+            int l = 0;
+            int target = arr[i] - K;
+            while (l <= r) {
+                int m = (l + r) >> 1;
+                if (arr[m] >= target) {
+                    r = m - 1;
+                } else {
+                    l = m + 1;
+                }
+            }
+            //while结束，找到了的话，l就是>=arr[i]-K最左的位置，没找到的话l会来到r+1的位置
+            ans = Math.max(ans, i - l + 1);
+        }
+        return ans;
+    }
+
     //for test
     public static int[] generateArr(int maxLen, int maxValue) {
         int[] arr = new int[(int) (Math.random() * (maxLen + 1))];
@@ -91,7 +133,8 @@ public class Code01_CordCoverMaxPoint {
             int ans1 = ways1(arr, k);
             int ans2 = ways2(arr, k);
             int ans3 = maxPoint2(arr, k);
-            if (ans1 != ans2 || ans2 != ans3) {
+            int ans4 = process(arr, k);
+            if (ans1 != ans2 || ans2 != ans3 || ans3 != ans4) {
                 System.out.println("funk!");
                 break;
             }

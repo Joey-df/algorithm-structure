@@ -37,7 +37,7 @@ public class Problem_103_Binary_Tree_Zigzag_Level_Order_Traversal {
             sz = q.size();
             while (sz-- >0) {
                 if (leftToRight) {
-                    TreeNode node = q.pollFirst();
+                    TreeNode node = q.poll();
                     sub.add(node.val);
                     if (node.left!=null) q.addLast(node.left);
                     if (node.right!=null) q.addLast(node.right);

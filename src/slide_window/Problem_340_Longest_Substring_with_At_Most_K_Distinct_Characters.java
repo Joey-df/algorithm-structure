@@ -13,7 +13,8 @@ package slide_window;
  * Input: s = "aa", k = 1
  * Output: 2
  * Explanation: T is "aa" which its length is 2.
- * 加锁的题
+ * 加锁的题 这个是好题
+ * 需要反复练习
  */
 public class Problem_340_Longest_Substring_with_At_Most_K_Distinct_Characters {
 
@@ -28,7 +29,7 @@ public class Problem_340_Longest_Substring_with_At_Most_K_Distinct_Characters {
         int[] map = new int[128];//记账表
         for (int i = 0; i < N; i++) { //尝试每一个开头
             while (R < N &&
-                    (diff < k || (diff == k && map[str[R]] > 0))) {
+                    (diff < k || (diff == k && map[str[R]] > 0))) {//窗口往右扩，扩不动了 停
                 diff += map[str[R]] == 0 ? 1 : 0;
                 map[str[R++]]++;
             }

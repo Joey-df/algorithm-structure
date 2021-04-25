@@ -85,7 +85,7 @@ public class Code01_DeleteMinCost {
             dp[0][j] = Integer.MAX_VALUE;
         }
         for (int i = 1; i < row; i++) {
-            dp[i][0] = (dp[i - 1][0] != Integer.MAX_VALUE || str2[i] == s1sub[0]) ? i : Integer.MAX_VALUE;
+            dp[i][0] = (dp[i - 1][0] == i - 1 || str2[i] == s1sub[0]) ? i : Integer.MAX_VALUE;
         }
         for (int i = 1; i < row; i++) {
             for (int j = 1; j < col; j++) {

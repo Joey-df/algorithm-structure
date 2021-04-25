@@ -30,7 +30,7 @@ public class FindLeftBound {
 
     public static void main(String[] args) {
         int arr[] = {1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 5, 7};
-        int target = 2;
+        int target = -2;
         System.out.println("arr.length = " + arr.length);
         System.out.println("nearestIndex(arr, " + target + ") = " + nearestIndex(arr, target));
     }

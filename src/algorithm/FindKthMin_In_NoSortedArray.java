@@ -14,6 +14,8 @@ public class FindKthMin_In_NoSortedArray {
     //在arr[L...R]范围上找位于index位置的数
     //如果排序的话，不是真的排序
     //潜台词：index一定在L...R上
+    //递归方法
+    //TODO 待补充迭代的方法
     public static int findKth(int[] arr, int L, int R, int index) {
         if (L == R) return arr[index];
         swap(arr, L + (int) Math.random() * (R - L + 1), R);//把最右边的基准数变成随机的

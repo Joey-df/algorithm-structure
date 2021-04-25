@@ -15,6 +15,7 @@ package dynamic_programming.range;
  * Output: "bb"
  * 范围上的尝试模型
  * 寻找最长回文子子串
+ * manacher
  */
 public class Problem_5_Longest_Palindromic_Substring {
 

@@ -18,5 +18,5 @@ package train_camp_04.class06;
  * [1,3,2]只有(3,2)这一个逆序对，所以达标。
  * [2,1,3]只有(2,1)这一个逆序对，所以达标。
  */
-public class Code02_KInversePairs1 {
+public class Code02_KInversePairs {
 }

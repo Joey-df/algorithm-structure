@@ -23,6 +23,9 @@ package islands;
  * [[0,0,0,0,0,0,0,0]]
  * Given the above grid, return 0.
  * Note: The length of each dimension in the given grid does not exceed 50.
+ *
+ * 有人面试被问过：
+ * 一个二维数组，里面仅包含0或1，求最多的1连在一起的个数
  */
 public class Problem_695_Max_Area_of_Island {
     public static int maxAreaOfIsland(int[][] grid) {

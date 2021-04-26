@@ -69,6 +69,27 @@ public class Problem_300_Longest_Increasing_Subsequence {
         return ans;
     }
 
+    //[2,1,4,2,3]
+    public static int right(int[] arr) {
+        if (arr == null || arr.length == 0) {
+            return 0;
+        }
+        int N = arr.length;
+        int[] dp = new int[N]; //dp[i]:LIS必须以i位置结尾，长度是多长
+        dp[0] = 1;
+        int ans = dp[0];
+        for (int i = 1; i < N; i++) {
+            int max = 0;
+            for (int j = 0; j < i; j++) {
+                if (arr[j] < arr[i]) {
+                    max = Math.max(max, dp[j]);
+                }
+            }
+            dp[i] = max + 1;
+            ans = Math.max(ans, dp[i]);
+        }
+        return ans;
+    }
 
     //O(N*logN)的解法
     //ends数组的含义：ends[i]表示 找到的所有长度为i+1的递增子序列的最小结尾是啥

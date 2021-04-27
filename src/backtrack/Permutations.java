@@ -14,74 +14,84 @@ public class Permutations {
 
     public static void main(String[] args) {
         String s = "abc";
-        List<String> list = permutationWithNoRepeate(s);
-//        List<String> list = permutationWithRepeate(s);
+        List<String> list = process1(s.toCharArray());
         System.out.println("list.size() = " + list.size());
         for (String str : list) {
             System.out.println(str);
         }
+
+        System.out.println("====================");
+
+        s = "aba";
+        List<String> list2 = process2(s.toCharArray());
+        System.out.println("list2.size() = " + list2.size());
+        for (String str : list2) {
+            System.out.println(str);
+        }
     }
 
-    private static List<String> permutationWithNoRepeate(String str) {
-        char[] s = str.toCharArray();
+    /**
+     * 求给定字符数组arr的所有全排列
+     * @param arr 原始字符数组，arr中没有重复字符
+     * @return 所有全排列组成的list
+     */
+    public static List<String> process1(char[] arr) {
         List<String> ans = new ArrayList<>();
-        noRepeate(s, 0, ans);
+        if (arr==null||arr.length==0) return ans;
+        f(arr, 0, ans);
         return ans;
     }
 
     /**
-     * str[0...index-1]之前已经做好决定了
-     * str[index...]上的字符都有机会来到i位置
      *
-     * @param str   里面没有重复字符
-     * @param index
-     * @param ans   index来到终止位置，str当前的样子就是一种结果，收集到ans中
+     * @param arr 原始字符数组
+     * @param index 当前来到i位置，[0,index-1]已经做好决定了
+     * @param ans 收集答案
      */
-    private static void noRepeate(char[] str, int index, List<String> ans) {
-        if (index == str.length) { //str[0...str.length-1]之前已经做好决定了
-            ans.add(String.valueOf(str));
+    private static void f(char[] arr, int index, List<String> ans) {
+        //表示[0,arr.length-1]已经做好决定了,此时arr就是一种答案
+        if (index==arr.length) {
+            ans.add(String.valueOf(arr));
+            return;
         }
-        //index没有到终止位置
-        for (int i = index; i < str.length; i++) {
-            swap(str, index, i);
-            noRepeate(str, index + 1, ans);
-            swap(str, index, i);//恢复现场
+        //index后面的字符都有机会来到i位置
+        for (int i = index; i < arr.length; i++) {
+            swap(arr, i,index);
+            f(arr, index+1, ans);
+            swap(arr, i, index);//恢复现场
         }
-    }
-
-    private static List<String> permutationWithRepeate(String str) {
-        ArrayList<String> res = new ArrayList<>();
-        if (str == null || str.length() == 0) {
-            return res;
-        }
-        char[] chs = str.toCharArray();
-        withRepeate(chs, 0, res);
-        return res;
     }
 
     /**
-     * str[0...index-1]之前已经做好决定了
-     * str[index...]上的字符都有机会来到i位置
-     *
-     * @param str   里面有重复字符
-     * @param index
-     * @param ans   index来到终止位置，str当前的样子就是一种结果，收集到ans中
+     * 求给定字符数组arr的所有全排列
+     * @param arr 原始字符数组，arr中存在重复字符
+     * @return 所有全排列组成的list
      */
-    private static void withRepeate(char[] str, int index, List<String> ans) {
-        if (index == str.length) {
-            ans.add(String.valueOf(str));
+    public static List<String> process2(char[] arr) {
+        List<String> ans = new ArrayList<>();
+        if (arr==null||arr.length==0) return ans;
+        g(arr, 0, ans);
+        return ans;
+    }
+
+    /**
+     *
+     * @param arr 原始字符数组 存在重复字符
+     * @param index 当前来到i位置，[0,index-1]已经做好决定了
+     * @param ans 收集答案
+     */
+    public static void g(char[] arr, int index, List<String> ans) {
+        if (index==arr.length) {
+            ans.add(String.valueOf(arr));
+            return;
         }
-        //index没有到终止位置
-        Set<Character> set = new HashSet<>(); //作用与index位置，每个位置一份，不共享
-//        boolean[] visit = new boolean[26]; // visit[0 1 .. 25]
-        for (int i = index; i < str.length; i++) {
-            if (!set.contains(str[i])) {
-//            if (!visit[str[i] - 'a']) {
-                set.add(str[i]);
-//                visit[str[i] - 'a'] = true;
-                swap(str, index, i);
-                withRepeate(str, index + 1, ans);
-                swap(str, index, i);//恢复现场
+        boolean[] visited = new boolean[256];//专为index位置使用：index位置剪枝
+        for (int i = index; i < arr.length; i++) {
+            if (!visited[arr[i]]) {
+                visited[arr[i]] = true;
+                swap(arr, i, index);
+                g(arr, index+1, ans);
+                swap(arr, i, index); //恢复现场
             }
         }
     }

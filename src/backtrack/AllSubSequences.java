@@ -9,7 +9,7 @@ import java.util.Set;
  * 打印字符串的全部子序列
  * 1、字符串不包括重复字符
  * 2、字符串包括重复字符
- * 
+ * <p>
  * 经典的从左往右的尝试
  */
 public class AllSubSequences {
@@ -17,62 +17,57 @@ public class AllSubSequences {
     public static void main(String[] args) {
         String str = "abc";
         char[] arr = str.toCharArray();
-        List<String> ans  =new ArrayList<>();
-        subSequenceWithNoRepeate(arr, 0, "",ans);
+        List<String> ans = new ArrayList<>();
+        process1(arr, 0, "", ans);
         for (int i = 0; i < ans.size(); i++) {
             System.out.println(ans.get(i));
         }
         System.out.println("===========");
         str = "aaa";
         Set<String> ans1 = new HashSet<>();
-        subSequenceWithRepeate(str.toCharArray(), 0, "", ans1);
+        process2(str.toCharArray(), 0, "", ans1);
         for (String s : ans1) {
             System.out.println(s);
         }
     }
 
     /**
-     * @param str   字符串对应的字符数组
-     * @param index str[0...index-1]已经决定好了。str[index...]自由做选择
-     * @param path  str[0...index-1]形成的字符序列是啥
-     * @param ans   当index到达结束位置时，收集答案
-     * @return
+     * arr中没有重复字符，求arr的所有子序列
+     *
+     * @param arr  原始字符数组，固定参数
+     * @param i    [0,i-1]已经搞定了不用操心了，当前来到i位置做决定
+     * @param path [0,i-1]做决定形成的字符串存在path里
+     * @param ans  专为收集答案
      */
-    private static void subSequenceWithNoRepeate(char[] str, int index, String path, List<String> ans) {
-        if (str == null || str.length == 0) {
-            return;
-        }
-        if (index == str.length) { //表示str[0...str.length-1]已经做好决定了，收集答案
+    public static void process1(char[] arr, int i, String path, List<String> ans) {
+        if (arr == null || arr.length == 0) return;
+        //base case 收集答案的时机
+        if (i == arr.length) {//表示[0,arr.length-1]已经做好决定了，此时path就是一种答案
             ans.add(path);
             return;
         }
-        //index后面还有字符，分两种情况：
-        String no = path; //1、不要当前字符
-        subSequenceWithNoRepeate(str, index + 1, no, ans);
-        String yes = path + str[index]; //2、要当前字符
-        subSequenceWithNoRepeate(str, index + 1, yes, ans);
+        //i<arr.length
+        process1(arr, i + 1, path, ans);
+        process1(arr, i + 1, path + arr[i], ans);
     }
 
     /**
-     * @param str   字符串对应的字符数组
-     * @param index str[0...index-1]已经决定好了。str[index...]自由做选择
-     * @param path  str[0...index-1]形成的字符序列是啥
-     * @param ans   当index到达结束位置时，收集答案。使用set去重
-     * @return
+     * arr中包含重复字符，求arr的所有子序列
+     *
+     * @param arr  原始字符数组，固定参数
+     * @param i    [0,i-1]已经做好决定了，不用操心了。当前来到i位置做决定
+     * @param path [0,i-1]做的决定形成的字符串，存在path中
+     * @param ans  收集答案
      */
-    private static void subSequenceWithRepeate(char[] str, int index, String path, Set<String> ans) {
-        if (str == null || str.length == 0) {
-            return;
-        }
-        if (index == str.length) { //表示str[0...str.length-1]已经做好决定了，收集答案
+    public static void process2(char[] arr, int i, String path, Set<String> ans) {
+        if (arr == null || arr.length == 0) return;
+        //表示[0,arr.length-1]已经做好决定了，此时path正好是一种答案，需要收集
+        if (i == arr.length) {
             ans.add(path);
             return;
         }
-        //index后面还有字符，分两种情况：
-        String no = path; //1、不要当前字符
-        subSequenceWithRepeate(str, index + 1, no, ans);
-        String yes = path + str[index]; //2、要当前字符
-        subSequenceWithRepeate(str, index + 1, yes, ans);
+        process2(arr, i + 1, path, ans);
+        process2(arr, i + 1, path + arr[i], ans);
     }
 
 }

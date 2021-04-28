@@ -13,25 +13,22 @@ public class LevelTraversalBT {
         private int val;
         private TreeNode left;
         private TreeNode right;
+
         public TreeNode(int val) {
             this.val = val;
         }
     }
 
     public static void levelTraversal(TreeNode root) {
-        if (root==null) return;
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        while (!queue.isEmpty()) {
-            TreeNode node = queue.poll();
-            System.out.print(node.val+" ");//出队就打印
-            //看node的左右节点，先压左，后压右
-            if (node.left!=null) {
-                queue.add(node.left);
-            }
-            if (node.right!=null) {
-                queue.add(node.right);
-            }
+        if (root == null) return;
+        //root不为空
+        LinkedList<TreeNode> q = new LinkedList<>();
+        q.offerLast(root);
+        while (!q.isEmpty()) {
+            TreeNode cur = q.pollFirst();
+            System.out.print(cur.val + " ");
+            if (cur.left != null) q.offerLast(cur.left);
+            if (cur.right != null) q.offerLast(cur.right);
         }
         System.out.println();
     }

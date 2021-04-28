@@ -1,6 +1,6 @@
 package tree;
 
-import java.util.Stack;
+import java.util.LinkedList;
 
 /**
  * 迭代遍历二叉树
@@ -12,76 +12,65 @@ public class IterativeTraversalBT {
         private int val;
         private TreeNode left;
         private TreeNode right;
+
         public TreeNode(int val) {
             this.val = val;
         }
     }
 
 
-    /**
-     * 先序遍历
-     * @param root
-     */
-    private static void preOrder(TreeNode root) {
-        if (root==null) return;
-        Stack<TreeNode> stack = new Stack<>();
-        stack.push(root);
+    //先序遍历打印二叉树
+    //根 左 右
+    public static void preOrder(TreeNode root) {
+        if (root == null) return;
+        //root不为空
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        stack.offerLast(root);
         while (!stack.isEmpty()) {
-            TreeNode node = stack.pop();
-            System.out.print(node.val+" ");//出栈就打印
-            //看node的左右节点，先压右，后压左
-            if (node.right!=null) {
-                stack.push(node.right);
-            }
-            if (node.left!=null) {
-                stack.push(node.left);
-            }
+            TreeNode cur = stack.pollLast();
+            System.out.print(cur.val + " ");
+            if (cur.right != null) stack.offerLast(cur.right);
+            if (cur.left != null) stack.offerLast(cur.left);
         }
         System.out.println();
     }
 
-    /**
-     * 后序遍历
-     * @param root
-     */
+    //后序遍历打印二叉树
+    //左 右 根
+    //刚好是 根 右 左 的反序，所以通过先序加工
     public static void postOrder(TreeNode root) {
-        if (root==null) return;
-        Stack<TreeNode> stack1 = new Stack<>();
-        Stack<TreeNode> stack2 = new Stack<>();
-        stack1.push(root);
-        while (!stack1.isEmpty()) {
-            TreeNode node = stack1.pop();
-            stack2.push(node); //出栈就给stack2中压
-            //看node的左右节点，先压左，后压右
-            if (node.left!=null) {
-                stack1.push(node.left);
-            }
-            if (node.right!=null) {
-                stack1.push(node.right);
-            }
+        if (root == null) return;
+        //root不为空
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        LinkedList<TreeNode> stack2 = new LinkedList<>();
+        stack.offerFirst(root);
+        while (!stack.isEmpty()) {
+            TreeNode cur = stack.pollFirst();
+            stack2.offerFirst(cur);
+            if (cur.left != null) stack.offerFirst(cur.left);
+            if (cur.right != null) stack.offerFirst(cur.right);
         }
-        //将stack2全部出栈，打印，就是后序遍历
         while (!stack2.isEmpty()) {
-            System.out.print(stack2.pop().val+" ");
+            System.out.print(stack2.pollFirst().val + " ");
         }
         System.out.println();
     }
 
-    /**
-     * 中序遍历
-     * @param root
-     */
+    //中序遍历二叉树
+    //左 根 右
     public static void inOrder(TreeNode root) {
-        if (root==null) return;
-        Stack<TreeNode> stack = new Stack<>();
-        while(!stack.isEmpty()||root!=null) {
-            if (root!=null) {
-                stack.push(root);
-                root = root.left; //一路往左窜
+        if (root == null) return;
+        //root不为空
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        TreeNode cur = root;
+        while (!stack.isEmpty() || cur != null) {
+            if (cur != null) {
+                stack.offerLast(cur);
+                cur = cur.left;//往左窜
             } else {
-                TreeNode node = stack.pop();
-                System.out.print(node.val + "  ");
-                root = node.right;
+                TreeNode node = stack.pollLast();
+                System.out.print(node.val + " ");
+                cur = node.right;
             }
         }
         System.out.println();

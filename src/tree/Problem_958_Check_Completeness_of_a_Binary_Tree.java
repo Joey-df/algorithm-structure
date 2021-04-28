@@ -22,15 +22,13 @@ public class Problem_958_Check_Completeness_of_a_Binary_Tree {
                 return false;
             }
             //found && 遇到非叶子节点，直接false
-            if (found && (node.left != null || node.right != null)) {
+            if (found &&
+                    (node.left != null || node.right != null)
+            ) {
                 return false;
             }
-            if (node.left != null) {
-                q.offer(node.left);
-            }
-            if (node.right != null) {
-                q.offer(node.right);
-            }
+            if (node.left != null) q.offer(node.left);
+            if (node.right != null) q.offer(node.right);
             if (node.left == null || node.right == null) {//遇到左右孩子不双全
                 found = true;
             }

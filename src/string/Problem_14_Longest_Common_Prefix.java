@@ -32,7 +32,7 @@ public class Problem_14_Longest_Common_Prefix {
         //strs.length>=2
         char[] base = strs[0].toCharArray();
         int minIndex = Integer.MAX_VALUE;
-        for (int i = 0; i < strs.length; i++) {
+        for (int i = 1; i < strs.length; i++) {
             int index = 0;
             String str = strs[i];
             char[] cur = str.toCharArray();

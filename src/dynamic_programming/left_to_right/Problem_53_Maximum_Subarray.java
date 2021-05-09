@@ -60,7 +60,9 @@ public class Problem_53_Maximum_Subarray {
     }
 
     /**
+     * 美团原题
      * 给定一个数组nums，选组合，不能选相邻的数，求所选组合的最大累加和
+     * 打家劫舍问题
      */
     public int followUp(int[] nums) {
         if (nums == null || nums.length == 0) {

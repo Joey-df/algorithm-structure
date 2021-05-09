@@ -4,6 +4,8 @@ package tree;
  * 给定一棵二叉树的头节点head，返回这颗二叉树是不是平衡二叉树
  * 平衡二叉树：
  * 它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树
+ *
+ * leetcode 110题
  */
 public class Problem_110_Balanced_Binary_Tree {
 

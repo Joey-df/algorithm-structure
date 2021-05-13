@@ -27,7 +27,7 @@ public class Code02_HowManyTypes {
     }
 
     public static void main(String[] args) {
-        String[] arr = new String[]{"ababababc", "abc", "edc", "edcdc", "ert", "zzz", "xyz"};
+        String[] arr = new String[]{"", "ababababc", "", "abc", "edc", "edcdc", "ert", "zzz", "xyz"};
         System.out.println(types(arr));
     }
 }

@@ -20,15 +20,13 @@ public class Code04_SubArrayMaxSumFollowUp {
         int[] dp = new int[N];
         dp[0] = arr[0];
         dp[1] = Math.max(arr[0], arr[1]);
-        int ans = dp[1];
         for (int i = 2; i < N; i++) {
             int p1 = arr[i]; //只要arr[i]
             int p2 = dp[i - 1];//不要arr[i]
             int p3 = arr[i] + dp[i - 2];//要arr[i]
             dp[i] = Math.max(p1, Math.max(p2, p3));
-            ans = Math.max(ans, dp[i]);
         }
-        return ans;
+        return dp[N - 1];
     }
 
 }

@@ -31,11 +31,11 @@ public class Code01_QueryHobby {
         }
         //arr中包含target
         ArrayList<Integer> list = help.get(target);
-        System.out.println(list);
+//        System.out.println(list);
         int leftBound = findLeftBound(list, L);
-        System.out.println(leftBound);
+//        System.out.println(leftBound);
         int rightBound = findRightBound(list, R);
-        System.out.println(rightBound);
+//        System.out.println(rightBound);
         return rightBound < leftBound ? 0 : rightBound - leftBound + 1;
     }
 
@@ -70,7 +70,57 @@ public class Code01_QueryHobby {
         return r;//如果没找到，r会来到-1位置
     }
 
+    public static class QueryBox1 {
+        private int[] arr;
+
+        public QueryBox1(int[] array) {
+            arr = new int[array.length];
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = array[i];
+            }
+        }
+
+        public int query(int L, int R, int v) {
+            int ans = 0;
+            for (; L <= R; L++) {
+                if (arr[L] == v) {
+                    ans++;
+                }
+            }
+            return ans;
+        }
+    }
+
+    public static int[] generateRandomArray(int len, int value) {
+        int[] ans = new int[(int) (Math.random() * len) + 1];
+        for (int i = 0; i < ans.length; i++) {
+            ans[i] = (int) (Math.random() * value) + 1;
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
-        System.out.println(process(new int[]{3, 2, 2, 3, 1}, 1, 10, 3));
+        int len = 300;
+        int value = 20;
+        int testTimes = 1000;
+        int queryTimes = 1000;
+        System.out.println("test begin");
+        for (int i = 0; i < testTimes; i++) {
+            int[] arr = generateRandomArray(len, value);
+            int N = arr.length;
+            QueryBox1 box1 = new QueryBox1(arr);
+            for (int j = 0; j < queryTimes; j++) {
+                int a = (int) (Math.random() * N);
+                int b = (int) (Math.random() * N);
+                int L = Math.min(a, b);
+                int R = Math.max(a, b);
+                int v = (int) (Math.random() * value) + 1;
+                if (box1.query(L, R, v) != process(arr, L, R, v)) {
+                    System.out.println("Oops!");
+                    break;
+                }
+            }
+        }
+        System.out.println("test end");
     }
 }

@@ -56,7 +56,8 @@ public class Code03_FindWordInMatrix {
         return false;
     }
 
-
+    //不能改动态规划，因为m会变
+    //暴力尝试就是最优解
     public static boolean work2(char[][] m, int i, int j, char[] word, int k) {
         if (k == word.length) {
             return true;

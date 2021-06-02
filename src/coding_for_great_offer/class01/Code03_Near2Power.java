@@ -17,7 +17,15 @@ public class Code03_Near2Power {
         return n < 0 ? 1 : n + 1;
     }
 
+    //方法二
+    public static int nextPowerOf2(int n) {
+        if (n <= 0) return 1;
+        int highestOneBit = Integer.highestOneBit(n);
+        return (highestOneBit == n) ? n : highestOneBit << 1;
+    }
+
     public static void main(String[] args) {
-        System.out.println(process(21));
+        System.out.println(process(0));
+        System.out.println(nextPowerOf2(0));
     }
 }

@@ -8,6 +8,7 @@ package coding_for_great_offer.class01;
  * 返回要把所有怪兽血量清空，至少需要释放多少次AOE技能？
  *
  * 线段树
+ * (新增题)
  */
 public class Code06_AOE {
 }

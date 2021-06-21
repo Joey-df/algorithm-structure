@@ -1,4 +1,4 @@
-package dynamic_programming;
+package dynamic_programming.row_column;
 
 /**
  * Given a string S and a string T, count the number of distinct subsequences of S which equals T.

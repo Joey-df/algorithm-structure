@@ -13,10 +13,10 @@ public class DeleteGivenDode {
         ListNode pre = head;
         ListNode cur = head;
         while (cur != null) {
-            if (cur.val == val) {
-                pre.next = cur.next;
-            } else { //cur.val!=val
+            if (cur.val != val) {
                 pre = cur;
+            } else {
+                pre.next = cur.next;
             }
             cur = cur.next;
         }

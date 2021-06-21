@@ -20,25 +20,30 @@ package leetcode_top_interview_questions;
  */
 public class Problem_0014_LongestCommonPrefix {
 
-    public String longestCommonPrefix(String[] strs) {
+    public static String longestCommonPrefix(String[] strs) {
         if (strs == null || strs.length == 0) {
             return "";
         }
-        String str0 = strs[0];
-        char[] base = str0.toCharArray();
-        int min = base.length;
+        String base = strs[0];
+        char[] str0 = strs[0].toCharArray();
+        int minIndex = base.length();
         for (int i = 1; i < strs.length; i++) {
-            char[] cur = strs[i].toCharArray();
+            char[] str = strs[i].toCharArray();
             int index = 0;
-            while (index < base.length && index < cur.length) {
-                if (cur[index] != base[index]) {
+            while (index < str.length && index < str0.length) {
+                if (str[index] == str0[index]) {
+                    index++;
+                } else {
                     break;
                 }
-                index++;
             }
-            min = Math.min(min, index);
-            if (min==0) return "";
+            minIndex = Math.min(minIndex, index);
         }
-        return str0.substring(0, min);
+        return base.substring(0, minIndex);
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(longestCommonPrefix(new String[]{"a"}));
     }
 }

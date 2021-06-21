@@ -1,4 +1,4 @@
-package dynamic_programming;
+package dynamic_programming.row_column;
 
 /**
  * Given s1, s2, and s3, find whether s3 is formed by the interleaving of s1 and s2.

@@ -15,7 +15,7 @@ import java.util.Set;
 public class AllSubSequences {
 
     public static void main(String[] args) {
-        String str = "abc";
+        String str = "123";
         char[] arr = str.toCharArray();
         List<String> ans = new ArrayList<>();
         process1(arr, 0, "", ans);
@@ -58,6 +58,8 @@ public class AllSubSequences {
      * @param i    [0,i-1]已经做好决定了，不用操心了。当前来到i位置做决定
      * @param path [0,i-1]做的决定形成的字符串，存在path中
      * @param ans  收集答案
+     *             这里不需要清除现场，是因为path每次都是新的，
+     *             String在后台每次都会弄个新的
      */
     public static void process2(char[] arr, int i, String path, Set<String> ans) {
         if (arr == null || arr.length == 0) return;

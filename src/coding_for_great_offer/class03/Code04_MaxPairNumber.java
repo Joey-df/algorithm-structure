@@ -9,6 +9,7 @@ package coding_for_great_offer.class03;
  *
  * 贪心
  * 滑动窗口
+ * (新增题)
  */
 public class Code04_MaxPairNumber {
 

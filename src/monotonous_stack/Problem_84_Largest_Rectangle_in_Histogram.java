@@ -17,3 +17,6 @@ package monotonous_stack;
 public class Problem_84_Largest_Rectangle_in_Histogram {
 
 }
+
+
+//85题也是单调栈解

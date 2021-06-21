@@ -7,6 +7,7 @@ package coding_for_great_offer.class02;
  * 其中手头拥有的10、50、100的数量分别为a、b、c
  * 可乐的价格是x(x是10的倍数)
  * 请计算出需要投入硬币次数？
+ * (新增题)
  */
 public class Code02_Cola {
 }

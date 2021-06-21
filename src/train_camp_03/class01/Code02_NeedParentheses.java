@@ -8,8 +8,9 @@ package train_camp_03.class01;
  * 无效的：(()   )(     等
  * 问题一：怎么判断一个括号字符串有效？
  * 问题二：如果一个括号字符串无效，返回至少填几个字符能让其整体有效
- * https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
  */
+ //leetcode 921
+ //https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
 public class Code02_NeedParentheses {
 
     //问题一：怎么判断一个小括号组成的字符串的有效性？

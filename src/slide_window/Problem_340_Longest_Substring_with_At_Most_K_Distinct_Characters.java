@@ -15,6 +15,7 @@ package slide_window;
  * Explanation: T is "aa" which its length is 2.
  * 加锁的题 这个是好题
  * 需要反复练习
+ * 24.leetcode高频题目全讲（二十四）讲解
  */
 public class Problem_340_Longest_Substring_with_At_Most_K_Distinct_Characters {
 

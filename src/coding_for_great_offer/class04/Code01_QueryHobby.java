@@ -13,6 +13,7 @@ import java.util.Map;
  * 请返回所有查询的结果
  *
  * 算法原型：二分查找
+ * (新增题)
  */
 public class Code01_QueryHobby {
 

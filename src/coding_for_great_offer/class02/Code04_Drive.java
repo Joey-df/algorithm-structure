@@ -5,6 +5,7 @@ package coding_for_great_offer.class02;
  * 第 i 个司机去A可得收入为income[i][0]，
  * 第 i 个司机去B可得收入为income[i][1]，
  * 返回所有调度方案中能使所有司机总收入最高的方案，是多少钱
+ * (新增题)
  */
 public class Code04_Drive {
 }

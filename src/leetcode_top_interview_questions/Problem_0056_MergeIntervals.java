@@ -38,7 +38,7 @@ public class Problem_0056_MergeIntervals {
             int[] pre = list.get(list.size() - 1);
             if (cur[0] >= pre[0] && cur[0] <= pre[1]) {
                 pre[1] = Math.max(pre[1], cur[1]);
-            } else {
+            } else { //cur[0]>pre[1]
                 list.add(cur);
             }
         }

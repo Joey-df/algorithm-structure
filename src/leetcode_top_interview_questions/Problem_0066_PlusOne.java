@@ -41,4 +41,21 @@ public class Problem_0066_PlusOne {
         ans[0] = 1;
         return ans;
     }
+
+    public static int[] func(int[] nums) {
+        assert (nums != null && nums.length > 0);
+        int N = nums.length;
+        for (int i = N - 1; i >= 0; i--) {
+            if (nums[i] < 9) {
+                nums[i]++;
+                return nums;
+            } else { //==9
+                nums[i] = 0;
+            }
+        }
+        //全是9
+        int[] ans = new int[N + 1];
+        ans[0] = 1;
+        return ans;
+    }
 }

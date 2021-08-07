@@ -29,7 +29,7 @@ public class Problem_0017_LetterCombinationsOfAPhoneNumber {
 
 
     //递归含义
-    //str：输入的数字字符串
+    //nums：输入的数字字符串 对应的字符数组
     //index：当前来到的位置（index-1及其往前都决定好了，不用操心了）
     //path：[0...index-1]沿途形成的路径
     //ans：收集答案

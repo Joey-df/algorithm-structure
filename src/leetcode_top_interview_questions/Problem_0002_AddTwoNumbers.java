@@ -17,50 +17,39 @@ import linked_list.ListNode;
  */
 public class Problem_0002_AddTwoNumbers {
 
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        assert (l1 != null && l2 != null);
-        int jinwei = 0;
-        ListNode head1 = l1;
-        ListNode head2 = l2;
-        int headVal = head1.val + head2.val;
-        if (headVal >= 10) {
-            jinwei = 1;
-            headVal %= 10;
-        }
-        ListNode ans = new ListNode(headVal);
-        ListNode cur = ans;
-        head1 = head1.next;
-        head2 = head2.next;
-        while (head1 != null && head2 != null) {
-            int curval = head1.val + head2.val + jinwei;
-            if (curval >= 10) {
-                curval %= 10;
-                jinwei = 1;
-            } else {
-                jinwei = 0;
-            }
-            cur.next = new ListNode(curval);
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        int carry;//进位信息
+        int sum; //每一步的sum
+        //先确定头节点
+        sum = l1.val + l2.val;
+        carry = sum / 10;
+        ListNode head = new ListNode(sum % 10);
+        ListNode cur = head;
+        l1 = l1.next;
+        l2 = l2.next;
+        while (l1 != null || l2 != null) { //只要有一个非空
+            sum = carry; //每一步sum都是carry+两个链表节点的val
+            sum += (l1 != null) ? l1.val : 0;
+            sum += (l2 != null) ? l2.val : 0;
+            cur.next = new ListNode(sum % 10);
             cur = cur.next;
-            head1 = head1.next;
-            head2 = head2.next;
+            carry = sum / 10;
+            l1 = l1 != null ? l1.next : null;
+            l2 = l2 != null ? l2.next : null;
         }
-
-        ListNode curHead = head1 != null ? head1 : head2;
-        while (curHead != null) {
-            int curVal = curHead.val + jinwei;
-            if (curVal >= 10) {
-                curVal = curVal % 10;
-                jinwei = 1;
-            } else {
-                jinwei = 0;
-            }
-            cur.next = new ListNode(curVal);
-            cur = cur.next;
-            curHead = curHead.next;
-        }
-        if (jinwei == 1) {
+        if (carry == 1) {
             cur.next = new ListNode(1);
         }
-        return ans;
+        return head;
+    }
+
+    public static void main(String[] args) {
+        ListNode l1 = new ListNode(2);
+        l1.next = new ListNode(4);
+        l1.next.next = new ListNode(3);
+        ListNode l2 = new ListNode(5);
+        l2.next = new ListNode(6);
+        l2.next.next = new ListNode(4);
+        addTwoNumbers(l1, l2);
     }
 }

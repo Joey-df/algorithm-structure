@@ -38,7 +38,7 @@ public class Problem_0215_KthLargestElementInAnArray {
         return new int[]{less+1, more-1};
     }
 
-    //在nums[l,r]范围上找位于index下表的数，返回
+    //在nums[l,r]范围上找位于index下标的数，返回
     private static int find(int[] nums, int l, int r, int index) {
         int[] range = partition(nums, l, r);
         if (index>=range[0] && index<=range[1]) {

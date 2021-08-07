@@ -13,7 +13,8 @@ public class Code02_BestTimetoBuyandSellStock2 {
         }
         int ans = 0;
         for (int i = 1; i < arr.length; i++) {
-            ans += arr[i] > arr[i - 1] ? arr[i] - arr[i - 1] : 0;
+            //ans += arr[i] > arr[i - 1] ? arr[i] - arr[i - 1] : 0;
+            ans += Math.max(arr[i]-arr[i-1], 0);
         }
         return ans;
     }

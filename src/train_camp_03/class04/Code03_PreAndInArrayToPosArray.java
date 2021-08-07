@@ -12,6 +12,8 @@ import java.util.Map;
  * int[] in = { 4, 2, 5, 1, 6, 3, 7 }; 返回:
  * {4,5,2,6,7,3,1}
  */
+//根据先序数组和中序数组生成后序数组
+//https://www.nowcoder.com/questionTerminal/5ae5174f17674e458028ce12bc8bfe0b
 public class Code03_PreAndInArrayToPosArray {
 
     public static List<Integer> getPostOrderArr(int[] preOrder, int[] inOrder) {

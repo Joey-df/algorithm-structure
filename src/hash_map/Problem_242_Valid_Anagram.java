@@ -17,6 +17,7 @@ package hash_map;
  * Follow up:
  * What if the inputs contain unicode characters? How would you adapt your solution to such case?
  */
+//判断两个字符串是否互为变形词
 public class Problem_242_Valid_Anagram {
     public static boolean process(String s, String t) {
         if ((s == null || s.length() == 0) && (t == null || t.length() == 0)) { //同时为空

@@ -28,6 +28,7 @@ public class Problem_0015_3Sum {
             return ans;
         }
         // [-1,0,1,2,-1,-4]，target=1
+        // [-4,-1,-1,0,1,2]
         // 返回[-1,2],[0,1]
         Arrays.sort(nums);
 

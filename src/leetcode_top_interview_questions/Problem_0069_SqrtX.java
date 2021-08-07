@@ -27,7 +27,7 @@ public class Problem_0069_SqrtX {
             int m = l + ((r - l) >> 1);
             if (Math.pow(m, 2) > x) {
                 r = m - 1;
-            } else {
+            } else { // Math.pow(m, 2)<=x时记录答案，然后在右边二分
                 ans = m;
                 l = m + 1;
             }

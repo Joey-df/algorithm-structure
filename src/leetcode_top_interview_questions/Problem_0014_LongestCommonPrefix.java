@@ -24,14 +24,13 @@ public class Problem_0014_LongestCommonPrefix {
         if (strs == null || strs.length == 0) {
             return "";
         }
-        String base = strs[0];
-        char[] str0 = strs[0].toCharArray();
-        int minIndex = base.length();
+        char[] base = strs[0].toCharArray();
+        int minIndex = base.length;
         for (int i = 1; i < strs.length; i++) {
             char[] str = strs[i].toCharArray();
             int index = 0;
-            while (index < str.length && index < str0.length) {
-                if (str[index] == str0[index]) {
+            while (index < str.length && index < base.length) {
+                if (str[index] == base[index]) {
                     index++;
                 } else {
                     break;
@@ -39,11 +38,11 @@ public class Problem_0014_LongestCommonPrefix {
             }
             minIndex = Math.min(minIndex, index);
         }
-        return base.substring(0, minIndex);
+        return strs[0].substring(0, minIndex);
     }
 
 
     public static void main(String[] args) {
-        System.out.println(longestCommonPrefix(new String[]{"a"}));
+        System.out.println(longestCommonPrefix(new String[]{"abggg","abbb","abc"}));
     }
 }

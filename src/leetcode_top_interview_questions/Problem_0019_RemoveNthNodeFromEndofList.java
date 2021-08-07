@@ -16,7 +16,8 @@ public class Problem_0019_RemoveNthNodeFromEndofList {
         ListNode s = dummy;
         ListNode f = dummy;
         int i = 0;
-        while (i++ <= n) {
+        //快指针先跳N+1步，然后快慢指针同步跳
+        while (i++ <= n) { //等价写法 for (int i=0;i<=n;i++)
             f = f.next;
         }
         while (f != null) {
@@ -25,5 +26,17 @@ public class Problem_0019_RemoveNthNodeFromEndofList {
         }
         s.next = s.next.next;
         return dummy.next;
+    }
+
+    public static void main(String[] args) {
+        int n=5;
+        for (int j=0;j<=n;j++) {
+            System.out.println("j:"+j);;
+        }
+        System.out.println("=======");
+        int i=0;
+        while (i++ <= n) {
+            System.out.println("i:"+i);;
+        }
     }
 }

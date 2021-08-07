@@ -20,4 +20,16 @@ public class Problem_0053_MaximumSubarray {
         return ans;
     }
 
+    public static int fun(int[] nums) {
+        assert (nums != null && nums.length > 0);
+        int ans = nums[0];
+        int pre = nums[0];//必须以i-1位置结尾的子数组最大累加和
+        for (int i = 1; i < nums.length; i++) {
+            int cur = nums[i] + Math.max(0, pre); //子数组必须以当前i位置结尾的最大累加和
+            ans = Math.max(ans, cur);
+            pre = cur;
+        }
+        return ans;
+    }
+
 }

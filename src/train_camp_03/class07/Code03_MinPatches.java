@@ -9,5 +9,10 @@ package train_camp_03.class07;
  *
  * http://chenxii.cn/2020/03/04/D-DataStructureAndAlgorithm/E-ZuoInterview/129-minNeed/
  */
+//Leetcode330原题：
+//https://leetcode.com/problems/patching-array/
 public class Code03_MinPatches {
+//    public int minPatches(int[] nums, int n) {
+//
+//    }
 }

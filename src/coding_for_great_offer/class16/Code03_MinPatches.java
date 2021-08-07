@@ -3,7 +3,7 @@ package coding_for_great_offer.class16;
 import java.util.Arrays;
 
 /**
- * Leetcode原题：
+ * Leetcode330原题：
  *
  * https://leetcode.com/problems/patching-array/
  */

@@ -20,6 +20,7 @@ import java.util.Set;
  * 输入：nums = [7,8,9,11,12]
  * 输出：1
  */
+//leetcode268同一类题
 public class Problem_0041_FirstMissingPositive {
 
     public static int firstMissingPositive(int[] nums) {
@@ -38,7 +39,32 @@ public class Problem_0041_FirstMissingPositive {
         return ans;
     }
 
+    //初始L=0；R=越界位置
+    //表示：[0,L-1]已经放好了i+1的数
+    //R表示预期的是收集1~R的数
+    public static int firstMissingPositive2(int[] nums) {
+        int L = 0;
+        int R = nums.length;
+        while (L < R) { //L==R时停
+            if (nums[L] == L + 1) {
+                L++;
+            } else if (nums[L] < L || nums[L] > R || nums[nums[L] - 1] == nums[L]) {
+                swap(nums, L, --R);
+            } else {
+                swap(nums, L, nums[L] - 1); //把i放到i-1位置
+            }
+        }
+        return L + 1;
+    }
+
+    private static void swap(int[] arr, int i, int j) {
+        int t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
+    }
+
     public static void main(String[] args) {
-        System.out.println(firstMissingPositive(new int[]{7,8,9,11,12}));
+        System.out.println(firstMissingPositive(new int[]{1, 7, 8, 9, 11, 12}));
+        System.out.println(firstMissingPositive2(new int[]{1, 7, 8, 9, 11, 12}));
     }
 }

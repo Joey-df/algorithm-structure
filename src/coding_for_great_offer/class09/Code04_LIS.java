@@ -47,7 +47,7 @@ public class Code04_LIS {
             return 0;
         }
         int N = arr.length;
-        int[] dp = new int[N];
+        int[] dp = new int[N];//dp[i]:必须以i位置结尾的最长递增子序列有多长
         dp[0] = 1;
         int ans = dp[0];
         for (int i = 1; i < N; i++) {

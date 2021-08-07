@@ -16,7 +16,7 @@ public class Problem_0011_ContainerWithMostWater {
         int l = 0;
         int r= height.length-1;
         while (l < r) {
-            if (height[l] <= height[r]) {
+            if (height[l] <= height[r]) { //谁小结算谁
                 ans = Math.max(ans,height[l] * (r-l));
                 l++;
             } else {

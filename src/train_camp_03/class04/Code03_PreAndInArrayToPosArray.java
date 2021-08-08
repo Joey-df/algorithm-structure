@@ -14,6 +14,7 @@ import java.util.Map;
  */
 //根据先序数组和中序数组生成后序数组
 //https://www.nowcoder.com/questionTerminal/5ae5174f17674e458028ce12bc8bfe0b
+//leetcode105
 public class Code03_PreAndInArrayToPosArray {
 
     public static List<Integer> getPostOrderArr(int[] preOrder, int[] inOrder) {

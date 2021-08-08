@@ -19,15 +19,15 @@ public class Problem_0152_MaximumProductSubarray {
 
     public static int maxProduct(int[] nums) {
         assert (nums != null && nums.length > 0);
-        int min = nums[0]; // i-1位置的最小累乘积
-        int max = nums[0]; // i-1位置的最大累乘积
+        int preMin = nums[0]; // i-1位置的最小累乘积
+        int preMax = nums[0]; // i-1位置的最大累乘积
         int ans = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            int curMin = Math.min(nums[i], Math.min(nums[i] * min, nums[i] * max));
-            int curMax = Math.max(nums[i], Math.max(nums[i] * min, nums[i] * max));
+            int curMin = Math.min(nums[i], Math.min(nums[i] * preMin, nums[i] * preMax));
+            int curMax = Math.max(nums[i], Math.max(nums[i] * preMin, nums[i] * preMax));
             ans = Math.max(ans, curMax);
-            min = curMin;
-            max = curMax;
+            preMin = curMin;
+            preMax = curMax;
         }
         return ans;
     }

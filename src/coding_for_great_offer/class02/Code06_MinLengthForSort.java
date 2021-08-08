@@ -34,8 +34,8 @@ public class Code06_MinLengthForSort {
     }
 
     public static void main(String[] args) {
-//        int[] arr = {1, 2, 6, 4, 3, 5, 8, 9};
-        int[] arr = {1, 2};
+        int[] arr = {1, 2, 6, 4, 3, 5, 8, 9};
+//        int[] arr = {1, 2};
         System.out.println(findUnsortedSubarray(arr));
     }
 }

@@ -25,8 +25,8 @@ package array;
 public class Problem_922_Sort_Array_By_Parity_II {
 
     public int[] sortArrayByParityII(int[] nums) {
-        int even = 0;
-        int odd = 1;
+        int even = 0; //初始偶数下标
+        int odd = 1; //初始奇数下标
         int end = nums.length - 1;//最后一个数作为发射源
         while (even < nums.length && odd < nums.length) { //任何一个指针越界了 停
             if ((nums[end] & 1) == 1) {//奇数

@@ -11,3 +11,12 @@ leetcode67 两个二进制数相加
 leetcode53 子数组最大累加和
 leetcode152 乘积最大子数组
 leetcode421 子数组的最大异或和
+
+4、背包问题
+leetcode494 目标和 01背包
+leetcode416 是否存在一个子集，使得累加和等于整体累加和的一半 01背包
+leetcode322 每种硬币无限张，自由选择，组成aim所需最少的硬币数 完全背包
+leetcode518 每种硬币无限张，自由选择，组成aim的方法数 完全背包
+train_camp_03.class08.Code02_MoneyWays 01背包+完全背包
+leetcode474
+leetcode377

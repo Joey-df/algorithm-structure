@@ -2,6 +2,7 @@ package system_study.class02;
 
 //(一)、一个数组中有一种数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这种数
 //(二)、一个数组中有两种数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这两种数
+//leetcode 136. Single Number
 //leetcode 260. Single Number III
 
 public class Code02_EvenTimesOddTimes {
@@ -22,6 +23,12 @@ public class Code02_EvenTimesOddTimes {
         for (int n : arr) {
             eor ^= n;
         }
+        // a 和 b是两种数
+        // eor != 0
+        // eor最右侧的1，提取出来
+        // eor :     00110010110111000
+        // rightOne :00000000000001000
+
         //假设这两个数是a、b，那么eor=a^b
         int a = 0;
         int rightOne = eor & (~eor + 1);

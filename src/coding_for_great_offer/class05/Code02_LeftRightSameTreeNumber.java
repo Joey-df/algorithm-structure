@@ -26,7 +26,7 @@ public class Code02_LeftRightSameTreeNumber {
     //判断a、b为头的两棵树结构是否相等
     public static boolean isSameTree(TreeNode a, TreeNode b) {
         if (a == null && b == null) return true;
-        if (a == null ^ b == null) return false;//有一个为空
+        if (a == null ^ b == null) return false;//一个为空 一个非空
         //两个都不为空
         if (a.val != b.val) return false;
         //a.val == b.val
@@ -40,17 +40,52 @@ public class Code02_LeftRightSameTreeNumber {
         return l + r + (isSameTree(head.left, head.right) ? 1 : 0);
     }
 
-    public static void main(String[] args) {
-        TreeNode root = new TreeNode(0);
-        root.left = new TreeNode(1);
-        root.left.left = new TreeNode(2);
-        root.left.right = new TreeNode(3);
-        root.right = new TreeNode(1);
-        root.right.left = new TreeNode(2);
-        root.right.right = new TreeNode(3);
-        System.out.println(sameTreeNum(root));
+    // 时间复杂度O(N)
+    public static int sameNumber2(TreeNode head) {
+        String algorithm = "SHA-256";
+        Hash hash = new Hash(algorithm);
+        return process(head, hash).ans;
     }
 
+    public static class Info {
+        public int ans;
+        public String str;
+
+        public Info(int a, String s) {
+            ans = a;
+            str = s;
+        }
+    }
+
+    public static Info process(TreeNode head, Hash hash) {
+        if (head == null) {
+            return new Info(0, hash.hashCode("#,"));
+        }
+        Info l = process(head.left, hash);
+        Info r = process(head.right, hash);
+        int ans = (l.str.equals(r.str) ? 1 : 0) + l.ans + r.ans;
+        String str = hash.hashCode(String.valueOf(head.val) + "," + l.str + r.str);
+        return new Info(ans, str);
+    }
+
+    public static void main(String[] args) {
+        int maxLevel = 8;
+        int maxValue = 4;
+        int testTime = 100000;
+        System.out.println("测试开始");
+        for (int i = 0; i < testTime; i++) {
+            TreeNode head = randomBinaryTree(maxLevel, maxValue);
+            int ans1 = sameTreeNum(head);
+            int ans2 = sameNumber2(head);
+            if (ans1 != ans2) {
+                System.out.println("出错了！");
+                System.out.println(ans1);
+                System.out.println(ans2);
+            }
+        }
+        System.out.println("测试结束");
+
+    }
 
 }
 

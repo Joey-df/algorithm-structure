@@ -9,8 +9,8 @@ public class Code06_TwoStacksImplementQueue {
 
     public static class MyQueue {
 
-        private Stack<Integer> s1; //push
-        private Stack<Integer> s2; //pop
+        private final Stack<Integer> s1; //push
+        private final Stack<Integer> s2; //pop
 
         /** Initialize your data structure here. */
         public MyQueue() {

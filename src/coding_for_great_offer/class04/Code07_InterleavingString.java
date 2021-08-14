@@ -22,12 +22,13 @@ public class Code07_InterleavingString {
         // s1的前i个字符、s2前j个字符，能否交错组成s3的前i+j个字符
         // 行列样本对应模型
         boolean[][] dp = new boolean[N + 1][M + 1];
-        dp[0][0] = true;
-        //第一行:s1的前0个字符，s2的前[j]个字符能够交错组成s3前j个字符
+        dp[0][0] = true;//str1的前0个 str2的前0个  可以组成str3的前0个
+        //第一行:s1的前0个字符，s2的前i个字符能够交错组成s3前i个字符
         for (int i = 1; i <= M; i++) {
+            //str2最后一个字符和str3最后一个字符相等 && s2的前i-1个可以组成str3的前i-1个
             dp[0][i] = (str2[i - 1] == str3[i - 1]) && dp[0][i - 1];
         }
-        //第一列
+        //第一列:s2的前0个字符，s1的前i个字符能够交错组成s3前i个字符
         for (int i = 1; i <= N; i++) {
             dp[i][0] = dp[i - 1][0] && (str1[i - 1] == str3[i - 1]);
         }

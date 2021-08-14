@@ -25,12 +25,7 @@ public class Code05_GetMinStack {
 
         public void push(int val) {
             normal.push(val);
-            if (min.isEmpty()) {
-                min.push(val);
-                return;
-            }
-            int data = Math.min(min.peek(), val);
-            min.push(data);
+            min.push(min.isEmpty() ? val : Math.min(min.peek(), val));
         }
 
         public void pop() {

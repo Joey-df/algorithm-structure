@@ -34,12 +34,12 @@ public class Code02_NeedParentheses {
     //例如 ))(
     public static int minAdd(String s) {
         if (s == null || s.length() == 0 || isValid(s)) return 0;
-        int need = 0;
-        int count = 0;
+        int need = 0; //表示添加(消除)
+        int count = 0; //表示添加)消除(
         char[] str = s.toCharArray();
         for (int i = 0; i < str.length; i++) {
             count += str[i] == '(' ? 1 : -1;
-            if (count == -1) {
+            if (count == -1) { //表示遍历到此，右括号比左括号多一个
                 need++;
                 count = 0;
             }

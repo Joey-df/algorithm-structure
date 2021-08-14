@@ -105,17 +105,110 @@ public class Code07_TargetSum {
         for (int n : arr) {
             sum += n;
         }
-        return sum < target || ((target & 1) ^ (sum & 1)) != 0 ? 0 : subset(arr, (target + sum) >> 1);
+        return sum < target || ((target & 1) ^ (sum & 1)) != 0
+                ? 0
+                : sub2(arr, (target + sum) >> 1);
     }
 
-    public static int subset(int[] nums, int s) {
+
+    // 求nums有多少个子集，累加和是s
+    // 二维动态规划
+    // 不用空间压缩
+    public static int sub1(int[] nums, int s) {
+        int n = nums.length;
+        // dp[i][j] : nums前缀长度为i的所有子集，有多少子集的累加和是j？
+        int[][] dp = new int[n + 1][s + 1];
+        // nums前缀长度为0的所有子集，有多少累加和是0？一个：空集
+        dp[0][0] = 1;
+        //第一行
+        for (int i = 1; i < s + 1; i++) {
+            dp[0][i] = 0; //nums前缀长度为0的所有子集，有多少累加和是i(i>=1)？0个
+        }
+
+        for (int i = 1; i <= n; i++) { //i表示前缀长度
+            for (int j = 0; j <= s; j++) {
+                dp[i][j] = dp[i - 1][j]; //不要i-1位置的数，nums前缀长度为i，最后一个元素的下标为i-1
+                if (j - nums[i - 1] >= 0) { //要i-1位置的数
+                    dp[i][j] += dp[i - 1][j - nums[i - 1]];
+                }
+            }
+        }
+        return dp[n][s];
+    }
+
+    // 求nums有多少个子集，累加和是s
+    // 二维动态规划
+    // 用空间压缩:
+    // 核心就是for循环里面的：for (int i = s; i >= n; i--) {
+    // 为啥不枚举所有可能的累加和？只枚举 n...s 这些累加和？
+    // 因为如果 i - n < 0，dp[i]怎么更新？和上一步的dp[i]一样！所以不用更新
+    // 如果 i - n >= 0，dp[i]怎么更新？上一步的dp[i] + 上一步dp[i - n]的值，这才需要更新
+    public static int sub2(int[] nums, int s) {
         int[] dp = new int[s + 1];
-        dp[0] = 1;
+        dp[0] = 1; //nums前缀长度为0的所有子集，有多少累加和是0？一个：空集
         for (int n : nums) {
             for (int i = s; i >= n; i--) {
                 dp[i] += dp[i - n];
             }
         }
         return dp[s];
+    }
+
+    public static int sub3(int[] nums, int s) {
+        int[] dp = new int[s + 1];
+        dp[0] = 1; //nums前缀长度为0的所有子集，有多少累加和是0？一个：空集
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = s; j >= nums[i]; j--) {
+                dp[j] += dp[j - nums[i]];
+            }
+        }
+        return dp[s];
+    }
+
+    public static void print(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+
+    //nums中不包含0是对的，包含0就不对了
+    //此方法只针对nums为正数数组有效
+    public static int subset1(int[] nums, int target) {
+        int N = nums.length;
+        //dp[i][j]:
+        //nums[0,i]自由选择,组成j的方法数，返回
+        int[][] dp = new int[N][target + 1];
+        dp[0][0] = 1; //nums[0,0]范围上组成0有一种方法：什么数也不选
+        //第一行
+        for (int i = 1; i < target + 1; i++) {
+            //nums[0,0]范围上组成i有几种方法
+            dp[0][i] = nums[0] == i ? 1 : 0;
+        }
+        //第一列
+        for (int i = 1; i < N; i++) {
+            //nums[0,i]范围上组成0有1种方法:什么数也不选
+            dp[i][0] = 1;
+        }
+        for (int i = 1; i < N; i++) {
+            for (int j = 1; j < target + 1; j++) {
+                dp[i][j] = dp[i - 1][j]; //不要nums[i]
+                if (j >= nums[i]) {
+                    dp[i][j] += dp[i - 1][j - nums[i]];
+                }
+            }
+        }
+
+        return dp[N - 1][target];
+    }
+
+    public static void main(String[] args) {
+        int[] nums = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1};
+//        int[] nums = new int[]{1,2,13,4,5,6,7,8,9,10};
+        int t = 1;
+        System.out.println(subset1(nums, t));
+        System.out.println(sub1(nums, t));
+        System.out.println(sub2(nums, t));
+        System.out.println(sub3(nums, t));
     }
 }

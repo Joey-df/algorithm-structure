@@ -96,5 +96,20 @@ public class Code03_ExpressionCompute {
         exp = "3+1*4";
         System.out.println(getValue(exp));
 
+        String s = "312";
+        System.out.println(strToInt(s));
     }
+
+    //字符串转int
+    //比如"312"，返回312
+    public static int strToInt(String s) {
+        char[] str = s.toCharArray();
+        int ans = 0;
+        for (int i = 0; i < str.length; i++) {
+            ans = ans * 10 + (str[i] - '0');
+        }
+        return ans;
+    }
+
+
 }

@@ -52,7 +52,7 @@ public class Problem_0046_Permutations {
             ans.add(sub);
         } else {
             //index还有字符
-            //index后面的字符均有机会来打index位置
+            //index后面的字符均有机会来到index位置
             Set<Integer> visited = new HashSet<>();
             for (int i = index; i < arr.length; i++) {
                 if (!visited.contains(arr[i])) {

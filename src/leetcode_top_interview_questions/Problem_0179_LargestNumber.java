@@ -33,8 +33,8 @@ public class Problem_0179_LargestNumber {
         for (int i = 0; i < arr.length; i++) {
             arr[i] = String.valueOf(nums[i]);
         }
-
-        Arrays.sort(arr, (o1, o2) -> (o2 + o1).compareTo(o1 + o2)); //降序
+        // 降序排序，按照字典顺序比较ab与ba
+        Arrays.sort(arr, (a, b) -> (b + a).compareTo(a + b));
 
         if ("0".equals(arr[0])) {
             return "0";

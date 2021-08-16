@@ -11,6 +11,8 @@ package linked_list;
  * <p>
  * A linked list can be reversed either iteratively or recursively. Could you implement both?
  */
+//leetcode206
+//反转单链表
 public class Problem_206_Reverse_LinkedList {
 
     public static ListNode reverse(ListNode head) {

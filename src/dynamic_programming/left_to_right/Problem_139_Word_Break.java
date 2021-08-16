@@ -143,10 +143,10 @@ public class Problem_139_Word_Break {
                 //枚举每一个结束位置
                 //[index...end]
                 int road = str[end] - 'a';
-                if (cur.nexts[road] == null) {
+                cur = cur.nexts[road];
+                if (cur == null) {
                     break;
                 }
-                cur = cur.nexts[road];
                 if (cur.e == 1) {
                     dp[index] |= dp[end + 1];
                 }

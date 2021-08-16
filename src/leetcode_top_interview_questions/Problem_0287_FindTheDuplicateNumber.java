@@ -24,6 +24,7 @@ package leetcode_top_interview_questions;
  * 输入：nums = [1,1,2]
  * 输出：1
  */
+//算法原型：单链表的第一个入环节点
 public class Problem_0287_FindTheDuplicateNumber {
 
 //    public int findDuplicate(int[] nums) {

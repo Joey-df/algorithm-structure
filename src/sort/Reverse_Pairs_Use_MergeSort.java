@@ -39,7 +39,7 @@ public class Reverse_Pairs_Use_MergeSort {
                 help[index++] = arr[p2++];
                 res += (mid - p1 + 1);
             } else {
-                help[index++] = arr[p1++];
+                help[index++] = arr[p1++]; //相等的时候先拷贝左边
             }
         }
         while (p1 <= mid) help[index++] = arr[p1++];

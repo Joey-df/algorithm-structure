@@ -29,7 +29,34 @@ package leetcode_top_interview_questions;
  */
 public class Problem_0171_ExcelSheetColumnNumber {
 
-//    public int titleToNumber(String columnTitle) {
-//
-//    }
+    public static int titleToNumber(String s) {
+        if (s==null ||s.length()==0) {
+            return 0;
+        }
+        int ans=0;
+        char[] str = s.toCharArray();
+        for (char c: str) {
+            ans = ans*26 + (c-'A'+1);
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(titleToNumber("ZY"));
+        System.out.println("4321");
+    }
+
+    //整数字符串转成整数
+    //例如"123",返回123
+    public static int strToInt(String s) {
+        if(s==null||s.length()==0) {
+            return 0;
+        }
+        int ans=0;
+        char[] str = s.toCharArray();
+        for (char c: str) {
+            ans = ans * 10 + (c-'0');
+        }
+        return ans;
+    }
 }

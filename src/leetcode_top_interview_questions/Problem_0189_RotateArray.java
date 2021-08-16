@@ -18,6 +18,7 @@ package leetcode_top_interview_questions;
  * 向右旋转 3 步: [5,6,7,1,2,3,4]
  */
 //完美洗牌问题的算法原型
+//数组分成两部分，左右两部分互换位置
 public class Problem_0189_RotateArray {
 
     public static void rotate(int[] nums, int k) {
@@ -49,7 +50,7 @@ public class Problem_0189_RotateArray {
 
     public static void main(String[] args) {
         int[] nums = new int[]{1, 2, 3, 4, 5, 6, 7};
-        int k = 7;
+        int k = 3;
         rotate(nums, k);
         print(nums);
     }

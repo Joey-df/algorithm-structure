@@ -3,7 +3,7 @@ package routine;
 import java.util.HashMap;
 import java.util.HashSet;
 
-/*
+/**
  *
  * 已知数组中其他数都出现了N次，只有一种数出现了K次
  * 怎么找到出现了K次的数？做到时间复杂度O(N)，额外空间复杂度O(1)

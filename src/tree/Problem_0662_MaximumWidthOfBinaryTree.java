@@ -67,7 +67,7 @@ import java.util.LinkedList;
 
 
 // change the val of node to be the index to save space. The value is useless. All we need is just the index.
-public class Probem_0662_MaximumWidthOfBinaryTree {
+public class Problem_0662_MaximumWidthOfBinaryTree {
 
     //bfs宽度优先遍历
     //补充知识：

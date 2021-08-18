@@ -7,7 +7,8 @@ package tree;
  *
  * leetcode 110题
  */
-public class Problem_110_Balanced_Binary_Tree {
+//验证二叉树是否为平衡二叉树
+public class Problem_0110_BalancedBinaryTree {
 
     private static class Info {
         int height;

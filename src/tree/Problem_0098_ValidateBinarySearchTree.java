@@ -3,7 +3,7 @@ package tree;
 /**
  * 给定一棵二叉树的头节点head，返回这颗二叉树是不是搜索二叉树
  */
-public class Problem_98_Validate_Binary_Search_Tree {
+public class Problem_0098_ValidateBinarySearchTree {
     private static class Info {
         private int min;
         private int max;

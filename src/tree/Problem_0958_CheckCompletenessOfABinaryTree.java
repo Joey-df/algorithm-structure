@@ -6,7 +6,7 @@ import java.util.Queue;
 /**
  * 给定一棵二叉树的头节点head，返回这颗二叉树中是不是完全二叉树
  */
-public class Problem_958_Check_Completeness_of_a_Binary_Tree {
+public class Problem_0958_CheckCompletenessOfABinaryTree {
 
     //宽度优先遍历
     //遇到有右无左，直接返回false

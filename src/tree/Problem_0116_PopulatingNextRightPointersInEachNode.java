@@ -23,7 +23,7 @@ import java.util.Queue;
  * You may only use constant extra space.
  * Recursive approach is fine, you may assume implicit stack space does not count as extra space for this problem.
  */
-public class Problem_116_Populating_Next_Right_Pointers_in_Each_Node {
+public class Problem_0116_PopulatingNextRightPointersInEachNode {
 
     private static class Node {
         public int val;

@@ -1,6 +1,7 @@
 package tree;
 
 import java.util.LinkedList;
+import java.util.Stack;
 
 /**
  * Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.
@@ -33,16 +34,12 @@ import java.util.LinkedList;
  * The number of elements of the BST is between 1 to 10^4.
  * You may assume k is always valid, 1 ≤ k ≤ BST's total elements.
  */
-public class Problem_230_Kth_Smallest_Element_in_a_BST {
+public class Problem_0230_KthSmallestElementInABST {
     //中序遍历的结果，数到第k个返回
     public int kthSmallest(TreeNode root, int k) {
         LinkedList<Integer> q = new LinkedList<>();
         inOrder(root, q);
-        int ans=q.peek();
-        while (k-- > 0) {
-            ans = q.pollFirst();
-        }
-        return ans;
+        return q.get(k-1);
     }
 
 
@@ -53,5 +50,24 @@ public class Problem_230_Kth_Smallest_Element_in_a_BST {
         inOrder(root.left, ans);
         ans.addLast(root.val);
         inOrder(root.right, ans);
+    }
+
+    //迭代版本的中序遍历
+    private void in(TreeNode root, LinkedList<Integer> ans) {
+        if (root==null) {
+            return;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = root;
+        while(!stack.isEmpty() || cur != null) {
+            if (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            } else {
+                TreeNode node = stack.pop();
+                ans.addLast(node.val);
+                cur = node.right;
+            }
+        }
     }
 }

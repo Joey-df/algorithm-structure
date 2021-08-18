@@ -22,7 +22,7 @@ import java.util.List;
  *   [15,7]
  * ]
  */
-public class Problem_103_Binary_Tree_Zigzag_Level_Order_Traversal {
+public class Problem_0103_BinaryTreeZigzagLevelOrderTraversal {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> ans=new ArrayList<>();
         if (root==null) {

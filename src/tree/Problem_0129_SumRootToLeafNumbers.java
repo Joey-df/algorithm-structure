@@ -38,7 +38,7 @@ import java.util.List;
  * The root-to-leaf path 4->0 represents the number 40.
  * Therefore, sum = 495 + 491 + 40 = 1026.
  */
-public class Problem_129_Sum_Root_to_Leaf_Numbers {
+public class Problem_0129_SumRootToLeafNumbers {
 
     private static class TreeNode {
         private int val;

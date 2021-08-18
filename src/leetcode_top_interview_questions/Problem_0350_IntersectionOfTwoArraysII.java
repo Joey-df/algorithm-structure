@@ -22,7 +22,7 @@ public class Problem_0350_IntersectionOfTwoArraysII {
         if (nums1 == null && nums2 == null) {
             return null;
         }
-        if (nums1 == null ^ nums2 == null) {
+        if (nums1 == null ^ nums2 == null) { //一个空一个不空
             return null;
         }
         HashMap<Integer, Integer> map1 = new HashMap<>();
@@ -33,7 +33,7 @@ public class Problem_0350_IntersectionOfTwoArraysII {
         for (int n : nums2) {
             map2.put(n, map2.getOrDefault(n, 0) + 1);
         }
-        HashMap<Integer, Integer> map = new HashMap<>();
+
         ArrayList<Integer> list = new ArrayList<>();
         for (int k : map1.keySet()) {
             if (map2.containsKey(k)) {

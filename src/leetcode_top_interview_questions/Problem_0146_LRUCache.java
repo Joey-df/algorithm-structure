@@ -9,6 +9,10 @@ import java.util.Map;
 public class Problem_0146_LRUCache {
 
     int capacity;
+    // map中value放的是k/v包装成的Node，
+    // 这样设计的原因:
+    // 1、value是Node的内存地址，get时在双向链表中O(1)的时间复杂度直接寻址。
+    // 2、当双向链表容量满了，需要删除head时，根据head.val在map中同步删除对应的记录。
     Map<Integer, Node> map;
     DoubleLinkedList list;
 

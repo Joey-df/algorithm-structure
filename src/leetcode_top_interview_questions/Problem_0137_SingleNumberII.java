@@ -14,7 +14,33 @@ package leetcode_top_interview_questions;
  * 输出：99
  */
 public class Problem_0137_SingleNumberII {
-//    public int singleNumber(int[] nums) {
-//
-//    }
+    public static int singleNumber(int[] nums) {
+        return func(nums, 3, 1);
+    }
+
+    //数组中只有一种元素出现n次，其他元素都出现k次，k>n
+    //找出出现n次的数
+    public static int func(int[] nums, int k, int n) {
+        assert (nums != null && nums.length > 0 && k > n && n >= 1);
+        int[] count = new int[32];
+        for (int num : nums) {
+            for (int i = 0; i <= 31; i++) { //每个二进制位，包括符号位
+                //count[i] += ((num >> i) & 1);
+                count[i] += ((num & (1 << i)) != 0) ? 1 : 0; //取出num二进制数第i位的状态（1或0）
+            }
+        }
+        for (int i = 0; i < 32; i++) {
+            count[i] = (count[i] % k) / n;
+        }
+        int ans = 0;
+        for (int i = 0; i < 32; i++) {
+            ans |= (count[i] << i);
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = new int[]{5, 5, 5, -6, -6, -6, -7};
+        System.out.println(singleNumber(nums));
+    }
 }

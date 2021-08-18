@@ -1,6 +1,5 @@
 package leetcode_top_interview_questions;
 
-import java.util.HashMap;
 import java.util.HashSet;
 
 /**
@@ -19,6 +18,8 @@ import java.util.HashSet;
  */
 public class Problem_0217_ContainsDuplicate {
 
+    //平凡解：哈希表的解法
+    //如果要额外空间复杂度O(1)的话，请使用堆排序，然后从左往右遍历找到重复出现的数
     public boolean containsDuplicate(int[] nums) {
         if (nums==null || nums.length<2) {
             return false;

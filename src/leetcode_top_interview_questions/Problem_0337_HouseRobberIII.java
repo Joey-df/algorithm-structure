@@ -1,5 +1,7 @@
 package leetcode_top_interview_questions;
 
+import tree.TreeNode;
+
 /**
  * 337. 打家劫舍 III
  * 在上次打劫完一条街道之后和一圈房屋后，小偷又发现了一个新的可行窃的地区。这个地区只有一个入口，我们称之为“根”。
@@ -32,5 +34,34 @@ package leetcode_top_interview_questions;
  * 输出: 9
  * 解释: 小偷一晚能够盗取的最高金额 = 4 + 5 = 9.
  */
+//基础班讲过的最大快乐值问题
 public class Problem_0337_HouseRobberIII {
+
+    private static class Info {
+        int yes;//要x得到的最大值
+        int no;//不要x得到的最大值
+        public Info(int y, int n) {
+            yes = y;
+            no = n;
+        }
+    }
+
+    public static Info process(TreeNode x) {
+        if(x==null) {
+            return new Info(0,0);
+        }
+        Info l = process(x.left);
+        Info r = process(x.right);
+        int yes = x.val + l.no + r.no;
+        int no = Math.max(l.yes,l.no) + Math.max(r.yes, r.no);
+        return new Info(yes, no);
+    }
+
+    public int rob(TreeNode root) {
+        if (root==null) {
+            return 0;
+        }
+        Info info = process(root);
+        return Math.max(info.yes, info.no);
+    }
 }

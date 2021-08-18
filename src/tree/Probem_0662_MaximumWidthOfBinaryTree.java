@@ -1,7 +1,6 @@
 package tree;
 
 import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  * Given a binary tree, write a function to get the maximum width of the given tree. The maximum width of a tree is the maximum width among all levels.
@@ -65,10 +64,40 @@ import java.util.Queue;
  *
  * The given binary tree will have between 1 and 3000 nodes.
  */
-public class Probem_662_Maximum_Width_of_Binary_Tree {
 
-//    //bfs实现二叉树的最大宽度
-//    public int widthOfBinaryTree(TreeNode root) {
-//
-//    }
+
+// change the val of node to be the index to save space. The value is useless. All we need is just the index.
+public class Probem_0662_MaximumWidthOfBinaryTree {
+
+    //bfs宽度优先遍历
+    //补充知识：
+    //假设父节点在第 n 层的索引为 i，
+    //（1）当索引从0开始时，该父节点在第 n + 1 层的左孩子节点的索引为 2* i + 1，右孩子节点的索引为 2*i + 2；
+    //（2）当索引从1开始时，该父节点在第 n + 1 层的左孩子节点的索引为 2 *i，右孩子节点的索引为 2 * i + 1。
+    public int widthOfBinaryTree(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        LinkedList<TreeNode> dq = new LinkedList<>();
+        dq.offer(root);
+        root.val = 1; //人为规定根节点index=1，左右子节点的索引分别为index*2，index*2+1
+        int ans = 1;
+        while (!dq.isEmpty()) {
+            int size = dq.size();
+            ans = Math.max(ans, dq.peekLast().val - dq.peekFirst().val + 1);
+            for (int i = 0; i < size; i++) {
+                root = dq.poll();
+                if (root.left != null) {
+                    root.left.val = root.val * 2;
+                    dq.offer(root.left);
+                }
+                if (root.right != null) {
+                    root.right.val = root.val * 2 + 1;
+                    dq.offer(root.right);
+                }
+            }
+        }
+        return ans;
+    }
+
 }

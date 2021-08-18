@@ -1,5 +1,7 @@
 package leetcode_top_interview_questions;
 
+import tree.TreeNode;
+
 /**
  * 617. 合并二叉树
  * 给定两个二叉树，想象当你将它们中的一个覆盖到另一个上时，两个二叉树的一些节点便会重叠。
@@ -26,4 +28,18 @@ package leetcode_top_interview_questions;
  * 注意: 合并必须从两个树的根节点开始。
  */
 public class Problem_0617_MergeTwoBinaryTrees {
+
+    public static TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+        if (root1==null && root2==null) {//都为空
+            return null;
+        }
+        if (root1==null ^ root2==null) {//其中一个为空
+            return root1!=null ? root1 : root2;
+        }
+        //都不为空
+        TreeNode root = new TreeNode(root1.val+root2.val);
+        root.left = mergeTrees(root1.left, root2.left);
+        root.right = mergeTrees(root1.right, root2.right);
+        return root;
+    }
 }

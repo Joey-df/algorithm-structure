@@ -27,9 +27,9 @@ public class Problem_0328_OddEvenLinkedList {
         if (head == null || head.next == null || head.next.next == null) {
             return head;
         }
-        ListNode odd = head;
+        ListNode odd = head; //奇数链表的头
         ListNode even = head.next;
-        ListNode evenHead = even;
+        ListNode evenHead = even; //偶数链表的头
         while (even != null && even.next != null) {
             odd.next = odd.next.next;
             even.next = even.next.next;

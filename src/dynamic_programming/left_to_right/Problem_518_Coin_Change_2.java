@@ -122,8 +122,8 @@ public class Problem_518_Coin_Change_2 {
     }
 
     public static void main(String[] args) {
-        int[] coins = {1, 2, 5, 8, 10};
-        int aim = 100;
+        int[] coins = {1, 2, 3};
+        int aim = 4;
         System.out.println(ways1(coins, aim));
         System.out.println(dpWays1(coins, aim));
         System.out.println(dpWays2(coins, aim));

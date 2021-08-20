@@ -39,14 +39,14 @@ public class Problem_0078_Subsets {
             //代表nums[0...N-1]上已经搞定了，所形成的路径是path
             //所以 此时应该收集答案
             ans.add(new ArrayList<>(path));
-            return;
+        } else {
+            // 不要nums[index]
+            process(nums, index + 1, path, ans);
+            // 要num[index]
+            path.addLast(nums[index]);
+            process(nums, index + 1, path, ans);
+            path.pollLast(); //清理现场
         }
-        // 不要nums[index]
-        process(nums, index + 1, path, ans);
-        // 要num[index]
-        path.addLast(nums[index]);
-        process(nums, index + 1, path, ans);
-        path.pollLast(); //清理现场
     }
 
     public static List<List<Integer>> ways(int[] nums) {

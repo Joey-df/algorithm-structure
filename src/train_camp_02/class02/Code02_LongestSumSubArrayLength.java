@@ -9,6 +9,9 @@ import java.util.Map;
  * 找到arr的所有子数组里，哪个子数组的累加和等于K，并且是长度最大的
  * 返回其长度
  */
+//附加题（使用该题的原型）
+//给定数组arr，有正有负有0，包含1和2数量一样多称为子数组达标，求达标的子数组的最大长度是多少？
+//解法：预处理，1变1，2变-1，其余全变成0，得到预处理之后的数组arr'，基于arr'求累加和为0的最长子数组，就是答案。
 public class Code02_LongestSumSubArrayLength {
     //分析：
     //无序数组arr，值可能正、可能负、可能0
@@ -29,7 +32,7 @@ public class Code02_LongestSumSubArrayLength {
             sum += arr[i];
             if (map.containsKey(sum - K)) { // k 20 sum 100  找80首次出现的位置
                 int idx = map.get(sum - K);
-                ans = Math.max(ans, i - idx);
+                ans = Math.max(ans, i - idx); //以i位置结尾的答案
             }
             if (!map.containsKey(sum)) {//只记录sum最早出现的位置即可，不更新
                 map.put(sum, i);

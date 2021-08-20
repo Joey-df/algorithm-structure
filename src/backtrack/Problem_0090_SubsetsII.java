@@ -24,6 +24,7 @@ import java.util.*;
 //求给定数组的子序列（包含重复字符）
 public class Problem_0090_SubsetsII {
 
+    //缺点：最后再去重
     public static void process(int[] nums, int index, List<Integer> path, List<List<Integer>> ans, Set<String> set) {
         int N = nums.length;
         if (index == N) {
@@ -40,17 +41,18 @@ public class Problem_0090_SubsetsII {
                 ans.add(new ArrayList<>(path));
                 set.add(sb.toString());
             }
-            return;
+        } else {
+            // 不要当前位置num
+            process(nums, index + 1, path, ans, set);
+            // 要当前位置num
+            path.add(nums[index]);
+            process(nums, index + 1, path, ans, set);
+            path.remove(path.size() - 1);
         }
-        // 不要当前位置num
-        process(nums, index + 1, path, ans, set);
-        // 要当前位置num
-        path.add(nums[index]);
-        process(nums, index + 1, path, ans, set);
-        path.remove(path.size() - 1);
     }
 
-    public static List<List<Integer>> ways(int[] nums) {
+
+    public static List<List<Integer>> subsetsWithDup(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
         List<Integer> path = new ArrayList<>();
         Set<String> set = new HashSet<>();
@@ -60,6 +62,6 @@ public class Problem_0090_SubsetsII {
 
     public static void main(String[] args) {
         int[] nums = {1,2,2};
-        System.out.println(ways(nums));
+        System.out.println(subsetsWithDup(nums));
     }
 }

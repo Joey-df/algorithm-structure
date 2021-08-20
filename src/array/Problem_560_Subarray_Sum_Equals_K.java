@@ -39,7 +39,7 @@ public class Problem_560_Subarray_Sum_Equals_K {
         for (int i = 0; i < arr.length; i++) { // 求以每个i结尾的子数组的答案
             sum += arr[i];
             if (map.containsKey(sum - K)) { //sum=100  K=20
-                ans += map.get(sum - K);
+                ans += map.get(sum - K); //以i位置结尾的答案
             }
             map.put(sum, map.getOrDefault(sum, 0) + 1);
         }

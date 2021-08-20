@@ -1,5 +1,8 @@
 package backtrack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Given an array nums of distinct integers, return all the possible permutations.
  * You can return the answer in any order.
@@ -21,7 +24,43 @@ package backtrack;
 //不包含重复字符
 public class Problem_0046_Permutations {
 
-//    public List<List<Integer>> permute(int[] nums) {
-//
-//    }
+    public static List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        if (nums==null || nums.length==0) {
+            return ans;
+        }
+        process(nums, 0, ans);
+        return ans;
+    }
+
+    //[0，index-1]已经做好决定了，不用操心了
+    //当前来到index位置做决定
+    //[0，index-1]做过的决定，形成的路径，即nums当前的状态
+    private static void process(int[] nums, int index, List<List<Integer>> ans) {
+        if (index==nums.length) {
+            //表示[0,N-1]已经做好决定了，收集答案
+            List<Integer> list = new ArrayList<>();
+            for (int num: nums) {
+                list.add(num);
+            }
+            ans.add(list);
+        } else {
+            for (int i = index; i < nums.length; i++) {
+                swap(nums, index, i);
+                process(nums, index+1, ans);
+                swap(nums, index, i); // clear
+            }
+        }
+    }
+
+    private static void swap(int[] nums, int i, int j) {
+        int t = nums[i];
+        nums[i] = nums[j];
+        nums[j] = t;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = new int[]{1,2,3};
+        System.out.println(permute(nums));
+    }
 }

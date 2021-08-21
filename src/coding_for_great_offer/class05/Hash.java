@@ -30,11 +30,11 @@ public class Hash {
         String algorithm = "SHA-256";
         Hash hash = new Hash(algorithm);
 
-        String input1 = "zuochengyunzuochengyun1";
-        String input2 = "zuochengyunzuochengyun2";
-        String input3 = "zuochengyunzuochengyun3";
-        String input4 = "zuochengyunzuochengyun4";
-        String input5 = "zuochengyunzuochengyun5";
+        String input1 = "algorithm-data-structure1";
+        String input2 = "algorithm-data-structure2";
+        String input3 = "algorithm-data-structure3";
+        String input4 = "algorithm-data-structure4";
+        String input5 = "algorithm-data-structure5";
         System.out.println(hash.hashCode(input1));
         System.out.println(hash.hashCode(input2));
         System.out.println(hash.hashCode(input3));

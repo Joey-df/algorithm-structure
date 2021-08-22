@@ -13,7 +13,7 @@ package linked_list;
  */
 //leetcode206
 //反转单链表
-public class Problem_206_Reverse_LinkedList {
+public class Problem_0206_ReverseLinkedList {
 
     public static ListNode reverse(ListNode head) {
         if (head == null || head.next == null) {

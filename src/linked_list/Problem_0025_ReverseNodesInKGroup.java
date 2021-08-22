@@ -30,7 +30,42 @@ package linked_list;
  */
 public class Problem_0025_ReverseNodesInKGroup {
 
-//    public ListNode reverseKGroup(ListNode head, int k) {
-//
-//    }
+    public ListNode reverseKGroup(ListNode head, int k) {
+        int len = length(head);
+        if (k==1 || len<k) return head;
+        //len>=k && k!=1
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode cur = dummy;
+        for (int i=0; i<k; i++) {
+            cur = cur.next;
+        }
+        ListNode restHead = cur.next; //第k+1个节点
+        cur.next = null;
+        //cur来到第k个节点
+        //前k个节点反转
+        ListNode next = null;
+        ListNode pre = reverseKGroup(restHead, k);
+        head = dummy.next;
+        while (head!=null) {
+            next = head.next;
+            head.next = pre;
+            pre = head;
+            head = next;
+        }
+        return pre;
+    }
+
+    //传入链表头节点head，返回链表长度
+    private int length(ListNode head) {
+        if (head==null) {
+            return 0;
+        }
+        int len = 0;
+        while (head!=null) {
+            len++;
+            head = head.next;
+        }
+        return len;
+    }
 }

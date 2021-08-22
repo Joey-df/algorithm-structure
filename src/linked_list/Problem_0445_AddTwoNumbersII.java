@@ -26,4 +26,52 @@ package linked_list;
  */
 //与leetcode2类似
 public class Problem_0445_AddTwoNumbersII {
+
+    public static ListNode add(ListNode head1, ListNode head2) {
+        head1 = reverse(head1);
+        head2 = reverse(head2);
+        if (head1==null&&head2==null) {
+            return null;
+        }
+        if (head1==null ^ head2==null) {
+            return head1==null ? head2 : head1;
+        }
+        //都不为空
+        //先搞定头节点
+        int sum = head1.val + head2.val;
+        ListNode head = new ListNode(sum%10);
+        ListNode cur=head;
+        head1 = head1.next;
+        head2 = head2.next;
+        int carry=sum/10;
+        while (head1!=null || head2!=null) {
+            int v1 = head1!=null ? head1.val : 0;
+            int v2 = head2!=null ? head2.val : 0;
+            sum = v1+v2+carry;
+            cur.next = new ListNode(sum%10);
+            carry = sum/10;
+            head1 = head1!=null ? head1.next : null;
+            head2 = head2!=null ? head2.next : null;
+            cur = cur.next;
+        }
+        if (carry==1) { //important
+            cur.next = new ListNode(1);
+        }
+        return reverse(head);
+    }
+
+
+    private static ListNode reverse(ListNode head) {
+        if (head==null) return null;
+        ListNode next=null;
+        ListNode pre=null;
+        while(head!=null) {
+            next = head.next;
+            head.next = pre;
+            pre = head;
+            head = next;
+        }
+        return pre;
+    }
+
 }

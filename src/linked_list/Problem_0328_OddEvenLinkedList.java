@@ -23,9 +23,27 @@ package linked_list;
  * The first node is considered odd, the second node even and so on ...
  * The length of the linked list is between [0, 10^4].
  */
-public class Problem_328_Odd_Even_Linked_List {
+public class Problem_0328_OddEvenLinkedList {
 
+    //最优解
     public ListNode oddEvenList(ListNode head) {
+        if (head == null || head.next == null || head.next.next == null) {
+            return head;
+        }
+        ListNode odd = head; //奇数链表的头
+        ListNode even = head.next;
+        ListNode evenHead = even; //偶数链表的头
+        while (even != null && even.next != null) {
+            odd.next = odd.next.next;
+            even.next = even.next.next;
+            odd = odd.next;
+            even = even.next;
+        }
+        odd.next = evenHead;
+        return head;
+    }
+
+    public ListNode oddEvenList2(ListNode head) {
         if (head == null || head.next == null) return head;
         ListNode oddHead = null;
         ListNode oddTail = null;

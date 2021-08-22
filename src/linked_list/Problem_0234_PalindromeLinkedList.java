@@ -16,7 +16,7 @@ import java.util.Stack;
  * Follow up:
  * Could you do it in O(n) time and O(1) space?
  */
-public class Problem_234_Palindrome_LinkedList {
+public class Problem_0234_PalindromeLinkedList {
 
     public static boolean process(ListNode head) {
         if (head == null || head.next == null) {

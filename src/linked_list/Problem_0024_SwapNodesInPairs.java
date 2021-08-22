@@ -23,4 +23,32 @@ package linked_list;
  */
 public class Problem_0024_SwapNodesInPairs {
 
+    //递归含义
+    //传入链表头节点head，返回两两交换后的链表头节点
+    public ListNode swapPairs(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode second = head.next;
+        ListNode nextHead = swapPairs(head.next.next);
+        second.next = head;
+        head.next = nextHead;
+        return second;
+    }
+
+    //迭代方法
+    public ListNode swapPairs2(ListNode head) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode prev = dummy;
+        while(prev.next != null && prev.next.next!= null) {
+            ListNode first = prev.next;
+            ListNode second = prev.next.next;
+            first.next = second.next;
+            second.next = first;
+            prev.next = second;
+            prev = first;
+        }
+        return dummy.next;
+    }
 }

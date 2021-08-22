@@ -22,7 +22,24 @@ package linked_list;
  */
 public class Problem_0203_RemoveLinkedListElements {
 
-//    public ListNode removeElements(ListNode head, int val) {
-//
-//    }
+    public ListNode removeElements(ListNode head, int val) {
+        if (head == null) {
+            return null;
+        }
+        while (head != null && head.val == val) {
+            head = head.next;
+        }
+        //head来到第一个不是val的节点
+        ListNode pre = head;
+        ListNode cur = head;
+        while(cur != null) {
+            if (cur.val == val) {
+                pre.next = cur.next;
+            } else {
+                pre = cur;
+            }
+            cur = cur.next;
+        }
+        return head;
+    }
 }

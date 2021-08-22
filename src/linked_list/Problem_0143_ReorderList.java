@@ -13,7 +13,7 @@ package linked_list;
  * <p>
  * Given 1->2->3->4->5, reorder it to 1->5->2->4->3.
  */
-public class Problem_143_Reorder_List {
+public class Problem_0143_ReorderList {
 
     public static void reorderList(ListNode head) {
         process(head);

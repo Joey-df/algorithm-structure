@@ -35,8 +35,10 @@ public class Problem_0019_RemoveNthNodeFromEndOfList {
         ListNode dummy=new ListNode(-1);
         dummy.next=head;
         ListNode slow=dummy;
-        ListNode fast=head;
-        for (int i = 0; i < n; i++) {
+        ListNode fast=dummy;
+        //快慢指针都停在dummy，快指针先走n+1步，
+        //然后快慢指针同时走，快指针走向null时，慢指针刚好来到要删除节点的前一个
+        for (int i = 0; i <= n; i++) {
            fast=fast.next;
         }
         while (fast!=null) {

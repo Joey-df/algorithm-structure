@@ -33,33 +33,7 @@ package linked_list;
  */
 public class Problem_0002_AddTwoNumbers {
 
-    public ListNode addTwoNumbers(ListNode head1, ListNode head2) {
-        ListNode dummy = new ListNode(-1);
-        int newHeadVal = (head1.val + head2.val) % 10;
-        int jw = (head1.val + head2.val) / 10;
-        ListNode cur = new ListNode(newHeadVal);
-        dummy.next = cur;
-        head1 = head1.next;
-        head2 = head2.next;
-        while (head1 != null || head2 != null) {
-            int v1 = head1 != null ? head1.val : 0;
-            int v2 = head2 != null ? head2.val : 0;
-            int newVal = (v1 + v2 + jw) % 10;
-            jw = (v1 + v2 + jw) / 10;
-            cur.next = new ListNode(newVal);
-            cur = cur.next;
-            if (head1 != null) {
-                head1 = head1.next;
-            }
-            if (head2 != null) {
-                head2 = head2.next;
-            }
-        }
-        if (jw == 1) {
-            cur.next = new ListNode(1);
-            cur = cur.next;
-            cur.next = null;
-        }
-        return dummy.next;
-    }
+//    public ListNode addTwoNumbers(ListNode head1, ListNode head2) {
+//
+//    }
 }

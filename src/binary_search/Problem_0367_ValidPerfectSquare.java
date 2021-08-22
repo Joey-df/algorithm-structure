@@ -20,7 +20,20 @@ package binary_search;
  */
 public class Problem_0367_ValidPerfectSquare {
 
-//    public boolean isPerfectSquare(int num) {
-//
-//    }
+    //在[1,num]之间二分，判断中点m的平方是否等于num
+    public boolean isPerfectSquare(int num) {
+        int l = 1;
+        int r = num;
+        while (l <= r) {
+            int m = l + ((r - l) >> 1);
+            if (Math.pow(m, 2) > num) {
+                r = m-1;
+            } else if (Math.pow(m, 2) < num) {
+                l = m+1;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
 }

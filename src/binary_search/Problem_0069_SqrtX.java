@@ -35,8 +35,8 @@ public class Problem_0069_SqrtX {
             if (Math.pow(mid, 2) > x) {
                 r = mid - 1;
             } else {
+                ans = mid; //mid的平方<=x时记录一下，右边继续找
                 l = mid + 1;
-                ans = mid; //mid的平方<=x时记录一下
             }
         }
         return ans;

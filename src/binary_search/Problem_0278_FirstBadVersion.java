@@ -27,11 +27,29 @@ package binary_search;
  * 提示：
  * 1 <= bad <= n <= 2^31 - 1
  */
+//和69题基本上是一样的
 public class Problem_0278_FirstBadVersion {
 
     /** The isBadVersion API is defined in the parent class VersionControl.
       boolean isBadVersion(int version); */
-//    public int firstBadVersion(int n) {
-//
-//    }
+    //系统提供
+    private static boolean isBadVersion(int version) {
+        return true; // true/false
+    }
+
+    public static int firstBadVersion(int n) {
+        int l = 1;
+        int r = n;
+        int ans = n;
+        while (l <= r) {
+            int m = l + ((r-l) >> 1);
+            if (!isBadVersion(m)) {
+                l = m+1;
+            } else {
+                ans = m; //m处是错的，记录一下答案，继续左边继续找（因为左边可能还有错）
+                r = m-1; //左边继续找
+            }
+        }
+        return ans;
+    }
 }

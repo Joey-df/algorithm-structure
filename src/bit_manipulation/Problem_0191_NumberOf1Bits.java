@@ -10,7 +10,8 @@ public class Problem_0191_NumberOf1Bits {
     public static int hammingWeight(int n) {
         int ans = 0;
         while (n != 0) {
-            int rightOne = n & (~n + 1);
+            //int rightOne = n & (~n + 1);
+            int rightOne = n & -n; //与上一句等价（提取出最右侧的1）
             ans++;
             n ^= rightOne;
         }
@@ -18,6 +19,6 @@ public class Problem_0191_NumberOf1Bits {
     }
 
     public static void main(String[] args) {
-        System.out.println(hammingWeight(31));
+        System.out.println(hammingWeight(30));
     }
 }

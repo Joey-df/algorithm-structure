@@ -1,4 +1,4 @@
-package questions;
+package data_structure.trie;
 
 /**
  * 440. 字典序的第K小数字

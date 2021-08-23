@@ -1,4 +1,4 @@
-package leetcode_top_interview_and_top100liked_questions;
+package hash_map;
 
 import java.util.HashMap;
 

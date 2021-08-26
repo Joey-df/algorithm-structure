@@ -28,7 +28,7 @@ import java.util.*;
  * 0 <= strs[i].length <= 100
  * strs[i] consists of lower-case English letters.
  */
-public class Problem_49_Group_Anagrams {
+public class Problem_0049_GroupAnagrams {
 
     private static class Node {
         String origin;

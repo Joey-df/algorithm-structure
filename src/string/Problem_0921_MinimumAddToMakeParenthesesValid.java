@@ -37,7 +37,7 @@ package string;
  * S.length <= 1000
  * S only consists of '(' and ')' characters.
  */
-public class Problem_921_Minimum_Add_to_Make_Parentheses_Valid {
+public class Problem_0921_MinimumAddToMakeParenthesesValid {
 
     public static int ways(String s) {
         if ("".equals(s) || s == null || s.length() == 0) {

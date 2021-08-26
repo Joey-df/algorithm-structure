@@ -19,9 +19,19 @@ package array;
  * 1 <= nums[i] <= 10^4
  */
 public class Problem_0645_SetMismatch {
-
-//    public int[] findErrorNums(int[] nums) {
-//
-//    }
+    //前提 数组nums包含从 1 到 n 的整数。
+    public int[] findErrorNums(int[] nums) {
+        int N = nums.length;
+        int[] count = new int[N+1]; //0弃而不用
+        for (int num: nums) {
+            count[num]++;
+        }
+        int p1=-1,p2=-1;
+        for (int i = 1; i < count.length; i++) {
+            p1 = (count[i]==2) ? i : p1;
+            p2 = (count[i]==0) ? i : p2;
+        }
+        return new int[]{p1,p2};
+    }
 
 }

@@ -23,7 +23,8 @@ package leetcode_top_interview_and_top100liked_questions;
  * 输入：s = "ae", t = "aea"
  * 输出："a"
  */
-public class Problem_0389_FindTheDifference {
+public class
+Problem_0389_FindTheDifference {
 //    public char findTheDifference(String s, String t) {
 //
 //    }

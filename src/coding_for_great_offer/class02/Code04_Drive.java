@@ -77,11 +77,11 @@ public class Code04_Drive {
         int[] arr = new int[N];
         int sum = 0;
         for (int i = 0; i < N; i++) {
-            arr[i] = income[i][1] - income[i][0];
-            sum += income[i][0];
+            arr[i] = income[i][1] - income[i][0]; //去B的收益-去A的收益
+            sum += income[i][0]; //sum初始为全部去A的收益
         }
         Arrays.sort(arr);
-        int M = N >> 1;
+        int M = N >> 1; //加入N=10，则M=5,即让5个司机去B得到的最大收益
         for (int i = N - 1; i >= M; i--) {
             sum += arr[i];
         }

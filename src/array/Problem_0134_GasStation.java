@@ -44,7 +44,7 @@ package array;
  * You cannot travel back to station 2, as it requires 4 unit of gas but you only have 3.
  * Therefore, you can't travel around the circuit once no matter where you start.
  */
-public class Problem_134_Gas_Station {
+public class Problem_0134_GasStation {
 
     //The reason why I think this works:
     // If car starts at A and can not reach B.

@@ -1,5 +1,8 @@
 package array;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Given an unsorted integer array nums, find the smallest missing positive integer.
  * <p>
@@ -51,5 +54,27 @@ public class Problem_0041_FirstMissingPositive {
         int t = arr[i];
         arr[i] = arr[j];
         arr[j] = t;
+    }
+
+    //方法2
+    public static int firstMissingPositive2(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 1;
+        }
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            if (num > 0) {
+                set.add(num);
+            }
+        }
+        int ans = 1;
+        while (set.contains(ans)) {
+            ans++;
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(firstMissingPositive2(new int[]{-1,3,5,6,7,8,9}));
     }
 }

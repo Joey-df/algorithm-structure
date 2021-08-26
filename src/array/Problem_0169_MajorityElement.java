@@ -16,7 +16,7 @@ package array;
  * <p>
  * 水王问题
  */
-public class Problem_169_Majority_Element {
+public class Problem_0169_MajorityElement {
     //建立一种一次删除两种不同数的机制
     //最后剩下来的数就是要找的数
     //前提：the array is non-empty and the majority element always exist in the array.

@@ -28,7 +28,8 @@ package array;
  * 1 <= nums.length <= 104
  * -105 <= nums[i] <= 105
  */
-public class Problem_581_Shortest_Unsorted_Continuous_Subarray {
+//最短不需要排序子数组长度
+public class Problem_0581_ShortestUnsortedContinuousSubarray {
 
     //[2,6,4,8,10,9,15]
     public static int minLen(int[] arr) {

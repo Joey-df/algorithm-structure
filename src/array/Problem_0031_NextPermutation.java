@@ -25,8 +25,9 @@ package array;
  */
 public class Problem_0031_NextPermutation {
 
-    //从右往左，找第一个升序的元素下标i
-    //从右往左，找以第一个比nums[i]大的元素下标j
+    //流程
+    //从右往左(N-2开始)，找第一个升序的元素下标i
+    //从右往左(N-1开始)，找第一个比nums[i]大的元素下标j
     //交换i,j对应元素
     //将nums[i+1...]整体反转
     public static void nextPermutation(int[] nums) {
@@ -37,11 +38,13 @@ public class Problem_0031_NextPermutation {
         for (; i>=0; i--) {
             if (nums[i] < nums[i+1]) break;
         }
+        System.out.println("i: " + i);
         if (i > -1) { //防止nums是完全降序的情况[5,4,3,2,1]
             int j=nums.length-1;
             for (; j>i ; j--) {
                 if (nums[j] > nums[i]) break;
             }
+            System.out.println("j: " +j);
             swap(nums, i, j);
         }
         reverse(nums, i+1, nums.length-1);
@@ -61,7 +64,7 @@ public class Problem_0031_NextPermutation {
 
 
     public static void main(String[] args) {
-        int[] arr = {6,8,7,5,4,3,2,1};
+        int[] arr = {1,2,3};
         nextPermutation(arr);
         for (int n:arr) {
             System.out.print(n + " ");

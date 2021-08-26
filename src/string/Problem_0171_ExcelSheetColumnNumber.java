@@ -33,7 +33,7 @@ package string;
  * s consists only of uppercase English letters.
  * s is between "A" and "FXSHRXW".
  */
-public class Problem_171_Excel_Sheet_Column_Number {
+public class Problem_0171_ExcelSheetColumnNumber {
     //伪26进制
     public static int titleToNumber(String s) {
         char[] str = s.toCharArray();

@@ -20,11 +20,50 @@ package array;
  * F(3) = (0 * 3) + (1 * 2) + (2 * 6) + (3 * 4) = 0 + 2 + 12 + 12 = 26
  *
  * 所以 F(0), F(1), F(2), F(3) 中的最大值是 F(3) = 26 。
+ *
+ * Constraints:
+ * n == nums.length
+ * 1 <= n <= 10^5
+ * -100 <= nums[i] <= 100
  */
+//数学 + 一维dp
 public class Problem_0396_RotateFunction {
 
-//    public int maxRotateFunction(int[] nums) {
-//
-//    }
+    //F(k) = 0 * Bk[0] + 1 * Bk[1] + ... + (n-1) * Bk[n-1]
+    //F(k-1) = 0 * Bk-1[0] + 1 * Bk-1[1] + ... + (n-1) * Bk-1[n-1]
+    //       = 0 * Bk[1] + 1 * Bk[2] + ... + (n-2) * Bk[n-1] + (n-1) * Bk[0]
+    //Then,
+    //
+    //F(k) - F(k-1) = Bk[1] + Bk[2] + ... + Bk[n-1] + (1-n)Bk[0]
+    //              = (Bk[0] + ... + Bk[n-1]) - nBk[0]
+    //              = sum - nBk[0]
+    //so,
+    //F(k) = F(k-1) + sum -nBk(0)
+    //What is Bk[0]?
+    //
+    //k = 0; B[0] = A[0];
+    //k = 1; B[0] = A[len-1];
+    //k = 2; B[0] = A[len-2];
+    //...
+    //k = n-1; B[0] = A[len-(len-1)] = A1[1];
+    public static int maxRotateFunction(int[] A) {
+        int allSum = 0;
+        int n = A.length;
+        int F = 0; //F(0)
+        for (int i = 0; i < n; i++) {
+            F += i * A[i];
+            allSum += A[i];
+        }
+        int max = F; //初始为F(0)
+        for (int i = n - 1; i >= 1; i--) {
+            int curF = F + allSum - n * A[i]; //F(1)=F(0)+sum+n*Bk[0]  Bk[0]=A[n-1]
+            max = Math.max(max, curF);
+            F = curF;
+        }
+        return max;
+    }
 
+    public static void main(String[] args) {
+        System.out.println(maxRotateFunction(new int[]{4,3,2,6}));
+    }
 }

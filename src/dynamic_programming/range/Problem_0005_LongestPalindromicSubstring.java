@@ -17,7 +17,7 @@ package dynamic_programming.range;
  * 寻找最长回文子子串
  * manacher
  */
-public class Problem_5_Longest_Palindromic_Substring {
+public class Problem_0005_LongestPalindromicSubstring {
 
     public static String ways(String s) {
         if ("".equals(s) || s.length() == 0) return "";

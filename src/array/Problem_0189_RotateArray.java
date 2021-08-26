@@ -32,10 +32,11 @@ package array;
  * -231 <= nums[i] <= 231 - 1
  * 0 <= k <= 105
  * <p>
- * 三种实现方法，待实现
  */
 public class Problem_0189_RotateArray {
 
+    //经典的三步逆序
+    //完美洗牌问题的原型
     public void rotate(int[] nums, int k) {
         if (nums == null || nums.length < 2 || k < 0) return;
         k %= nums.length;

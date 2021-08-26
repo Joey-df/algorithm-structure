@@ -1,6 +1,8 @@
 package array;
 
 
+import java.util.*;
+
 /**
  * 414. 第三大的数
  * 给你一个非空数组，返回此数组中 第三大的数 。如果不存在，则返回数组中最大的数。
@@ -29,8 +31,56 @@ package array;
 //https://leetcode-cn.com/problems/third-maximum-number/
 public class Problem_0414_ThirdMaximumNumber {
 
-//    public int thirdMax(int[] nums) {
-//
-//    }
+    //方法1：使用TreeSet
+    public static int thirdMax(int[] nums) {
+        TreeSet<Integer> set = new TreeSet<>(); //默认升序
+        for (int num : nums) set.add(num);
+        if (set.size()<3) return set.last(); //返回最大的
+        for (int i = 0; i < 2; i++) {
+            set.pollLast();
+        }
+        return set.last();
+    }
+
+
+    //方法2；使用小根堆
+    //门槛堆：求第k大用小根堆，求第k小用大根堆
+    public static int thirdMax2(int[] nums) {
+        PriorityQueue<Integer> heap = new PriorityQueue<>();
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (!set.contains(nums[i])) {
+                if (heap.isEmpty() || heap.size() < 3) {
+                    set.add(nums[i]);
+                    heap.offer(nums[i]);
+                } else { //==3
+                    if (nums[i] > heap.peek()) {
+                        heap.poll();
+                        heap.offer(nums[i]);
+                        set.add(nums[i]);
+                    }
+                }
+            }
+        }
+
+        if (heap.size() == 3) return heap.peek();
+        //size < 3
+        System.out.println(heap);
+        int max = heap.peek();
+        while (!heap.isEmpty()) {
+            if (heap.size()>1) {
+                heap.poll();
+            }
+            if (heap.size()==1) {
+                max = heap.poll();
+            }
+        }
+        return max;
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(thirdMax2(new int[]{5,2,4,1,3,6,0}));
+    }
 
 }

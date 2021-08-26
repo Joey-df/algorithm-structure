@@ -49,12 +49,40 @@ public class Problem_0026_RemoveDuplicatesFromSortedArray {
         if (nums == null || nums.length == 0) {
             return 0;
         }
-        int done = 0;
+        int done = 0; //[1,1,2]
         for (int i = 1; i < nums.length; i++) {
             if (nums[i] > nums[i - 1]) {
                 nums[++done] = nums[i];
             }
         }
         return done + 1;
+    }
+
+
+    public static int removeDuplicates2(int[] nums) {
+        int i = 0;
+        int index = 0;
+        while (i < nums.length) {
+            if (i == 0 || nums[i] != nums[i - 1]) {
+                nums[index++] = nums[i];
+            }
+            i++;
+        }
+        return index;
+    }
+
+    public static int removeDuplicates3(int[] nums) {
+        int index = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (i == 0 || nums[i] != nums[i - 1]) {
+                nums[index++] = nums[i];
+            }
+        }
+        return index;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(removeDuplicates2(new int[]{1, 1, 2}));
+        System.out.println(removeDuplicates2(new int[]{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}));
     }
 }

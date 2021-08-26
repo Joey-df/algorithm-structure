@@ -34,7 +34,7 @@ package array;
  * 0 <= nums[i] <= n
  * All the numbers of nums are unique.
  */
-public class Problem_268_Missing_Number {
+public class Problem_0268_MissingNumber {
 
     public int missingNumber(int[] nums) {
         int L = 0;//[0,L-1]上已经放好了i的数

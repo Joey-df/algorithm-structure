@@ -12,7 +12,10 @@ public class Problem_0289_GameOfLife {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
                 int neighbors = neighbors(board, i, j);
-                if (neighbors == 3 || (board[i][j] == 1 && neighbors == 2)) {
+                //如果活细胞周围八个位置有两个或三个活细胞，则该位置活细胞仍然存活；
+                //如果死细胞周围正好有三个活细胞，则该位置死细胞复活；
+                if (neighbors == 3 //不管是0还是1，只要邻居有3个1，下一步都是1
+                        || (board[i][j] == 1 && neighbors == 2)) { //1的周围有2个1，下一步是1
                     board[i][j] |= 2; //第二个二进制位变1
                 }
             }
@@ -24,7 +27,7 @@ public class Problem_0289_GameOfLife {
         }
     }
 
-    // b[i][j] 这个位置的数，周围有几个1
+    // b[i][j] 这个位置的数，周围8个方向一共有几个1
     public static int neighbors(int[][] b, int i, int j) {
         return f(b, i - 1, j - 1)
                 + f(b, i - 1, j)

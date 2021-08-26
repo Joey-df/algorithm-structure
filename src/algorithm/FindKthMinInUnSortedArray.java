@@ -8,17 +8,16 @@ import java.util.PriorityQueue;
  * 或者
  * 在无序数组中找出最小的k个数
  */
-public class FindKthMin_In_NoSortedArray {
+public class FindKthMinInUnSortedArray {
 
     //方法一：改写快排，时间复杂度O(N)
     //在arr[L...R]范围上找位于index位置的数
     //如果排序的话，不是真的排序
     //潜台词：index一定在L...R上
     //递归方法
-    //TODO 待补充迭代的方法
     public static int findKth(int[] arr, int L, int R, int index) {
         if (L == R) return arr[index];
-        swap(arr, L + (int) Math.random() * (R - L + 1), R);//把最右边的基准数变成随机的
+        swap(arr, L + (int) (Math.random() * (R - L + 1)), R);//把最右边的基准数变成随机的
         int[] equals = partition(arr, L, R);
         if (index >= equals[0] && index <= equals[1]) {
             return arr[index];
@@ -28,6 +27,27 @@ public class FindKthMin_In_NoSortedArray {
             return findKth(arr, equals[1] + 1, R, index);
         }
     }
+
+
+    //迭代方法
+    //无序数组arr[l,r]范围上
+    //如果排序的话，位于index位置的元素，返回
+    public static int find(int[] arr, int l, int r, int index) {
+        while (l < r) {
+            swap(arr, l + (int) (Math.random() * (r - l + 1)), r);
+            int[] range = partition(arr, l, r);
+            if (index >= range[0] && index <= range[1]) {
+                return arr[index];
+            } else if (index < range[0]) {
+                r = range[0] - 1;
+            } else {
+                //index > range[1]
+                l = range[1] + 1;
+            }
+        }
+        return arr[l];
+    }
+
 
     public static void swap(int[] arr, int i, int j) {
         int tmp = arr[i];
@@ -39,26 +59,26 @@ public class FindKthMin_In_NoSortedArray {
     //在arr[L...R]范围上玩荷兰国旗问题 < = > 三个区域
     //以arr[R]作为基准值
     //返回 等于区的左右边界的下标
-    public static int[] partition(int arr[], int L, int R) {
+    public static int[] partition(int[] arr, int L, int R) {
         int less = L - 1;
         int base = arr[R];
         int more = R + 1;
-        int index = L;
+        int cur = L;
         //index与more会师时停止
-        while (index < more) {
-            if (arr[index] == base) {
-                index++;
-            } else if (arr[index] < base) {
-                swap(arr, index++, ++less);
+        while (cur < more) {
+            if (arr[cur] == base) {
+                cur++;
+            } else if (arr[cur] < base) {
+                swap(arr, cur++, ++less);
             } else {
-                swap(arr, index, --more);
+                swap(arr, cur, --more);
             }
         }
         return new int[]{less + 1, more - 1};
     }
 
     //在无序数组中找出最小的k个数
-    public static int[] findKthMinNums(int arr[], int k) {
+    public static int[] findKthMinNums(int[] arr, int k) {
         int kth = findKth(arr, 0, arr.length - 1, k - 1); //先找到第k小的数
         int[] ans = new int[k];
         int index = 0;

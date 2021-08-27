@@ -21,7 +21,13 @@ import java.util.List;
  * ]
  */
 public class Problem_0118_PascalTriangle {
-
+    //想像成一个正方形矩阵的左下半区
+    //1
+    //11
+    //121
+    //1331
+    //14341
+    //第一列是1，对角线是1
     public static List<List<Integer>> generate(int numRows) {
         List<List<Integer>> ans = new ArrayList<>();
         for (int i = 0; i < numRows; i++) {
@@ -30,7 +36,9 @@ public class Problem_0118_PascalTriangle {
         }
         for (int i = 1; i < numRows; i++) {
             for (int j = 1; j < i; j++) {
-                ans.get(i).add(ans.get(i - 1).get(j - 1) + ans.get(i - 1).get(j));
+                int corner = ans.get(i - 1).get(j - 1);
+                int up = ans.get(i - 1).get(j);
+                ans.get(i).add(corner + up);
             }
             ans.get(i).add(1);
         }

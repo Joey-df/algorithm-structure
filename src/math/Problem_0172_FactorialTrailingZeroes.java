@@ -1,31 +1,23 @@
 package math;
 
 /**
- * Given an integer n, return the number of trailing zeroes in n!.
- * <p>
- * Follow up: Could you write a solution that works in logarithmic time complexity?
- * <p>
- * Example 1:
- * <p>
- * Input: n = 3
- * Output: 0
- * Explanation: 3! = 6, no trailing zero.
- * Example 2:
- * <p>
- * Input: n = 5
- * Output: 1
- * Explanation: 5! = 120, one trailing zero.
- * Example 3:
- * <p>
- * Input: n = 0
- * Output: 0
- * <p>
- * <p>
- * Constraints:
- * <p>
- * 1 <= n <= 104
+ * 172. 阶乘后的零
+ * 给定一个整数 n，返回 n! 结果尾数中零的数量。
+ *
+ * 示例 1:
+ *
+ * 输入: 3
+ * 输出: 0
+ * 解释: 3! = 6, 尾数中没有零。
+ * 示例 2:
+ *
+ * 输入: 5
+ * 输出: 1
+ * 解释: 5! = 120, 尾数中有 1 个零.
+ * 说明: 你算法的时间复杂度应为 O(log n) 。
  */
-public class Problem_172_Factorial_Trailing_Zeroes {
+public class Problem_0172_FactorialTrailingZeroes {
+
     // This question is pretty straightforward.
     // Because all trailing 0 is from factors 5 * 2.
     // But sometimes one number may have several 5 factors,

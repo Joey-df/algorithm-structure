@@ -12,7 +12,7 @@ package math;
  * Input: a = -2, b = 3
  * Output: 1
  */
-public class Problem_371_Sum_of_Two_Integers {
+public class Problem_0371_SumOfTwoIntegers {
     public static int getSum(int a, int b) {
         int sum = 0;
         while (b != 0) { //b充当进位信息, 当进位信息为0时，sum就是答案

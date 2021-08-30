@@ -19,7 +19,7 @@ public class Problem_0387_FirstUniqueCharacterInAString {
 
     public int firstUniqChar(String s) {
         if (s == null || "".equals(s)) return -1;
-        int[] map = new int[256];
+        int[] map = new int[26];
         char[] str = s.toCharArray();
         for (int i = 0; i < str.length; i++) {
             map[str[i] - 'a']++; //统计每个字符的词频

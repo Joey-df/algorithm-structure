@@ -22,8 +22,10 @@ package string;
  */
 public class Problem_0058_LengthOfLastWord {
 
-//    public int lengthOfLastWord(String s) {
-//
-//    }
+    public int lengthOfLastWord(String s) {
+        if (s==null || s.length()==0) return 0;
+        String[] arr = s.split("\\s+");
+        return arr[arr.length-1].trim().length();
+    }
 
 }

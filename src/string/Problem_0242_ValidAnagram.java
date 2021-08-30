@@ -19,7 +19,7 @@ package string;
  */
 //判断两个字符串是否互为变形词
 public class Problem_0242_ValidAnagram {
-    public static boolean process(String s, String t) {
+    public static boolean isAnagram(String s, String t) {
         if ((s == null || s.length() == 0) && (t == null || t.length() == 0)) { //同时为空
             return true;
         }
@@ -30,23 +30,19 @@ public class Problem_0242_ValidAnagram {
         if (s.length() != t.length()) {
             return false;
         }
-        int[] counts = new int[256];//包含所有unicode characters
-        char[] str = s.toCharArray();
-        char[] target = t.toCharArray();
-        for (int i = 0; i < target.length; i++) {
-            counts[target[i]]++;
+        int[] map = new int[256];//包含所有unicode characters
+        char[] str1 = s.toCharArray();
+        char[] str2 = t.toCharArray();
+        for (char c : str2) map[c]++;
+        for (char c : str1) {
+            if (map[c]-- == 0) return false;
         }
-        int all = target.length;
-
-        for (int i = 0; i < str.length; i++) {
-            if (--counts[str[i]] >= 0) all--;
-        }
-        return all == 0;
+        return true;
     }
 
     public static void main(String[] args) {
-        String s = ".,*&&&", t = "&&.,&*";
-        System.out.println(process(s, t));
+        String s = ".,*&&&", t = "&3.,&*";
+        System.out.println(isAnagram(s, t));
     }
 
 }

@@ -88,11 +88,11 @@ public class Problem_0662_MaximumWidthOfBinaryTree {
             for (int i = 0; i < size; i++) {
                 root = dq.poll();
                 if (root.left != null) {
-                    root.left.val = root.val * 2;
+                    root.left.val = root.val << 1;
                     dq.offer(root.left);
                 }
                 if (root.right != null) {
-                    root.right.val = root.val * 2 + 1;
+                    root.right.val = root.val << 1 | 1;
                     dq.offer(root.right);
                 }
             }

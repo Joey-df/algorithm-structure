@@ -26,6 +26,7 @@ public class Problem_0203_RemoveLinkedListElements {
         if (head == null) {
             return null;
         }
+        //记得不能忘记写head != null的判断条件
         while (head != null && head.val == val) {
             head = head.next;
         }

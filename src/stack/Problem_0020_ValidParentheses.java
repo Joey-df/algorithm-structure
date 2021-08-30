@@ -6,7 +6,8 @@ import java.util.Map;
 import java.util.Stack;
 
 /**
- * Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+ * Given a string s containing just the characters '(', ')', '{', '}', '[' and ']',
+ * determine if the input string is valid.
  * <p>
  * An input string is valid if:
  * <p>
@@ -18,15 +19,25 @@ import java.util.Stack;
  * Output: true
  */
 public class Problem_0020_ValidParentheses {
-//    public static boolean isValid(String s) {
-//
-//    }
-//
-//
-//
-//    public static void main(String[] args) {
-//        System.out.println("ans = " + isValid("{}{}{}[][[]]"));
-//        System.out.println("ans = " + isValid("{}{{}{}[][[]]"));
-//        System.out.println("ans = " + isValid("{}[[]](){}{}"));
-//    }
+    public static boolean isValid(String s) {
+        if (s == null || s.length() == 0) return true;
+        char[] arr = s.toCharArray();
+        Stack<Character> stack = new Stack<>();
+        for (char c : arr) {
+            if (c=='(' || c=='{' ||c=='[') {
+                stack.push(c == '(' ? ')' : (c == '{' ? '}' : ']'));
+            } else {
+                //遇到右括号时栈时空的，直接false
+                if (stack.isEmpty() || stack.pop() != c) return false;
+            }
+        }
+        return stack.isEmpty();
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println("ans = " + isValid("{}{}{()}[][[]]"));
+        System.out.println("ans = " + isValid("{}{{}{}[][[]]"));
+        System.out.println("ans = " + isValid("{}[[]]]](){}{}"));
+    }
 }

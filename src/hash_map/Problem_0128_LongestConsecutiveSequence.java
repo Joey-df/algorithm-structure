@@ -36,7 +36,7 @@ public class Problem_0128_LongestConsecutiveSequence {
         }
         int best = 0;
         for (int x : nums) {
-            if (!set.contains(x - 1)) {
+            if (!set.contains(x - 1)) { //x可以左开头，尝试每一个开头的答案
                 int y = x + 1;
                 while (set.contains(y)) {
                     y++;

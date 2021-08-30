@@ -14,7 +14,18 @@ package string;
  */
 public class Problem_0434_NumberOfSegmentsInAString {
 
-//    public int countSegments(String s) {
-//
-//    }
+    public static int countSegments(String s) {
+        if (s==null || s.length()==0) return 0;
+        //\s:匹配任何空白字符，包括空格、制表符、换页符等等。等价于[ \f\n\r\t\v]。
+        String[] arr = s.split("\\s+");
+        int count = 0;
+        for(String str : arr) {
+            count += "".equals(str.trim()) ? 0 : 1;
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(countSegments("Hello, my name is John"));
+    }
 }

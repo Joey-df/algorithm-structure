@@ -24,51 +24,37 @@ import java.util.*;
  * <p>
  * Constraints:
  * <p>
- * 1 <= strs.length <= 104
+ * 1 <= strs.length <= 10^4
  * 0 <= strs[i].length <= 100
  * strs[i] consists of lower-case English letters.
  */
 public class Problem_0049_GroupAnagrams {
 
-    private static class Node {
-        String origin;
-        String sorted;
 
-        public Node(String origin, String sorted) {
-            this.origin = origin;
-            this.sorted = sorted;
-        }
-    }
-
-    public static List<List<String>> groupAnagrams(String[] strs) {
+    public static List<List<String>> groupAnagrams(String[] arr) {
         List<List<String>> ans = new ArrayList<>();
-        if (strs == null || strs.length == 0) {
+        if (arr == null || arr.length == 0) {
             return ans;
         }
-        Node[] nodes = new Node[strs.length];
-        for (int i = 0; i < strs.length; i++) {
-            char[] cur = strs[i].toCharArray();
-            Arrays.sort(cur);
-            nodes[i] = new Node(strs[i], String.valueOf(cur));
-        }
-        Map<String, List<String>> map = new HashMap<>();
-        for (int i = 0; i < nodes.length; i++) {
-            String key = nodes[i].sorted;
-            if (map.containsKey(key)) {
-                map.get(key).add(nodes[i].origin);
-            } else {
-                List<String> sub = new ArrayList<>();
-                sub.add(nodes[i].origin);
-                map.put(key, sub);
+        HashMap<String, List<String>> map = new HashMap<>();
+        for (String s : arr) {
+            //对每一个s，排序后，查map
+            char[] str = s.toCharArray();
+            Arrays.sort(str);
+            String sorted = String.valueOf(str);
+            if (!map.containsKey(sorted)) {
+                map.put(sorted, new ArrayList<>());
             }
+            map.get(sorted).add(s);
         }
-        for (List<String> list : map.values()) {
-            ans.add(list);
+        for (String k : map.keySet()) {
+            ans.add(map.get(k));
         }
         return ans;
     }
 
     public static void main(String[] args) {
-        System.out.println(groupAnagrams(new String[]{}));
+        String[] arr = {"eat", "tea", "tan", "ate", "nat", "bat"};
+        System.out.println(groupAnagrams(arr));
     }
 }

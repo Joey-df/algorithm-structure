@@ -43,9 +43,9 @@ public class Problem_0350_IntersectionOfTwoArraysII {
             }
         }
         int[] ans = new int[list.size()];
-        int index = 0;
+        int i = 0;
         for (int n : list) {
-            ans[index++] = n;
+            ans[i++] = n;
         }
         return ans;
     }

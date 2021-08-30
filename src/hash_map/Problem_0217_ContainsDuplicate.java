@@ -21,16 +21,15 @@ public class Problem_0217_ContainsDuplicate {
     //平凡解：哈希表的解法
     //如果要额外空间复杂度O(1)的话，请使用堆排序，然后从左往右遍历找到重复出现的数
     public boolean containsDuplicate(int[] nums) {
-        if (nums==null || nums.length<2) {
+        if (nums == null || nums.length < 2) {
             return false;
         }
         HashSet<Integer> set = new HashSet<>();
-        for (int i = 0; i < nums.length; i++) {
-            if (set.contains(nums[i])) {
+        for (int num : nums) {
+            if (set.contains(num))
                 return true;
-            } else {
-                set.add(nums[i]);
-            }
+            else
+                set.add(num);
         }
         return false;
     }

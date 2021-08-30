@@ -40,7 +40,7 @@ public class Problem_0118_PascalTriangle {
                 int up = ans.get(i - 1).get(j);
                 ans.get(i).add(corner + up);
             }
-            ans.get(i).add(1);
+            ans.get(i).add(1); //j==i 对角线
         }
         return ans;
     }

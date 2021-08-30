@@ -26,8 +26,8 @@ public class Code02_FallingSquares {
 		private boolean[] update;
 
 		public SegmentTree(int size) {
-			int N = size + 1;
-			max = new int[N << 2];
+			int N = size + 1; //0位置弃而不用
+			max = new int[N << 2]; //4N
 
 			change = new int[N << 2];
 			update = new boolean[N << 2];

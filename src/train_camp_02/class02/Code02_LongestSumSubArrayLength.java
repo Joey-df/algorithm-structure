@@ -31,8 +31,7 @@ public class Code02_LongestSumSubArrayLength {
         for (int i = 0; i < arr.length; i++) {
             sum += arr[i];
             if (map.containsKey(sum - K)) { // k 20 sum 100  找80首次出现的位置
-                int idx = map.get(sum - K);
-                ans = Math.max(ans, i - idx); //以i位置结尾的答案
+                ans = Math.max(ans, i - map.get(sum - K)); //以i位置结尾的答案
             }
             if (!map.containsKey(sum)) {//只记录sum最早出现的位置即可，不更新
                 map.put(sum, i);

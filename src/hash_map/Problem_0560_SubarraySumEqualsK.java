@@ -22,10 +22,9 @@ import java.util.Map;
  * 1 <= nums.length <= 2 * 104
  * -1000 <= nums[i] <= 1000
  * -107 <= k <= 107
- * <p>
- * 给定数组arr，其值可正可负可0，给定正数K，求累加和为K的子数组个数
- * 算法原型：数组累加和问题三连的第二连
  */
+//给定数组arr，其值可正可负可0，给定正数K，求累加和为K的子数组个数
+//算法原型：数组累加和问题三连的第二连
 public class Problem_0560_SubarraySumEqualsK {
 
     public static int findSumEqualsK(int[] arr, int K) {

@@ -3,14 +3,14 @@ package stack;
 /**
  * Given a string containing just the characters '(' and ')',
  * find the length of the longest valid (well-formed) parentheses substring.
- *
+ * <p>
  * Example 1:
- *
+ * <p>
  * Input: "(()"
  * Output: 2
  * Explanation: The longest valid parentheses substring is "()"
  * Example 2:
- *
+ * <p>
  * Input: ")()())"
  * Output: 4
  * Explanation: The longest valid parentheses substring is "()()"
@@ -29,15 +29,16 @@ public class Problem_0032_LongestValidParentheses {
         int[] dp = new int[N];
         //dp[0]==0，所以从1开始
         for (int i = 1; i < N; i++) {
-            if (str[i] == '(') continue; //以(结尾的肯定是无效串，不讨论
-            //str[i]==')'
-            //以i-1位置结尾的有效串的前一个位置
-            //这种写法适用于任何位置
-            int pre = i - dp[i - 1] - 1;
-            if (pre >= 0 && str[pre] == '(') {
-                dp[i] = dp[i - 1] + 2 + (pre > 0 ? dp[pre - 1] : 0);
+            if (str[i] != '(') { //以(结尾的肯定是无效串，不讨论
+                //str[i]==')'
+                //以i-1位置结尾的有效串的前一个位置
+                //这种写法适用于任何位置
+                int pre = i - dp[i - 1] - 1;
+                if (pre >= 0 && str[pre] == '(') {
+                    dp[i] = dp[i - 1] + 2 + (pre > 0 ? dp[pre - 1] : 0);
+                }
+                ans = Math.max(ans, dp[i]);
             }
-            ans = Math.max(ans, dp[i]);
         }
         return ans;
     }

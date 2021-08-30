@@ -31,19 +31,20 @@ import java.util.Map;
 public class Problem_0454_4SumII {
 
     public int fourSumCount(int[] A, int[] B, int[] C, int[] D) {
-        Map<Integer, Integer> map = new HashMap<>();
+        HashMap<Integer, Integer> map1 = new HashMap<>();
         for (int i = 0; i < A.length; i++) {
-            for (int j = 0; j < B.length; j++) {
-                int sum = A[i] + B[j];
-                map.put(sum, map.getOrDefault(sum, 0) + 1);
+            for (int j = 0; j < C.length; j++) {
+                int sum = A[i] + C[j];
+                map1.put(sum, map1.getOrDefault(sum, 0) + 1);
             }
         }
-
         int ans = 0;
-        for (int i = 0; i < C.length; i++) {
+        for (int i = 0; i < B.length; i++) {
             for (int j = 0; j < D.length; j++) {
-                int sum = C[i] + D[j];
-                ans += map.getOrDefault(-sum, 0);
+                int sum = B[i] + D[j];
+                if (map1.containsKey(~sum + 1)) {
+                    ans += map1.get(-sum);
+                }
             }
         }
         return ans;

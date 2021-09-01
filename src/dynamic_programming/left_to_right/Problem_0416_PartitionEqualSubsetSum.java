@@ -1,4 +1,4 @@
-package leetcode_top_interview_and_top100liked_questions;
+package dynamic_programming.left_to_right;
 
 /**
  * 416. 分割等和子集

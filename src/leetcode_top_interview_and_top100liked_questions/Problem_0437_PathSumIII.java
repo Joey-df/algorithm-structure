@@ -43,11 +43,13 @@ public class Problem_0437_PathSumIII {
     //算法原型
     //数组累加和问题三连第二连
     public static int pathSum2(TreeNode root, int sum) {
-        HashMap<Integer, Integer> preSumMap = new HashMap<>();
+        HashMap<Integer, Integer> preSumMap = new HashMap<>(); //<前缀和sum，出现的次数>
         preSumMap.put(0, 1);
         return process(root, sum, 0, preSumMap);
     }
 
+    // 以x为头整棵树，有多少方法数 返回
+    // preAll:从根节点到x之前路径的累加和
     // 返回方法数
     // 本质还是dfs
     public static int process(TreeNode x, int sum, int preAll, HashMap<Integer, Integer> preSumMap) {

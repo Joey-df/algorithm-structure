@@ -6,9 +6,15 @@ package math;
  */
 public class Problem_0191_NumberOf1Bits {
 
-//    // you need to treat n as an unsigned value
-//    public int hammingWeight(int n) {
-//
-//    }
+    // you need to treat n as an unsigned value
+    public int hammingWeight(int n) {
+        int ans = 0;
+        while (n != 0) {
+            int rightOne = n & -n;
+            ans++;
+            n = n ^ rightOne;
+        }
+        return ans;
+    }
 
 }

@@ -154,6 +154,7 @@ public class Code07_TargetSum {
         return dp[s];
     }
 
+    //与sub2是一样的
     public static int sub3(int[] nums, int s) {
         int[] dp = new int[s + 1];
         dp[0] = 1; //nums前缀长度为0的所有子集，有多少累加和是0？一个：空集
@@ -174,6 +175,7 @@ public class Code07_TargetSum {
 
     //nums中不包含0是对的，包含0就不对了
     //此方法只针对nums为正数数组有效
+    //nums中自由选择，组成target的方法数
     public static int subset1(int[] nums, int target) {
         int N = nums.length;
         //dp[i][j]:

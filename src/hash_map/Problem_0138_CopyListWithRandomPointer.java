@@ -41,7 +41,7 @@ public class Problem_0138_CopyListWithRandomPointer {
         }
         cur = head;
         while (cur != null) {
-            map.get(cur).next = map.get(cur.next);
+            map.get(cur).next = map.get(cur.next); //新节点的next = 老节点的next对应的新节点
             map.get(cur).random = map.get(cur.random);
             cur = cur.next;
         }

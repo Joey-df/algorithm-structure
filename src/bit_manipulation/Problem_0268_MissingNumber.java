@@ -13,7 +13,30 @@ import java.util.Set;
 //leetcode41同一类题
 public class Problem_0268_MissingNumber {
 
-//    public int missingNumber(int[] nums) {
-//
-//    }
+    public int missingNumber(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for (int num: nums) {
+            set.add(num);
+        }
+        int n = nums.length;
+        int i=0;
+        for (; i <= n; i++) {
+            if (!set.contains(i))
+                break;
+        }
+        return i;
+    }
+
+    public int missingNumber2(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for (int num: nums) {
+            set.add(num);
+        }
+        int ans = 0;
+        while (set.contains(ans)) {
+            ans++;
+        }
+        return ans;
+    }
+
 }

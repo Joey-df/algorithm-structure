@@ -1,5 +1,8 @@
 package tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * 104. 二叉树的最大深度
  * 给定一个二叉树，找出其最大深度。
@@ -23,5 +26,22 @@ public class Problem_0104_MaximumDepthOfBinaryTree {
     public static int maxDepth(TreeNode root) {
         if (root==null) return 0;
         return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+    }
+
+    public static int maxDepth2(TreeNode root) {
+        if (root == null) return 0;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        int height = 0;
+        while (!q.isEmpty()) {
+            int size = q.size();
+            height++;
+            for (int i = 0; i < size; i++) {
+                TreeNode cur = q.poll();
+                if (cur.left!=null) q.offer(cur.left);
+                if (cur.right!=null) q.offer(cur.right);
+            }
+        }
+        return height;
     }
 }

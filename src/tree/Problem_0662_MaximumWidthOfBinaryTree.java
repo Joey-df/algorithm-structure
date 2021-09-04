@@ -78,22 +78,23 @@ public class Problem_0662_MaximumWidthOfBinaryTree {
         if (root == null) {
             return 0;
         }
-        LinkedList<TreeNode> dq = new LinkedList<>();
-        dq.offer(root);
+        LinkedList<TreeNode> q = new LinkedList<>();
+        q.offer(root);
         root.val = 1; //人为规定根节点index=1，左右子节点的索引分别为index*2，index*2+1
         int ans = 1;
-        while (!dq.isEmpty()) {
-            int size = dq.size();
-            ans = Math.max(ans, dq.peekLast().val - dq.peekFirst().val + 1);
+        while (!q.isEmpty()) {
+            int size = q.size();
+            //拿到每一层的宽度
+            ans = Math.max(ans, q.peekLast().val - q.peekFirst().val + 1);
             for (int i = 0; i < size; i++) {
-                root = dq.poll();
-                if (root.left != null) {
-                    root.left.val = root.val << 1;
-                    dq.offer(root.left);
+                TreeNode cur = q.poll();
+                if (cur.left != null) {
+                    cur.left.val = cur.val << 1;
+                    q.offer(cur.left);
                 }
-                if (root.right != null) {
-                    root.right.val = root.val << 1 | 1;
-                    dq.offer(root.right);
+                if (cur.right != null) {
+                    cur.right.val = cur.val << 1 | 1;
+                    q.offer(cur.right);
                 }
             }
         }

@@ -12,14 +12,14 @@ public class Problem_0094_BinaryTreeInorderTraversal {
         if (root == null) return ans;
         Stack<TreeNode> stack = new Stack<>();
         TreeNode cur = root;
-        while (!stack.isEmpty() || cur != null) {
+        while (cur != null || !stack.isEmpty()) {
             if (cur != null) {
                 stack.push(cur);
                 cur = cur.left;
             } else {
-                TreeNode pop = stack.pop();
-                ans.add(pop.val);
-                cur = pop.right;
+                TreeNode node = stack.pop();
+                ans.add(node.val);
+                cur = node.right;
             }
         }
         return ans;

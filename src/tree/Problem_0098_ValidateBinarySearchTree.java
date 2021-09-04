@@ -1,5 +1,7 @@
 package tree;
 
+import java.util.Stack;
+
 /**
  * 给定一棵二叉树的头节点head，返回这颗二叉树是不是搜索二叉树
  */
@@ -21,19 +23,19 @@ public class Problem_0098_ValidateBinarySearchTree {
         if (root == null) {
             return null;
         }
-        Info leftInfo = process(root.left);
-        Info rightInfo = process(root.right);
+        Info l = process(root.left);
+        Info r = process(root.right);
         int min = root.val;
         int max = root.val;
-        if (leftInfo != null) { //只需要和左子树pk最小值即可
-            min = Math.min(min, leftInfo.min);
+        if (l != null) { //只需要和左子树pk最小值即可
+            min = Math.min(min, l.min);
         }
-        if (rightInfo != null) { //只需要和右子树pk最大值即可
-            max = Math.max(max, rightInfo.max);
+        if (r != null) { //只需要和右子树pk最大值即可
+            max = Math.max(max, r.max);
         }
         boolean isAllBst = false;
-        if ((leftInfo == null ? true : (leftInfo.isAllBst && leftInfo.max < root.val))
-                && (rightInfo == null ? true : (rightInfo.isAllBst && rightInfo.min > root.val))) {
+        if ((l == null ? true : (l.isAllBst && l.max < root.val))
+                && (r == null ? true : (r.isAllBst && r.min > root.val))) {
             isAllBst = true;
         }
         return new Info(min, max, isAllBst);
@@ -66,6 +68,30 @@ public class Problem_0098_ValidateBinarySearchTree {
             }
             pre = cur.val;
             cur = cur.right;
+        }
+        return true;
+    }
+
+    //经典中序遍历解法
+    public boolean isValidBST(TreeNode root) {
+        if (root==null) return true;
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = root;
+        Integer pre = null;
+        while (cur!=null || !stack.isEmpty()) {
+            if (cur!=null) {
+                stack.push(cur);
+                cur = cur.left;
+            } else {
+                TreeNode node = stack.pop();
+                if (pre==null) {
+                    pre = node.val;
+                } else {
+                    if (node.val <= pre) return false;
+                    pre = node.val;
+                }
+                cur = node.right;
+            }
         }
         return true;
     }

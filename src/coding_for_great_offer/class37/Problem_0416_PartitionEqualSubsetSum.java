@@ -11,6 +11,7 @@ public class Problem_0416_PartitionEqualSubsetSum {
 		}
 		if ((sum & 1) != 0) {
 			return false;
+
 		}
 		sum >>= 1;
 		//dp[i][j]含义：nums[0,i]范围上自由选择 是否能组成累加和j

@@ -10,7 +10,43 @@ package tree;
  */
 public class Problem_0235_LowestCommonAncestorOfABinarySearchTree {
 
-//    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-//
-//    }
+    public TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
+        if (root==null) return null;
+        if (p.val>root.val && q.val>root.val) {
+            return lowestCommonAncestor1(root.right,p,q);
+        } else if (p.val<root.val && q.val<root.val) {
+            return lowestCommonAncestor1(root.left,p,q);
+        }
+        //p q位于root左右两侧，或者p q其中之一是root
+        return root;
+    }
+
+    public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
+        if (root==null) return null;
+        if ((root.val-p.val) * (root.val-q.val) > 0) { //同时大于root 或者 同时小于root
+            return lowestCommonAncestor2(
+                    root.val>p.val ? root.left : root.right,
+                    p,
+                    q
+            );
+        }
+        return root; //p q位于root两侧
+    }
+
+    public TreeNode lowestCommonAncestor3(TreeNode root, TreeNode p, TreeNode q) {
+        if (root==null) return null;
+        TreeNode cur = root;
+        while (cur!=null) {
+            if (p.val>cur.val && q.val>cur.val) {
+                cur = cur.right;
+            } else if (p.val<cur.val && q.val<cur.val) {
+                cur = cur.left;
+            } else {
+                return cur;
+            }
+        }
+        return null;
+    }
+
+
 }

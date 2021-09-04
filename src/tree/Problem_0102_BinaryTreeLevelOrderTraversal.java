@@ -37,12 +37,8 @@ public class Problem_0102_BinaryTreeLevelOrderTraversal {
             while (sz-- > 0) {
                 TreeNode cur = q.pollLast();
                 levelAns.add(cur.val);
-                if (cur.left!=null) {
-                    q.offerFirst(cur.left);
-                }
-                if (cur.right!=null) {
-                    q.offerFirst(cur.right);
-                }
+                if (cur.left!=null) q.offerFirst(cur.left);
+                if (cur.right!=null) q.offerFirst(cur.right);
             }
             ans.add(levelAns);
         }

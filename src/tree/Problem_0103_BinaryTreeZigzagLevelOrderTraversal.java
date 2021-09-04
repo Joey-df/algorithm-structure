@@ -31,11 +31,10 @@ public class Problem_0103_BinaryTreeZigzagLevelOrderTraversal {
         LinkedList<TreeNode> q=new LinkedList<>();
         q.addFirst(root);
         boolean leftToRight=true;
-        int sz;
         while (!q.isEmpty()) {
             List<Integer> sub = new ArrayList<>();
-            sz = q.size();
-            while (sz-- >0) {
+            int size = q.size();
+            for (int i=0; i<size; i++) {
                 if (leftToRight) {
                     TreeNode node = q.poll();
                     sub.add(node.val);

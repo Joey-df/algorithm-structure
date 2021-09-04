@@ -17,6 +17,7 @@ import java.util.Queue;
 // 数据范围：对于所有数据，满足1<=T<=3, 1<=N, Mj<=100000, 0<=Di<=1000, 0<=sum(Ki)<=N*2。
 public class Code02_ArrangeProject {
 
+	//图的拓扑排序
 	public static int dayCount(ArrayList<Integer>[] nums, int[] days, int[] headCount) {
 		Queue<Integer> head = countHead(headCount);
 		int maxDay = 0;

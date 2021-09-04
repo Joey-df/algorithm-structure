@@ -39,7 +39,7 @@ public class Problem_0230_KthSmallestElementInABST {
     public int kthSmallest(TreeNode root, int k) {
         LinkedList<Integer> q = new LinkedList<>();
         inOrder(root, q);
-        return q.get(k-1);
+        return q.get(k-1); //第k个下标是k-1
     }
 
 

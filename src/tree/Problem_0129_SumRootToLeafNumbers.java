@@ -40,41 +40,34 @@ import java.util.List;
  */
 public class Problem_0129_SumRootToLeafNumbers {
 
-    private static class TreeNode {
-        private int val;
-        private TreeNode left;
-        private TreeNode right;
-
-        public TreeNode(int val) {
-            this.val = val;
-        }
-    }
-
-    private static int sumVal = 0;
-    private static List<Integer> list = new ArrayList<>();
-
     //计算root为根的二叉树的路径和
-    private static void dfs(TreeNode root) {
+    //path 沿途形成的路径
+    private static void dfs(TreeNode root, List<Integer> path, List<Integer> ans) {
         if (root == null) return;
-        //第一次到root就添加
-        list.add(root.val);
+        //第一次到达 add
+        path.add(root.val);
         //遇到叶子节点就搜集答案
         if (root.left == null && root.right == null) {
-            int n = 0;
-            for (int i = 0; i < list.size(); i++) { //4,8,9 ==> 489
-                n = n * 10 + list.get(i);
+            int pathSum = 0;
+            for (int num : path) { //4,8,9 ==> 489
+                pathSum = pathSum * 10 + num;
             }
-            sumVal += n;
+            ans.add(pathSum);
         }
-        dfs(root.left);
-        dfs(root.right);
-        //最后一次到达root就删除
-        list.remove(list.size() - 1);
+        dfs(root.left, path, ans);
+        dfs(root.right, path, ans);
+        //最后一次到达 remove 清理现场
+        path.remove(path.size() - 1);
     }
 
     public static int sumNumbers(TreeNode root) {
-        dfs(root);
-        return sumVal;
+        if (root==null) return 0;
+        List<Integer> path = new ArrayList<>();
+        List<Integer> pathSums = new ArrayList<>();
+        dfs(root, path, pathSums);
+        int ans = 0;
+        for (int sum: pathSums) ans += sum;
+        return ans;
     }
 
     public static void main(String[] args) {

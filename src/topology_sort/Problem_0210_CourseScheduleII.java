@@ -42,13 +42,13 @@ public class Problem_0210_CourseScheduleII {
         }
     }
 
-    public int[] findOrder(int numCourses, int[][] prerequisites) {
+    public static int[] findOrder(int numCourses, int[][] prerequisites) {
         int[] ans = new int[numCourses];
         for (int i = 0; i < numCourses; i++) {
             ans[i] = i;
         }
         if (prerequisites == null || prerequisites.length == 0) {
-            return ans;
+            return ans; //如果没有任何依赖关系，直接顺序填满ans返回
         }
         HashMap<Integer, Node> nodes = new HashMap<>();
         for (int[] arr : prerequisites) {
@@ -68,7 +68,7 @@ public class Problem_0210_CourseScheduleII {
         int index = 0;
         Queue<Node> zeroInQueue = new LinkedList<>();
         for (int i = 0; i < numCourses; i++) {
-            if (!nodes.containsKey(i)) {
+            if (!nodes.containsKey(i)) { // 这句主要是处理没有任何依赖的课程 如 10 [[1,0],[0,2]]这种case
                 ans[index++] = i;
             } else {
                 if (nodes.get(i).in == 0) {
@@ -89,6 +89,18 @@ public class Problem_0210_CourseScheduleII {
             }
         }
         return count == needPrerequisiteNums ? ans : new int[0];
+    }
+
+    public static void main(String[] args) {
+        int[] order = findOrder(10, new int[][]{{1, 0},{0,2}});
+        print(order);
+    }
+
+    public static void print(int [] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
     }
 
 }

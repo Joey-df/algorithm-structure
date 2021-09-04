@@ -36,7 +36,7 @@ public class Problem_0207_CourseSchedule {
     public static class Node {
         public int name;
         public int in;
-        public ArrayList<Node> nexts;
+        public ArrayList<Node> nexts; //指向的邻居们
 
         public Node(int n) {
             name = n;
@@ -49,6 +49,7 @@ public class Problem_0207_CourseSchedule {
         if (prerequisites == null || prerequisites.length == 0) {
             return true;
         }
+        //key 课程的编号  value 对应的Node
         HashMap<Integer, Node> nodes = new HashMap<>();
         for (int[] arr : prerequisites) {
             int to = arr[0];
@@ -65,7 +66,7 @@ public class Problem_0207_CourseSchedule {
             t.in++;
         }
         int needPrerequisiteNums = nodes.size();
-        Queue<Node> zeroInQueue = new LinkedList<>();
+        Queue<Node> zeroInQueue = new LinkedList<>(); //存放入度为0的Node
         for (Node node : nodes.values()) {
             if (node.in == 0) {
                 zeroInQueue.add(node);
@@ -76,7 +77,7 @@ public class Problem_0207_CourseSchedule {
             Node cur = zeroInQueue.poll();
             count++;
             for (Node next : cur.nexts) {
-                if (--next.in == 0) {
+                if (--next.in == 0) { //cur的所有邻居入度减1，当某个节点的入度变为0时，进队列
                     zeroInQueue.add(next);
                 }
             }

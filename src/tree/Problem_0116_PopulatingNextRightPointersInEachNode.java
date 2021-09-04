@@ -23,6 +23,7 @@ import java.util.Queue;
  * You may only use constant extra space.
  * Recursive approach is fine, you may assume implicit stack space does not count as extra space for this problem.
  */
+//满二叉树
 public class Problem_0116_PopulatingNextRightPointersInEachNode {
 
     private static class Node {
@@ -48,18 +49,14 @@ public class Problem_0116_PopulatingNextRightPointersInEachNode {
 
     public static Node connect(Node root) {
         if (root == null) return null;
-        return process(root);
-    }
-
-    //bfs
-    public static Node process(Node root) {
         Queue<Node> q = new LinkedList<>();
         q.add(root);
         while (!q.isEmpty()) {
-            int sz = q.size();
-            while (sz-- > 0) {
+            int size = q.size();
+            for (int i=0; i<size; i++) {
                 Node node = q.poll();
-                node.next = sz > 0 ? q.peek() : null; //sz==0时表示当前层处理完了，当前层最后一个的next应该指向null
+                //i==size-1时表示当前层处理完了，当前层最后一个的next应该指向null
+                node.next = i!=size-1 ? q.peek() : null;
                 if (node.left != null) q.add(node.left);
                 if (node.right != null) q.add(node.right);
             }

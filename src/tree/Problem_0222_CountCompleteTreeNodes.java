@@ -1,5 +1,7 @@
 package tree;
 
+import java.util.LinkedList;
+
 /**
  * 222. 完全二叉树的节点个数
  * 给你一棵 完全二叉树 的根节点 root ，求出该树的节点个数。
@@ -10,7 +12,18 @@ package tree;
  */
 public class Problem_0222_CountCompleteTreeNodes {
 
-//    public int countNodes(TreeNode root) {
-//
-//    }
+    //平凡解：使用层序遍历
+    public int countNodes(TreeNode root) {
+        if (root==null) return 0;
+        LinkedList<TreeNode> q = new LinkedList<>();
+        q.offerLast(root);
+        int ans = 0;
+        while (!q.isEmpty()) {
+            TreeNode node = q.pollFirst();
+            ans++;
+            if (node.left!=null) q.offerLast(node.left);
+            if (node.right!=null) q.offerLast(node.right);
+        }
+        return ans;
+    }
 }

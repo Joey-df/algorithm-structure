@@ -11,7 +11,33 @@ package tree;
  */
 public class Problem_0654_MaximumBinaryTree {
 
-//    public TreeNode constructMaximumBinaryTree(int[] nums) {
-//
-//    }
+    public TreeNode constructMaximumBinaryTree(int[] nums) {
+        if (nums==null||nums.length==0) return null;
+        return build(nums, 0, nums.length-1);
+    }
+
+    public TreeNode build(int[] nums, int l, int r) {
+        if (l > r) return null;
+        //l<=r
+        int mid = maxValIndex(nums,l,r);
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = build(nums, l, mid-1);
+        root.right = build(nums, mid+1, r);
+        return root;
+    }
+
+    //在nums[l,r]范围上找最大值的下标
+    //调用前提 保证l<=r
+    private int maxValIndex(int[] nums ,int l, int r) {
+        int max = nums[l];
+        int index = l;
+        for (int i = l+1; i <= r; i++) {
+            if (nums[i] > max) {
+                max = nums[i];
+                index = i;
+            }
+        }
+        return index;
+    }
+
 }

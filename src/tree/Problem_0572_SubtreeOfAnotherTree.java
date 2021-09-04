@@ -9,7 +9,21 @@ package tree;
  */
 public class Problem_0572_SubtreeOfAnotherTree {
 
-//    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
-//
-//    }
+    //三种情况
+    //1、两者完全一样
+    //2、不一样 && 是左子树的子树
+    //3、不一样 && 是右子树的子树
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        return isSame(root, subRoot) ||
+                (root!=null && isSubtree(root.left, subRoot)) ||
+                (root!=null && isSubtree(root.right, subRoot));
+    }
+
+    public boolean isSame(TreeNode a, TreeNode b) {
+        if (a==null && b==null) return true;
+        if (a==null ^ b==null) return false;
+        return a.val==b.val &&
+                isSame(a.left, b.left) &&
+                isSame(a.right, b.right);
+    }
 }

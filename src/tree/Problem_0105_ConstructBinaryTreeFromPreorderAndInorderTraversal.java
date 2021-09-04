@@ -36,7 +36,7 @@ public class Problem_0105_ConstructBinaryTreeFromPreorderAndInorderTraversal {
     //使用pre[l1,r1] in[l2,r2]建树，返回头节点
     //map：inorder数组中，每个值对应的位置 组成的map
     private static TreeNode build(int[] pre, int l1, int r1, int[] in, int l2, int r2, HashMap<Integer,Integer> map) {
-        if (l1>r1 && l2>r2) return null;
+        if (l1>r1 && l2>r2) return null; //注意是&&的关系
         TreeNode root = new TreeNode(pre[l1]);
         int pos = map.get(pre[l1]);
         int leftLen = pos-l2;

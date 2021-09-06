@@ -15,9 +15,8 @@ package train_camp_04.class02;
  * ^^ ^^^^
  * rabbbit
  * ^^^ ^^^
- * <p>
- * https://leetcode.com/problems/distinct-subsequences/
  */
+//https://leetcode.com/problems/distinct-subsequences/
 public class Code04_DistinctSubsequences {
 
     //dp[i][j]含义：

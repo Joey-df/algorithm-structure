@@ -40,11 +40,12 @@ public class Knapsack {
         for (int index = N-1; index >= 0 ; index--) {
             for (int rest = 1; rest <= C; rest++) {
                 //dp[index][rest] = ?
-                int res = dp[index + 1][rest];
+                int p1 = dp[index + 1][rest];
+                int p2 = 0;
                 if (rest >= w[index]) {//剩余容量能装下index位置的货物时
-                    res = Math.max(res, dp[index + 1][rest - w[index]] + v[index]); // 要index位置的货物
+                    p2 = dp[index + 1][rest - w[index]] + v[index]; // 要index位置的货物
                 }
-                dp[index][rest] = res;
+                dp[index][rest] = Math.max(p1, p2);
             }
         }
         return dp[0][C]; //右上角的值
@@ -52,9 +53,9 @@ public class Knapsack {
 
 
     public static void main(String[] args) {
-        int[] weights = { 3, 2, 4, 7 };
-        int[] values = { 5, 6, 3, 19 };
-        int bag = 11;
+        int[] weights = { 3, 2, 4, 7, 3, 1, 7 };
+        int[] values = { 5, 6, 3, 19, 12, 4, 2 };
+        int bag = 15;
         System.out.println(process(weights, values, 0, bag));
         System.out.println(dp(weights, values ,bag));
     }

@@ -12,6 +12,9 @@ package system_study.class18_23;
  *
  * 范围上的尝试模型
  */
+//leetcode 486
+//https://leetcode-cn.com/problems/predict-the-winner/
+//https://leetcode-cn.com/problems/predict-the-winner/solution/bi-jiao-rong-yi-li-jie-de-fang-fa-by-ma-li-ge-bi-d/
 public class Class18_Code02_CardsInLine {
     // 根据规则，返回获胜者的分数
     public static int win1(int[] arr) {
@@ -103,6 +106,7 @@ public class Class18_Code02_CardsInLine {
         for (int i = 0; i < N; i++) {
             fmap[i][i] = arr[i];
         }
+        //按照对角线调度
         for (int startCol = 1; startCol < N; startCol++) {
             int L = 0;
             int R = startCol;
@@ -121,6 +125,21 @@ public class Class18_Code02_CardsInLine {
         System.out.println(win1(arr));
         System.out.println(win2(arr));
         System.out.println(win3(arr));
+        print();
+    }
 
+    public static void print() {
+        int n = 4;
+        int[][] matrix = new int[n][n];
+        for (int i = 1; i < matrix.length; i++) { //控制列的调度
+            int l = 0;//行
+            int r = i;//列
+            while (r < matrix[0].length) {
+                System.out.print("[" + l + "," + r + "]" + " ");
+                l++;
+                r++;
+            }
+            System.out.println();
+        }
     }
 }

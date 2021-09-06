@@ -23,7 +23,8 @@ public class Class21_Code02_CoinsWayEveryPaperDifferent {
         if (index == arr.length) { // 没钱了！
             return rest == 0 ? 1 : 0;
         } else {
-            return process(arr, index + 1, rest) + process(arr, index + 1, rest - arr[index]);
+            return process(arr, index + 1, rest) +
+                    process(arr, index + 1, rest - arr[index]);
         }
     }
 
@@ -36,7 +37,8 @@ public class Class21_Code02_CoinsWayEveryPaperDifferent {
         dp[N][0] = 1;
         for (int index = N - 1; index >= 0; index--) {
             for (int rest = 0; rest <= aim; rest++) {
-                dp[index][rest] = dp[index + 1][rest] + (rest - arr[index] >= 0 ? dp[index + 1][rest - arr[index]] : 0);
+                dp[index][rest] = dp[index + 1][rest] +
+                        (rest - arr[index] >= 0 ? dp[index + 1][rest - arr[index]] : 0);
             }
         }
         return dp[0][aim];

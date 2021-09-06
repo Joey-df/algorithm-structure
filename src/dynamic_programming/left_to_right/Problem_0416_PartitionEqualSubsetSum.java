@@ -17,4 +17,7 @@ package dynamic_programming.left_to_right;
 //01背包问题
 //https://leetcode.com/problems/partition-equal-subset-sum/discuss/90592/01-knapsack-detailed-explanation
 public class Problem_0416_PartitionEqualSubsetSum {
+//    public boolean canPartition(int[] nums) {
+//
+//    }
 }

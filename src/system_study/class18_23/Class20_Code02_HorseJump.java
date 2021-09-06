@@ -10,6 +10,7 @@ package system_study.class18_23;
  * 返回“马”从(0,0)位置出发，必须走k步
  * 最后落在(x,y)上的方法数有多少种?
  */
+//leetcode688
 public class Class20_Code02_HorseJump {
 
     // 当前来到的位置是（x,y）

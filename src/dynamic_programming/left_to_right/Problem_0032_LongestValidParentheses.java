@@ -1,21 +1,27 @@
 package dynamic_programming.left_to_right;
 
 /**
- * Given a string containing just the characters '(' and ')',
- * find the length of the longest valid (well-formed) parentheses substring.
+ * 32. 最长有效括号
+ * 给你一个只包含 '(' 和 ')' 的字符串，找出最长有效（格式正确且连续）括号子串的长度。
  *
- * Example 1:
+ * 示例 1：
+ * 输入：s = "(()"
+ * 输出：2
+ * 解释：最长有效括号子串是 "()"
+ * 示例 2：
+ * 输入：s = ")()())"
+ * 输出：4
+ * 解释：最长有效括号子串是 "()()"
+ * 示例 3：
+ * 输入：s = ""
+ * 输出：0
  *
- * Input: "(()"
- * Output: 2
- * Explanation: The longest valid parentheses substring is "()"
- * Example 2:
- *
- * Input: ")()())"
- * Output: 4
- * Explanation: The longest valid parentheses substring is "()()"
- * 从左往右尝试模型解法
+ * 提示：
+ * 0 <= s.length <= 3 * 10^4
+ * s[i] 为 '(' 或 ')'
  */
+//最长有效括号
+//大厂14节
 public class Problem_0032_LongestValidParentheses {
 
     //dp[i]的含义：必须以i位置结尾的串，有效串有多长？

@@ -1,15 +1,16 @@
 package dynamic_programming.left_to_right;
 
 /**
- * Given an integer array with all positive numbers and no duplicates,
- * find the number of possible combinations that add up to a positive integer target.
+ * 377. 组合总和 Ⅳ
+ * 给你一个由 不同 整数组成的数组 nums ，和一个目标整数 target 。
+ * 请你从 nums 中找出并返回总和为 target 的元素组合的个数。
+ * 题目数据保证答案符合 32 位整数范围。
  *
- * Example:
- *
- * nums = [1, 2, 3]
- * target = 4
- *
- * The possible combination ways are:
+ * 示例 1：
+ * 输入：nums = [1,2,3], target = 4
+ * 输出：7
+ * 解释：
+ * 所有可能的组合为：
  * (1, 1, 1, 1)
  * (1, 1, 2)
  * (1, 2, 1)
@@ -17,22 +18,19 @@ package dynamic_programming.left_to_right;
  * (2, 1, 1)
  * (2, 2)
  * (3, 1)
+ * 请注意，顺序不同的序列被视作不同的组合。
  *
- * Note that different sequences are counted as different combinations.
+ * 示例 2：
+ * 输入：nums = [9], target = 3
+ * 输出：0
  *
- * Therefore the output is 7.
- *
- *
- * Follow up:
- * What if negative numbers are allowed in the given array?
- * How does it change the problem?
- * What limitation we need to add to the question to allow negative numbers?
- *
- * Credits:
- * Special thanks to @pbrother for adding this problem and creating all test cases.
- *
- * 完全背包问题
+ * 提示：
+ * 1 <= nums.length <= 200
+ * 1 <= nums[i] <= 1000
+ * nums 中的所有元素 互不相同
+ * 1 <= target <= 1000
  */
+//完全背包问题
 public class Problem_0377_CombinationSumIV {
 
     //递归含义: nums[0...nums.length-1] 范围上 自由选择 组成target的方法数

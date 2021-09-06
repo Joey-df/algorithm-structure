@@ -1,17 +1,26 @@
 package system_study.class18_23;
 
+/**
+ * 给定5个参数，N，M，row，col，k
+ * 表示在N*M的区域上，醉汉Bob初始在(row,col)位置
+ * Bob一共要迈出k步，且每步都会等概率向上下左右四个方向走一个单位
+ * 任何时候Bob只要离开N*M的区域，就直接死亡
+ * 返回k步之后，Bob还在N*M的区域的概率
+ */
+//leetcode688类似的题
 public class Class21_Code05_BobDie {
 
 	public static double livePosibility1(int row, int col, int k, int N, int M) {
+		//总共要迈k步，每步可以走四个方向，所以总共就是4^k
 		return (double) process(row, col, k, N, M) / Math.pow(4, k);
 	}
 
 	// 目前在row，col位置，还有rest步要走，走完了如果还在棋盘中就获得1个生存点，返回总的生存点数
 	public static long process(int row, int col, int rest, int N, int M) {
 		if (row < 0 || row == N || col < 0 || col == M) {
-			return 0;
+			return 0; //只要离开N*M的区域，就直接死亡
 		}
-		// 还在棋盘中！
+		// 走完了，还在棋盘中！获得一个生存点
 		if (rest == 0) {
 			return 1;
 		}

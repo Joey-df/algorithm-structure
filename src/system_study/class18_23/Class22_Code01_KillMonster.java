@@ -9,6 +9,7 @@ package system_study.class18_23;
  *
  * 样本对应模型
  */
+//带枚举行为优化
 public class Class22_Code01_KillMonster {
 
     public static double right(int N, int M, int K) {

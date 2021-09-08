@@ -17,7 +17,7 @@ package dynamic_programming.left_to_right;
  * 子数组的最大累乘积
  * 0～N-1：求出必须以i结尾的子数组的最大累乘积 求max
  */
-public class Problem_152_Maximum_Product_Subarray {
+public class Problem_0152_MaximumProductSubarray {
 
     // 前提：输入必须有效 nums.length > 0
     public int maxProduct(int[] nums) {

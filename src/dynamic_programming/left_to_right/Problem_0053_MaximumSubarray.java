@@ -42,7 +42,7 @@ package dynamic_programming.left_to_right;
  * 定义动态规划时，一般定义0~i范围上的所有情况，不严格规定结不结尾。
  */
 //子数组 的最大累加和
-public class Problem_53_Maximum_Subarray {
+public class Problem_0053_MaximumSubarray {
     //思路：必须以i位置结尾的子数组的最大累加和全部求一遍，找最大的
     public int maxSubArray(int[] nums) {
         if (nums == null || nums.length == 0) {

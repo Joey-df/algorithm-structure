@@ -7,35 +7,36 @@ package dynamic_programming.row_column;
  */
 public class Problem_1143_Longest_Common_SubSequence {
 
+    public int longestCommonSubsequence(String s1, String s2) {
+        if (s1 == null || s1.length() == 0 || s2 == null || s2.length() == 0) return 0;
+        char[] str1 = s1.toCharArray();
+        char[] str2 = s2.toCharArray();
+        return process(str1, str2, str1.length - 1, str2.length - 1);
+    }
+
     //暴力尝试
     //一个样本做行一个样本做列的对应模型
     //str[0...i1] 与 str[0...i2]的最长公共子序列有多长？
     public static int process(char[] str1, char[] str2, int i1, int i2) {
-        // i1==0 && i2==0
         if (i1 == 0 && i2 == 0) {
-            return str1[i1] == str2[i2] ? 1 : 0;
+            return str1[0] == str2[0] ? 1 : 0;
+        } else if (i1 == 0) { //第一行；
+            return str1[0] == str2[i2] ? 1 : process(str1, str2, 0, i2 - 1);
+        } else if (i2 == 0) { //第一列；
+            return str1[i1] == str2[0] ? 1 : process(str1, str2, i1 - 1, 0);
+        } else {
+            int ans = Integer.MIN_VALUE;
+            int p1 = process(str1, str2, i1 - 1, i2 - 1);//最长公共子序列 都不以i1、i2结尾
+            ans = Math.max(ans, p1);
+            int p2 = process(str1, str2, i1, i2 - 1); //以i1结尾，但不以i2结尾
+            ans = Math.max(ans, p2);
+            int p3 = process(str1, str2, i1 - 1, i2); //以i2结尾，但不以i1结尾
+            ans = Math.max(ans, p3);
+            if (str1[i1] == str2[i2]) {
+                ans = Math.max(ans, p1 + 1);
+            }
+            return ans;
         }
-        // i1==0 && i2!=0
-        if (i1 == 0) { //第一行；
-//            return Math.max(process(str1, str2, i1, i2 - 1), str1[0]==str2[i2] ? 1 : 0);
-            return (str1[i1] == str2[i2] || process(str1, str2, i1, i2 - 1) == 1) ? 1 : 0;
-        }
-        // i1!=0 && i2==0
-        if (i2 == 0) { //第一列；
-            return (str1[i1] == str2[i2] || process(str1, str2, i1 - 1, i2) == 1) ? 1 : 0;
-        }
-        // i1!=0 && i2!=0
-        int ans = Integer.MIN_VALUE;
-        int p1 = process(str1, str2, i1 - 1, i2 - 1);//最长公共子序列 都不以i1、i2结尾
-        ans = Math.max(ans, p1);
-        int p2 = process(str1, str2, i1, i2 - 1); //以i1结尾，但不以i2结尾
-        ans = Math.max(ans, p2);
-        int p3 = process(str1, str2, i1 - 1, i2); //以i2结尾，但不以i1结尾
-        ans = Math.max(ans, p3);
-        if (str1[i1] == str2[i2]) {
-            ans = Math.max(ans, process(str1, str2, i1 - 1, i2 - 1) + 1);
-        }
-        return ans;
     }
 
     //dp[i][j]表示 str1[0...i]  str2[0...j]的最长公共子序列有多长
@@ -45,10 +46,10 @@ public class Problem_1143_Longest_Common_SubSequence {
         int[][] dp = new int[N][M];
         dp[0][0] = s1[0] == s2[0] ? 1 : 0;
         for (int i = 1; i < N; i++) { //第一列
-            dp[i][0] = (s1[i] == s2[0] || dp[i - 1][0] == 1) ? 1 : 0;
+            dp[i][0] = (s1[i] == s2[0]) ? 1 : dp[i - 1][0];
         }
         for (int j = 1; j < M; j++) { //第一行
-            dp[0][j] = (s1[0] == s2[j] || dp[0][j - 1] == 1) ? 1 : 0;
+            dp[0][j] = (s1[0] == s2[j]) ? 1 : dp[0][j - 1];
         }
         //普通位置
         for (int i = 1; i < N; i++) {

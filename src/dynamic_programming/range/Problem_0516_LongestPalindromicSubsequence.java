@@ -4,17 +4,17 @@ package dynamic_programming.range;
  * 516. 最长回文子序列
  * 给你一个字符串 s ，找出其中最长的回文子序列，并返回该序列的长度。
  * 子序列定义为：不改变剩余字符顺序的情况下，删除某些字符或者不删除任何字符形成的一个序列。
- *
+ * <p>
  * 示例 1：
  * 输入：s = "bbbab"
  * 输出：4
  * 解释：一个可能的最长回文子序列为 "bbbb" 。
- *
+ * <p>
  * 示例 2：
  * 输入：s = "cbbd"
  * 输出：2
  * 解释：一个可能的最长回文子序列为 "bb" 。
- *
+ * <p>
  * 提示：
  * 1 <= s.length <= 1000
  * s 仅由小写英文字母组成
@@ -24,8 +24,8 @@ package dynamic_programming.range;
 //范围上的尝试模型
 public class Problem_0516_LongestPalindromicSubsequence {
 
-    public static int ways1(String s) {
-        if ("".equals(s) || s.length() == 0) return 0;
+    public static int longestPalindromeSubseq(String s) {
+        if (s==null || s.length()==0) return 0;
         char[] str = s.toCharArray();
         return process(str, 0, str.length - 1);
     }
@@ -36,28 +36,24 @@ public class Problem_0516_LongestPalindromicSubsequence {
     public static int process(char[] str, int L, int R) {
         //base case1:字符串[L...R]范围上只有1个字符
         if (L == R) return 1;
-        //base case1:字符串[L...R]范围上只有2个字符
+        //base case2:字符串[L...R]范围上只有2个字符
         if (L + 1 == R) {
             return str[L] == str[R] ? 2 : 1;
         }
         //走到这里说明[L...R]范围上至少有3个字符
-        //最长回文子串，以下统称为lps
-        int ans = Integer.MIN_VALUE;
+        //最长回文子序列，以下统称为lps
         //1、lps以str[L]开头，不以str[R]结尾，如abac
         int p1 = process(str, L, R - 1);
-        ans = Math.max(ans, p1);
         //2、lps不以str[L]开头，但以str[R]结尾，如saba
         int p2 = process(str, L + 1, R);
-        ans = Math.max(ans, p2);
         //3、lps不以str[L]开头，也不以str[R]结尾，如sabav
         int p3 = process(str, L + 1, R - 1);
-        ans = Math.max(ans, p3);
+        int p4 = Integer.MIN_VALUE;
         //4、lps以str[L]开头，同时以str[R]结尾，前提是str[L]==str[R] 如sabas
         if (str[L] == str[R]) {
-            int p4 = process(str, L + 1, R - 1) + 2;
-            ans = Math.max(ans, p4);
+            p4 = process(str, L + 1, R - 1) + 2;
         }
-        return ans;
+        return Math.max(Math.max(p1, p2), Math.max(p3, p4));
     }
 
     public static int ways2(String s) {
@@ -73,16 +69,8 @@ public class Problem_0516_LongestPalindromicSubsequence {
     public static int dpWay(char[] str) {
         int N = str.length;
         int[][] dp = new int[N][N];
-        // 对角线
-//        for (int i = 0; i < N; i++) {
-//            dp[i][i] = 1;
-//        }
-//        // 第二条对角线
-//        for (int i = 1; i < N; i++) {
-//            dp[i - 1][i] = str[i - 1] == str[i] ? 2 : 1;
-//        }
-
-        dp[N - 1][N - 1] = 1;
+        // 以下for循环完成: 对角线 + 倒数第二条对角线
+        dp[N - 1][N - 1] = 1; //右下角
         for (int i = 0; i < N - 1; i++) {
             dp[i][i] = 1;
             dp[i][i + 1] = str[i] == str[i + 1] ? 2 : 1;
@@ -107,7 +95,7 @@ public class Problem_0516_LongestPalindromicSubsequence {
 
     public static void main(String[] args) {
         String s = "obbbababbboo";
-        System.out.println(ways1(s));
+        System.out.println(longestPalindromeSubseq(s));
         System.out.println(ways2(s));
     }
 

@@ -24,8 +24,46 @@ package dynamic_programming.left_to_right;
  */
 public class Problem_0213_HouseRobberII {
 
-//    public int rob(int[] nums) {
-//
-//    }
+    public int rob(int[] nums) {
+        int n = nums.length;
+        if (n==0) {
+            return 0;
+        } else if (n==1) {
+            return nums[0];
+        } else if (n==2) {
+            return Math.max(nums[0], nums[1]);
+        } else {
+            int[] head = new int[n-1];
+            int[] tail = new int[n-1];
+            for (int i = 0; i < n-1; i++) {
+                head[i] = nums[i];
+            }
+            for (int i = 1; i < n; i++) {
+                tail[i-1] = nums[i];
+            }
+            int p1 = process(head);
+            int p2 = process(tail);
+            return Math.max(p1, p2);
+        }
+    }
+
+    public int process(int[] nums) {
+        int n = nums.length;
+        if (n==0) {
+            return 0;
+        } else if (n==1) {
+            return nums[0];
+        } else if (n==2) {
+            return Math.max(nums[0], nums[1]);
+        } else {
+            int[] dp = new int[n];
+            dp[0] = nums[0];
+            dp[1] = Math.max(nums[0], nums[1]);
+            for (int i = 2; i < n; i++) {
+                dp[i] = Math.max(nums[i], Math.max(dp[i-1], nums[i]+dp[i-2]));
+            }
+            return dp[n-1];
+        }
+    }
 
 }

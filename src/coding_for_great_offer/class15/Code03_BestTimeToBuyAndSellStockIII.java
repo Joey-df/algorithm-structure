@@ -8,9 +8,9 @@ public class Code03_BestTimeToBuyAndSellStockIII {
             return 0;
         }
         int ans = 0;
-        int doneOnceMinusBuyMax = -prices[0];
-        int doneOnceMax = 0;
-        int min = prices[0];
+        int doneOnceMinusBuyMax = -prices[0]; //做一次交易，并且最后一次是buy动作
+        int doneOnceMax = 0; //做一次交易，并且最后一次是sell动作
+        int min = prices[0]; //当前位置找到的最小值
         for (int i = 1; i < prices.length; i++) {
             min = Math.min(min, prices[i]);
             ans = Math.max(ans, doneOnceMinusBuyMax + prices[i]);

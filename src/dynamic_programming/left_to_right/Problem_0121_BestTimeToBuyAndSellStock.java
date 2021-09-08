@@ -1,4 +1,4 @@
-package leetcode_top_interview_and_top100liked_questions;
+package dynamic_programming.left_to_right;
 
 /**
  * 121. 买卖股票的最佳时机
@@ -23,8 +23,18 @@ package leetcode_top_interview_and_top100liked_questions;
  */
 public class Problem_0121_BestTimeToBuyAndSellStock {
 
-//    public int maxProfit(int[] prices) {
-//
-//    }
+    public int maxProfit(int[] prices) {
+        if (prices==null || prices.length==0) {
+            return 0;
+        }
+        int min = prices[0]; // 当前位置之前找到的最小值
+        int n = prices.length;
+        int ans = 0;
+        for (int i = 1; i < n; i++) {
+            ans = Math.max(ans, prices[i]-min);
+            min = Math.min(min, prices[i]);
+        }
+        return ans;
+    }
 
 }

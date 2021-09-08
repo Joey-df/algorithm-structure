@@ -1,4 +1,4 @@
-package leetcode_top_interview_and_top100liked_questions;
+package dynamic_programming.left_to_right;
 
 /**
  * 122. 买卖股票的最佳时机 II
@@ -27,8 +27,18 @@ package leetcode_top_interview_and_top100liked_questions;
  */
 public class Problem_0122_BestTimeToBuyAndSellStockII {
 
-//    public int maxProfit(int[] prices) {
-//
-//    }
+    //抓住所有的爬坡
+    //长度为n的数组爬坡的上限为n/2，如1212，长度为4，有两个爬坡
+    public int maxProfit(int[] prices) {
+        if (prices==null || prices.length==0) {
+            return 0;
+        }
+        int ans = 0;
+        int n = prices.length;
+        for (int i = 1; i < n ; i++) {
+            ans += Math.max(prices[i]-prices[i-1], 0);
+        }
+        return ans;
+    }
 
 }

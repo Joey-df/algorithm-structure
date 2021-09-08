@@ -15,6 +15,7 @@ import java.util.HashMap;
 // leetcode 691
 // 本题测试链接：https://leetcode.com/problems/stickers-to-spell-word
 // 本题不能改成严格位置依赖的dp，傻缓存就是最优解
+// 与377题的递归有相似之处
 public class Class19_Code03_StickersToSpellWord {
 
     public static int minStickers1(String[] stickers, String target) {

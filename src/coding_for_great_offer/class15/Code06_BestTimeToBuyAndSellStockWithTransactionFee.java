@@ -9,9 +9,9 @@ public class Code06_BestTimeToBuyAndSellStockWithTransactionFee {
         }
         int N = arr.length;
         // 0..0   0 -[0] - fee
-        int bestbuy = -arr[0] - fee;
+        int bestbuy = -arr[0] - fee; //0位置买的最好收益
         // 0..0  卖  0
-        int bestsell = 0;
+        int bestsell = 0; //0位置卖的最好收益
         for (int i = 1; i < N; i++) {
             // 来到i位置了！
             // 如果在i必须买  收入 - 批发价 - fee

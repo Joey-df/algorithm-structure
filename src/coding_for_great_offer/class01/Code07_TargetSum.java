@@ -111,7 +111,7 @@ public class Code07_TargetSum {
     }
 
 
-    // 求nums有多少个子集，累加和是s
+    // 求nums有多少个子集，累加和是s（nums中自由选择，组成s的方法数）
     // 二维动态规划
     // 不用空间压缩
     public static int sub1(int[] nums, int s) {
@@ -120,7 +120,7 @@ public class Code07_TargetSum {
         int[][] dp = new int[n + 1][s + 1];
         // nums前缀长度为0的所有子集，有多少累加和是0？一个：空集
         dp[0][0] = 1;
-        //第一行
+        //第一行（可省略）
         for (int i = 1; i < s + 1; i++) {
             dp[0][i] = 0; //nums前缀长度为0的所有子集，有多少累加和是i(i>=1)？0个
         }
@@ -205,9 +205,9 @@ public class Code07_TargetSum {
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1};
-//        int[] nums = new int[]{1,2,13,4,5,6,7,8,9,10};
-        int t = 1;
+//        int[] nums = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1};
+        int[] nums = new int[]{1,2,13,4,5,6,7,8,9,10};
+        int t = 12;
         System.out.println(subset1(nums, t));
         System.out.println(sub1(nums, t));
         System.out.println(sub2(nums, t));

@@ -44,8 +44,10 @@ public class Problem_0377_CombinationSumIV {
         //rest>0
         int ans = 0;
         //枚举第一个数的取值
-        for (int i = 0; i < nums.length; i++) {
-            ans += process(nums, target - nums[i]);
+        for (int num : nums) {
+            if (target-num>=0) {
+                ans += process(nums, target - num);
+            }
         }
         return ans;
     }

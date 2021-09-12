@@ -2,11 +2,9 @@ package dynamic_programming.row_column;
 
 /**
  * A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
- * <p>
- * The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
- * <p>
+ * The robot can only move either down or right at any point in time.
+ * The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
  * Now consider if some obstacles are added to the grids. How many unique paths would there be?
- * <p>
  * 带障碍的网格
  */
 
@@ -51,7 +49,7 @@ public class Problem_0063_UniquePathsII {
      * @param grid 输入的网格，固定不变
      * @return
      */
-    public static int dpWay(int grid[][]) {
+    public static int dpWay(int[][] grid) {
         int m = grid.length; //行数
         int n = grid[0].length; //列数
         int[][] dp = new int[m][n];

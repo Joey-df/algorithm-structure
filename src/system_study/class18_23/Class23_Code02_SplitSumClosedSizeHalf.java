@@ -55,7 +55,7 @@ public class Class23_Code02_SplitSumClosedSizeHalf {
         }
         sum /= 2;
         int N = arr.length;
-        int M = (N + 1) / 2;
+        int M = (N + 1) / 2; //N除以2向上取整
         int[][][] dp = new int[N + 1][M + 1][sum + 1];
         for (int i = 0; i <= N; i++) {
             for (int j = 0; j <= M; j++) {

@@ -6,7 +6,7 @@ package binary_search;
 
 public class FindTarget {
 
-    public static int binarySearch(int nums[], int target) {
+    public static int binarySearch(int[] nums, int target) {
         int L = 0;
         int R = nums.length - 1;
         while (L <= R) {

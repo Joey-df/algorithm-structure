@@ -94,7 +94,7 @@ public class Problem_0518_CoinChange2 {
     //优化掉枚举行为之后的
     public static int dpWays2(int[] coins, int amount) {
         if (coins == null || coins.length == 0) {
-            return amount == 0 ? 1 : 0; // 没有硬币，搞定0元有1中方案，否则无方案
+            return amount == 0 ? 1 : 0; // 没有硬币，搞定0元有1种方案，否则无方案
         }
 
         int N = coins.length;

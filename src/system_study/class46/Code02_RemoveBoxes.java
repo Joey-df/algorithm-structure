@@ -58,7 +58,7 @@ public class Code02_RemoveBoxes {
 		if (dp[L][R][K] > 0) {
 			return dp[L][R][K];
 		}
-		// 找到开头，
+		// 找到一片1，最后1的位置，
 		// 1,1,1,1,1,5
 		// 3 4 5 6 7 8
 		//         !

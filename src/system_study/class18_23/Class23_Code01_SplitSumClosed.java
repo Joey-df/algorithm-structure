@@ -47,6 +47,7 @@ public class Class23_Code01_SplitSumClosed {
         sum /= 2;
         int N = arr.length;
         int[][] dp = new int[N + 1][sum + 1];
+        //dp[N][...] = 0;
         for (int i = N - 1; i >= 0; i--) {
             for (int rest = 0; rest <= sum; rest++) {
                 // 可能性1，不使用arr[i]

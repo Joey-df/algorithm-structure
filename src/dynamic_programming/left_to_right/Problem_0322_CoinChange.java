@@ -45,22 +45,22 @@ public class Problem_0322_CoinChange {
     }
 
     //递归含义：
-    //coins[index...]自由选择，搞定rest所需的最少硬币数量是多少？
-    public static int process(int[] coins, int index, int rest) {
+    //coins[i...]自由选择，搞定rest所需的最少硬币数量，返回
+    public static int process(int[] coins, int i, int rest) {
 //        //因为下面的for循环决定了rest不可能取到0以下
 //        if (rest < 0) { //负数无法搞定
 //            return -1;
 //        }
-        if (index == coins.length) {//没钱了，coins[index...]为无效区域了
+        if (i == coins.length) {//没钱了，coins[index...]为无效区域了
             //没有硬币可以选择，搞定0元需要0个硬币，否则没有方案
             return rest == 0 ? 0 : -1;
         }
         //rest > 0 && index < coins.length
         //普遍位置: 枚举coins[index] 所需的数量k
         int ways = Integer.MAX_VALUE;
-        for (int k = 0; k * coins[index] <= rest; k++) {
+        for (int k = 0; k * coins[i] <= rest; k++) {
             //rest - k * coins[index]不可能小于0
-            int p1 = process(coins, index + 1, rest - k * coins[index]);
+            int p1 = process(coins, i + 1, rest - k * coins[i]);
             if (p1 != -1) {
                 ways = Math.min(ways, p1 + k);
             }
@@ -82,7 +82,7 @@ public class Problem_0322_CoinChange {
             dp[N][j] = -1;
         }
 
-        //从左到右 + 从下往上 填
+        // 整体从下往上，每行从左到右 填
         for (int i = N - 1; i >= 0; i--) {
             for (int rest = 0; rest <= amount; rest++) {
                 int ways = Integer.MAX_VALUE;

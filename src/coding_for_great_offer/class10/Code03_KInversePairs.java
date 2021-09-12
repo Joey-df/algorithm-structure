@@ -3,6 +3,7 @@ package coding_for_great_offer.class10;
 // 测试链接 : https://leetcode.com/problems/k-inverse-pairs-array/
 public class Code03_KInversePairs {
 
+    //带枚举行为的dp
     public static int kInversePairs(int n, int k) {
         if (n < 1 || k < 0) {
             return 0;
@@ -22,6 +23,7 @@ public class Code03_KInversePairs {
         return dp[n][k];
     }
 
+    //不带mod的版本
     public static int kInversePairs2(int n, int k) {
         if (n < 1 || k < 0) {
             return 0;

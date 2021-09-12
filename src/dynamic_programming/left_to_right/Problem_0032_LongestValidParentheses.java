@@ -31,19 +31,19 @@ public class Problem_0032_LongestValidParentheses {
         int ans = 0;
         //s.length()>=2
         char[] str = s.toCharArray();
-        int N = str.length;
-        int[] dp = new int[N];
+        int n = str.length;
+        int[] dp = new int[n];
         //dp[0]==0，所以从1开始
-        for (int i = 1; i < N; i++) {
-            if (str[i] == '(') continue; //以(结尾的肯定是无效串，不讨论
-            //str[i]==')'
-            //以i-1位置结尾的有效串的前一个位置
-            //这种写法适用于任何位置
-            int pre = i - dp[i - 1] - 1;
-            if (pre >= 0 && str[pre] == '(') {
-                dp[i] = dp[i - 1] + 2 + (pre > 0 ? dp[pre - 1] : 0);
+        for (int i = 1; i < n; i++) {
+            if (str[i] != '(') { //str[i]==')'，以'('结尾的肯定是无效串，不讨论
+                //以i-1位置结尾的有效串的前一个位置
+                //这种写法适用于任何位置
+                int pre = i - dp[i - 1] - 1;
+                if (pre >= 0 && str[pre] == '(') {
+                    dp[i] = dp[i - 1] + 2 + (pre > 0 ? dp[pre - 1] : 0);
+                }
+                ans = Math.max(ans, dp[i]);
             }
-            ans = Math.max(ans, dp[i]);
         }
         return ans;
     }

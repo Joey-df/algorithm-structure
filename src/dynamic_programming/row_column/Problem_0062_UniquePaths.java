@@ -26,15 +26,15 @@ public class Problem_0062_UniquePaths {
         }
         //走到这里表示不同时为0
         if (i==0) { //表示只往右走
-            return 1;
+            return process(i, j-1);
         }
         if (j==0) { //表示只往下走
-            return 1;
+            return process(i-1, j);
         }
         //走到这里，说明i!=0 && j!=0
         //普遍位置
         return process(i-1, j) + //表示从[i-1,j]往下走一步的方法数
-                process(i,j-1); ////表示从[i,j-1]往右走一步的方法数
+                process(i,j-1);  //表示从[i,j-1]往右走一步的方法数
     }
 
     /**
@@ -48,11 +48,11 @@ public class Problem_0062_UniquePaths {
         dp[0][0] = 1;
         //第一行
         for (int i = 1; i < n; i++) {
-            dp[0][i] = 1;
+            dp[0][i] = dp[0][i-1];
         }
         //第一列
         for (int i = 1; i < m; i++) {
-            dp[i][0] = 1;
+            dp[i][0] = dp[i-1][0];
         }
         //普遍位置：从左往右，再依次从上往下
         for (int i = 1; i < m; i++) { //m行

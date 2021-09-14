@@ -24,70 +24,54 @@ import java.util.List;
 //多叉树的遍历
 public class Problem_0131_PalindromePartitioning {
 
-    public static List<List<String>> ways(String s) {
+    public static List<List<String>> partition(String s) {
         List<List<String>> ans = new ArrayList<>();
-        if (s == null || "".equals(s) || s.length() == 0) {
-            ans.add(new ArrayList<>());
+        if (s==null || s.length()==0) {
             return ans;
         }
-        boolean[][] help = isPalindrome(s);
-        process(s, 0, new LinkedList<>(), ans, help);
+        boolean[][] dp = isP(s);
+        fun(s,0,new ArrayList<>(), ans, dp);
         return ans;
     }
 
-    /**
-     * 潜台词：s.length() > 1
-     *
-     * @param str   原始字符串组成的字符数组
-     * @param index 当前来到的位置
-     * @param path  [0...index-1]已经形成的路径
-     * @param help 判断是否是回文的辅助数组
-     * @return 所有可能的回文切分方案
-     */
-    public static void process(String str, int index, LinkedList<String> path, List<List<String>> ans, boolean[][] help) {
-        if (index == str.length()) {
-            //当前已经来到终止位置，表示之前已经形成的路径就是一种答案。收集答案
+    //s[0...i-1]已经搞定了，沿途所形成的路径，保存在path中
+    //s[i...]，从i位置出发，到字符串结尾这一段，返回所有可能的拆分方案
+    //ans 收集答案
+    public static void fun(String s, int i, ArrayList<String> path, List<List<String>> ans, boolean[][] dp) {
+        int n = s.length();
+        if (i==n) {
+            //s[0...n-1]已经搞定了，此时path是一种方案，收集答案
             ans.add(new ArrayList<>(path));
-        }
-        //枚举以index开头的，每一个结束的位置
-        for (int end = index; end < str.length(); end++) { //从左往右尝试  多叉树的遍历
-            // index..index
-            // index..index+1
-            // index..index+2
-            // index..end
-            if (help[index][end]) {
-                String s = str.substring(index, end + 1);
-                path.addLast(s);
-                process(str, end + 1, path, ans, help);
-                path.pollLast(); // 清理现场
+        } else {
+            for (int end = i; end < n; end++) { //枚举每一个可能的回文串结尾
+                if (dp[i][end]) {
+                    path.add(s.substring(i,end+1));
+                    fun(s, end+1,path,ans,dp);
+                    path.remove(path.size()-1);
+                }
             }
         }
     }
 
-    //给定字符串s 长度大于0
-    //返回在任意范围上是否是回文
-    private static boolean[][] isPalindrome(String s) {
+    private static boolean[][] isP(String s) {
         char[] str = s.toCharArray();
-        int N = str.length;
-        boolean[][] dp = new boolean[N][N];
-        for (int i = 0; i < N; i++) {
-            dp[i][i] = true;//对角线
+        int n = str.length;
+        boolean[][] dp = new boolean[n][n];
+        dp[n-1][n-1] = true;
+        for (int i = 0; i < n-1; i++) {
+            dp[i][i] = true;
+            dp[i][i+1] = str[i]==str[i+1];
         }
-        for (int i = 1; i < N; i++) {
-            dp[i - 1][i] = str[i - 1] == str[i];//倒数第二条对角线
-        }
-        //普遍位置
-        for (int row = N - 3; row >= 0; row--) {
-            for (int col = row + 2; col < N; col++) {
-                dp[row][col] = str[row] == str[col] && dp[row + 1][col - 1];
+        for (int l = n-3; l >=0 ; l--) {
+            for (int r = l+2; r < n; r++) {
+                dp[l][r] = str[l]==str[r] && dp[l+1][r-1];
             }
         }
         return dp;
     }
 
-
     public static void main(String[] args) {
-        String s = "aab";
-        System.out.println(ways(s));
+        String s = "aa";
+        System.out.println(partition(s));
     }
 }

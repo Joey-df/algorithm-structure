@@ -23,74 +23,76 @@ package dynamic_programming.left_to_right;
 // 给定字符串s，至少切几刀，使得到的部分都是回文串
 public class Problem_0132_PalindromePartitioningII {
 
-    //s[index...N-1]
-    //递归含义：s从index开始到结尾，切分得到的最少回文串有几个？
-    //从左往右的尝试模型：尝试每一个开始位置，可以把可能性列全
-    public static int process(String s, int index) {
-        if (index == s.length()) {
-            // s[index...N-1]范围上没有字符，0个回文串
+    public static int minCut(String s) {
+        if (s==null || s.length()<2) {
             return 0;
         }
-        boolean[][] help = isPalindrome(s);
-        int ans = Integer.MAX_VALUE;
-        //index<s.length()
-        for (int end = index; end < s.length(); end++) {
-            //枚举从index位置开始，每一个结束的位置
-            //index...index
-            //index...index+1
-            //index...index+2
-            //index...index+3
-            // ...
-            if (help[index][end]) {
-                ans = Math.min(ans, process(s, end + 1) + 1);
-            }
-        }
-        return ans;
+        boolean[][] dp = isP(s);
+        return fun(s,0,dp)-1;
     }
 
-    //改动态规划
-    public static int dpWay(String s) {
-        int N = s.length();
-        int[] dp = new int[N + 1];
-        //dp[N] = 0;
-        boolean[][] help = isPalindrome(s);
-        for (int i = N - 1; i >= 0; i--) {
-            dp[i] = Integer.MAX_VALUE;
-            //index<s.length()
-            for (int end = i; end < s.length(); end++) {
-                if (help[i][end]) {
-                    dp[i] = Math.min(dp[i], dp[end + 1] + 1);
+    //递归含义
+    //s[i...]从i出发到字符串结尾，分割成若干个回文串，最少会被切成几个
+    public static int fun(String s, int i, boolean[][] dp) {
+        int n = s.length();
+        if (i==n) { //空串
+            return 0;
+        } else {
+            int ans = Integer.MAX_VALUE;
+            for (int end = i; end < n; end++) {
+                if (dp[i][end]) {
+                    int cur = fun(s, end+1, dp);
+                    ans = Math.min(ans, cur+1);
                 }
             }
+            return ans;
         }
-        return dp[0];
     }
 
-    //给定字符串s 长度大于0
-    //返回在任意范围上是否是回文
-    //范围上的尝试模型，作为一个子过程
-    private static boolean[][] isPalindrome(String s) {
+    public static boolean[][] isP(String s) {
         char[] str = s.toCharArray();
-        int N = str.length;
-        boolean[][] dp = new boolean[N][N];
-        for (int i = 0; i < N; i++) {
-            dp[i][i] = true;//对角线
+        int n = str.length;
+        boolean[][] dp = new boolean[n][n];
+        dp[n-1][n-1] = true;
+        for (int l = 0; l < n-1; l++) {
+            dp[l][l] = true;
+            dp[l][l+1] = str[l]==str[l+1];
         }
-        for (int i = 1; i < N; i++) {
-            dp[i - 1][i] = str[i - 1] == str[i];//倒数第二条对角线
-        }
-        //普遍位置
-        for (int row = N - 3; row >= 0; row--) {
-            for (int col = row + 2; col < N; col++) {
-                dp[row][col] = str[row] == str[col] && dp[row + 1][col - 1];
+        for (int l = n-3; l >= 0; l--) {
+            for (int r = l+2; r < n; r++) {
+                dp[l][r] = str[l]==str[r] && dp[l+1][r-1];
             }
         }
         return dp;
     }
 
+    //dp way
+    public static int minCut2(String s) {
+        if (s==null || s.length()<2) {
+            return 0;
+        }
+        boolean[][] isP = isP(s);
+        char[] str = s.toCharArray();
+        int n = str.length;
+        int[] dp = new int[n+1]; //dp[i]: s[i...]从i出发到字符串结尾，分割成若干个回文串，最少会被切成几个
+        dp[n] = 0;
+        for (int i = n-1; i >= 0; i--) {
+            int ans = Integer.MAX_VALUE;
+            for (int end = i; end < n; end++) {
+                if (isP[i][end]) {
+                    int cur = dp[end+1];
+                    ans = Math.min(ans, cur+1);
+                }
+            }
+            dp[i] = ans;
+        }
+        return dp[0]-1;
+    }
+
+
     public static void main(String[] args) {
-        String s = "1234567";
-        System.out.println(process(s, 0) - 1);
-        System.out.println(dpWay(s) - 1);
+        String s = "1234554321222";
+        System.out.println(minCut(s));
+        System.out.println(minCut2(s));
     }
 }

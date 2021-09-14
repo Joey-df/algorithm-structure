@@ -26,7 +26,7 @@ public class Problem_0139_WordBreak {
     public static boolean process(String s, int index, Set<String> set) {
         if (index == s.length()) {//表示[0...s.length()-1]已经被完美分解掉了
             return true;
-        }
+          }
         //index<s.length() 即 index后面还有字符
         for (int end = index; end < s.length(); end++) {
             //枚举每一个结束位置

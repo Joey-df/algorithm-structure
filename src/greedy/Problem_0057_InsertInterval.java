@@ -1,5 +1,8 @@
 package greedy;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 57. 插入区间
  * 给你一个 无重叠的 ，按照区间起始端点排序的区间列表。
@@ -32,8 +35,41 @@ package greedy;
  */
 public class Problem_0057_InsertInterval {
 
-//    public int[][] insert(int[][] intervals, int[] newInterval) {
-//
-//    }
+    //arrs已经按照区间起始端点排好序
+    //请在arrs中插入新区间newArr，返回插入后的结果（该合并的合并）
+    public int[][] insert(int[][] arrs, int[] newArr) {
+        if (arrs==null || arrs.length==0) {
+            return new int[][]{newArr};
+        }
+        //intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8] 为例
+        //            [[1,2],[3,10],[12,16]]
+        //整体分为三段：
+        //第一段：cur.end < newArr.start，直接插入，i++
+        //第二段：插入新区间，合并区间，newArr.start<=cur.end && newArr.end>=cur.start
+        //第三段：直接插入剩余的区间，newArr.end < cur.start
+        int n = arrs.length;
+        List<int[]> res = new ArrayList<>();
+        int i=0;
+        int newStart = newArr[0];
+        int newEnd = newArr[1];
+        while (i<n && arrs[i][1]<newStart) {
+            res.add(arrs[i++]);
+        }
+        //newStart<=curEnd
+        while (i<n && arrs[i][0]<=newEnd) { //合并
+            newArr[0] = Math.min(newArr[0], arrs[i][0]);
+            newArr[1] = Math.max(newArr[1], arrs[i][1]);
+            i++;
+        }
+        res.add(newArr);
+        while (i<n) {
+            res.add(arrs[i++]);
+        }
+        int[][] ans = new int[res.size()][2];
+        for (int j = 0; j < ans.length; j++) {
+            ans[j] = res.get(j);
+        }
+        return ans;
+    }
 
 }

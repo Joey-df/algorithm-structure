@@ -29,8 +29,22 @@ package greedy;
  */
 public class Problem_0053_MaximumSubarray {
 
-//    public int maxSubArray(int[] nums) {
-//
-//    }
+    public static int maxSubArray(int[] nums) {
+        if (nums==null || nums.length==0) return 0;
+        int n = nums.length;
+        int ans=nums[0];
+        int pre=nums[0];//i-1位置的答案
+        for (int i = 1; i < n; i++) {
+            int cur = Math.max(nums[i], nums[i]+pre); //i位置的答案
+            ans = Math.max(ans, cur);
+            pre = cur;
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {-2,1,-3,4,-1,2,1,-5,4};
+        System.out.println(maxSubArray(arr));
+    }
 
 }

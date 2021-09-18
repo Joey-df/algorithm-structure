@@ -26,8 +26,32 @@ package greedy;
  */
 public class Problem_0334_IncreasingTripletSubsequence {
 
-//    public boolean increasingTriplet(int[] nums) {
-//
-//    }
+    public boolean increasingTriplet(int[] nums) {
+        if (nums==null || nums.length<3) return false;
+        int n = nums.length;
+        int[] dp = new int[n];
+        int[] ends = new int[n];
+        dp[0] = 1; //i位置递增子序列的长度
+        ends[0] = nums[0]; //ends[i]:所有找到的长度为i+1的递增子序列中，最小结尾是啥
+        int right = 0; //[0, right]为有效区，必有序
+        for (int i = 1; i < n; i++) {
+            int l = 0;
+            int r = right;
+            //在[0,right]上找>=nums[i]最左的位置
+            while (l <= r) {
+                int m = l+((r-l)>>1);
+                if (ends[m]>=nums[i]) {
+                    r=m-1;
+                } else {
+                    l=m+1;
+                }
+            }
+            right = Math.max(right, l);
+            ends[l] = nums[i];
+            dp[i] = l+1;
+            if (dp[i]==3) return true;
+        }
+        return false;
+    }
 
 }

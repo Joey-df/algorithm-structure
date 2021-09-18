@@ -32,8 +32,27 @@ package greedy;
  */
 public class Problem_0075_SortColors {
 
-//    public void sortColors(int[] nums) {
-//
-//    }
+    public void sortColors(int[] nums) {
+        if (nums==null || nums.length==0) return;
+        int n = nums.length;
+        partition(nums, 0, n-1, 1);
+    }
+
+    public void partition(int[] arr, int l, int r, int base) {
+        int less=l-1;
+        int more=r+1;
+        int i=l;
+        while (i<more) {
+            if (arr[i]==base) i++;
+            else if (arr[i]<base) swap(arr, i++, ++less);
+            else swap(arr, i, --more);
+        }
+    }
+
+    public void swap(int[] arr, int i, int j) {
+        int t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
+    }
 
 }

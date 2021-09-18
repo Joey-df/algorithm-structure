@@ -18,8 +18,23 @@ package greedy;
  */
 public class Problem_0169_MajorityElement {
 
-//    public int majorityElement(int[] nums) {
-//
-//    }
+    //超级水王问题
+    //前提：数组非空，并且一定存在水王数
+    public int majorityElement(int[] nums) {
+        int cand=0;
+        int HP=0; //HP=0代表没立靶子
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            if (HP==0) {
+                cand = nums[i];
+                HP=1;
+            } else if (cand==nums[i]) {
+                HP++;
+            } else {
+                HP--;
+            }
+        }
+        return cand;
+    }
 
 }

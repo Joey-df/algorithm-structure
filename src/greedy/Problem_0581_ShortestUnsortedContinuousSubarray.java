@@ -24,8 +24,32 @@ package greedy;
  */
 public class Problem_0581_ShortestUnsortedContinuousSubarray {
 
-//    public int findUnsortedSubarray(int[] nums) {
-//
-//    }
+    //一趟找到右边界
+    //一趟找到左边界
+    public int findUnsortedSubarray(int[] nums) {
+        if (nums==null || nums.length==0) return 0;
+        int n = nums.length;
+        int rightBound = -1;
+        int leftBound = n-1;
+        int leftMax = nums[0];
+        //[2,6,4,8,10,9,15]
+        for (int i = 1; i < n; i++) {
+            if (nums[i] < leftMax) { //从左往右，出现下降趋势
+                rightBound = i;
+            } else {
+                leftMax = nums[i];
+            }
+        }
+        int rightMin = nums[n-1];
+        for (int i = n-2; i >= 0; i--) {
+            if (nums[i] > rightMin) { //从右往左，出现上升趋势
+                leftBound = i;
+            } else {
+                rightMin = nums[i];
+            }
+        }
+
+        return leftBound==n-1&&rightBound==-1? 0 : rightBound-leftBound+1;
+    }
 
 }

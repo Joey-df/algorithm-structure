@@ -1,5 +1,7 @@
 package greedy;
 
+import java.util.Arrays;
+
 /**
  * 179. 最大数
  * 给定一组非负整数 nums，重新排列每个数的顺序（每个数不可拆分）使之组成一个最大的整数。
@@ -20,8 +22,20 @@ package greedy;
  */
 public class Problem_0179_LargestNumber {
 
-//    public String largestNumber(int[] nums) {
-//
-//    }
+    public String largestNumber(int[] nums) {
+        if (nums==null || nums.length==0) return "";
+        int n = nums.length;
+        String[] arr = new String[n];
+        for (int i=0; i<n; i++) {
+            arr[i] = String.valueOf(nums[i]);
+        }
+        Arrays.sort(arr, (a,b)->(b+a).compareTo(a+b)); //结合后字典序降序排列
+        if (arr[0].startsWith("0")) return "0";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            sb.append(arr[i]);
+        }
+        return sb.toString();
+    }
 
 }

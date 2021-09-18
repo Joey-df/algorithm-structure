@@ -48,15 +48,21 @@ public class Code05_CandyProblem {
         if (arr.length == 1) return 1;
         int N = arr.length;
         int[] left = new int[N];
+        //三个原则：
+        //比左边大就加1
+        //和左边一样就继承
+        //比左边小就归1
         left[0] = 1;
         for (int i = 1; i < N; i++) {
-            left[i] = arr[i] >= arr[i - 1] ? left[i - 1] + 1 : 1;
+            left[i] = arr[i] > arr[i - 1] ? left[i - 1] + 1
+                    : (arr[i] == arr[i - 1] ? left[i - 1] : 1);
         }
 
         int[] right = new int[N];
         right[N - 1] = 1;
         for (int j = N - 2; j >= 0; j--) {
-            right[j] = arr[j] >= arr[j - 1] ? right[j + 1] + 1 : 1;
+            right[j] = arr[j] > arr[j + 1] ? right[j + 1] + 1
+                    : (arr[j] == arr[j + 1] ? right[j + 1] : 1);
         }
 
         int ans = 0;
@@ -64,6 +70,11 @@ public class Code05_CandyProblem {
             ans += Math.max(left[i], right[i]);
         }
         return ans;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 2};
+        System.out.println(followUp(arr));
     }
 
 }

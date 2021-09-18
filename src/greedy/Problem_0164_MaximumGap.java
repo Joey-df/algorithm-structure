@@ -1,4 +1,4 @@
-package coding_for_great_offer.class07;
+package greedy;
 
 /**
  * 给定一个无序数组arr，返回如果排序之后，相邻数之间的最大差值
@@ -6,11 +6,9 @@ package coding_for_great_offer.class07;
  * 要求：不能真的进行排序，并且要求在时间复杂度O(N)内解决
  */
 // https://leetcode-cn.com/problems/maximum-gap/
-import java.util.Arrays;
+public class Problem_0164_MaximumGap {
 
-public class Code03_MaxGap {
-
-    public static int maxGap(int[] nums) {
+    public static int maximumGap(int[] nums) {
         if (nums == null || nums.length < 2) {
             return 0;
         }
@@ -50,57 +48,6 @@ public class Code03_MaxGap {
     // 返回num该进第几号桶
     public static int bucket(long num, long len, long min, long max) {
         return (int) ((num - min) * len / (max - min));
-    }
-
-    // for test
-    public static int comparator(int[] nums) {
-        if (nums == null || nums.length < 2) {
-            return 0;
-        }
-        Arrays.sort(nums);
-        int gap = Integer.MIN_VALUE;
-        for (int i = 1; i < nums.length; i++) {
-            gap = Math.max(nums[i] - nums[i - 1], gap);
-        }
-        return gap;
-    }
-
-    // for test
-    public static int[] generateRandomArray(int maxSize, int maxValue) {
-        int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
-        }
-        return arr;
-    }
-
-    // for test
-    public static int[] copyArray(int[] arr) {
-        if (arr == null) {
-            return null;
-        }
-        int[] res = new int[arr.length];
-        for (int i = 0; i < arr.length; i++) {
-            res[i] = arr[i];
-        }
-        return res;
-    }
-
-    // for test
-    public static void main(String[] args) {
-        int testTime = 500000;
-        int maxSize = 100;
-        int maxValue = 100;
-        boolean succeed = true;
-        for (int i = 0; i < testTime; i++) {
-            int[] arr1 = generateRandomArray(maxSize, maxValue);
-            int[] arr2 = copyArray(arr1);
-            if (maxGap(arr1) != comparator(arr2)) {
-                succeed = false;
-                break;
-            }
-        }
-        System.out.println(succeed ? "Nice!" : "Fucking fucked!");
     }
 
 }

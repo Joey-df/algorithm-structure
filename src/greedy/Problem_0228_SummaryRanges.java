@@ -1,5 +1,8 @@
 package greedy;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 228. 汇总区间
  * 给定一个无重复元素的有序整数数组 nums 。
@@ -44,10 +47,41 @@ package greedy;
  * nums 中的所有值都 互不相同
  * nums 按升序排列
  */
+//类似于56题的合并区间问题
 public class Problem_0228_SummaryRanges {
 
-//    public List<String> summaryRanges(int[] nums) {
-//
-//    }
+    //nums: 无重复元素的有序整数数组
+    public static List<String> summaryRanges(int[] nums) {
+        List<String> ans = new ArrayList<>();
+        if (nums==null || nums.length==0) return ans;
+        List<int[]> res = new ArrayList<>();
+        int n = nums.length;
+        int s=nums[0];
+        int e=nums[0];
+        //[0,2,3,4,6,8,9]
+        for (int i = 1; i < n; i++) {
+            if (nums[i]==e+1) {
+                e=nums[i];
+            } else {
+                res.add(new int[]{s,e});
+                s = nums[i];
+                e = nums[i];
+            }
+        }
+        res.add(new int[]{s,e});
 
+        for (int[] cur: res) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(cur[0]);
+            if (cur[0]!=cur[1])
+                sb.append("->").append(cur[1]);
+            ans.add(sb.toString());
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        List<String> list = summaryRanges(new int[]{0, 2, 3, 4, 6, 8, 9});
+        System.out.println(list);
+    }
 }

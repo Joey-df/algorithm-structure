@@ -1,5 +1,6 @@
 package system_study.class46;
 
+// 消消乐问题1
 // 本题测试链接 : https://leetcode.com/problems/remove-boxes/
 public class Code02_RemoveBoxes {
 

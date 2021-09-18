@@ -1,5 +1,7 @@
 package greedy;
 
+import java.util.Arrays;
+
 /**
  * 435. 无重叠区间
  * 给定一个区间的集合，找到需要移除区间的最小数量，使剩余区间互不重叠。
@@ -25,8 +27,22 @@ package greedy;
  */
 public class Problem_0435_NonOverlappingIntervals {
 
-//    public int eraseOverlapIntervals(int[][] intervals) {
-//
-//    }
+    //1、找出互不重叠区间数量m
+    //2、返回n-m
+    public int eraseOverlapIntervals(int[][] arrs) {
+        if (arrs==null || arrs.length<2) return 0;
+        Arrays.sort(arrs, (a,b) -> a[1]-b[1]);
+        int n = arrs.length;
+        int count=1;
+        int preEnd=arrs[0][1];
+        for (int i = 1; i < n; i++) {
+            int[] cur = arrs[i];
+            if (cur[0] >= preEnd) {
+                count++;
+                preEnd=cur[1];
+            }
+        }
+        return n-count;
+    }
 
 }

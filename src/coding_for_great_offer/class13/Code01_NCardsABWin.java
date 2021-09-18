@@ -154,7 +154,7 @@ public class Code01_NCardsABWin {
             N = (int) (Math.random() * maxN);
             a = (int) (Math.random() * maxM);
             b = (int) (Math.random() * maxM);
-            double ans2 = new BigDecimal(f2(N, a, b)).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
+            double ans2 = new BigDecimal(f2(N, a, b)).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue(); //保留小数点后四位、四舍五入的写法
             double ans3 = new BigDecimal(f3(N, a, b)).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
             double ans4 = new BigDecimal(f4(N, a, b)).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
             if (ans2 != ans3 || ans2 != ans4) {

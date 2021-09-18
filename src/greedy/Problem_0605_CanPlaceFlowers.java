@@ -21,8 +21,29 @@ package greedy;
  */
 public class Problem_0605_CanPlaceFlowers {
 
-//    public boolean canPlaceFlowers(int[] flowerbed, int n) {
-//
-//    }
+    //Greedily place a flower at every vacant spot encountered from left to right!
+    public static boolean canPlaceFlowers(int[] flowerbed, int n) {
+        if (flowerbed==null || flowerbed.length==0 || n<0) {
+            return false;
+        }
+        //[1,0,1,0,1,0,1]
+        //0
+        int count=0;
+        int len = flowerbed.length;
+        for (int i = 0; i < len; i++) {
+            if (flowerbed[i]==0) {
+                int pre = i==0 ? 0 : flowerbed[i-1];
+                int next = i==len-1 ? 0 : flowerbed[i+1];
+                if (pre==0 && next==0) {
+                    count++;
+                    flowerbed[i]=1;
+                }
+            }
+        }
+        return count>=n;
+    }
 
+    public static void main(String[] args) {
+        System.out.println(canPlaceFlowers(new int[]{0,0,1,0,0}, 1));
+    }
 }

@@ -27,10 +27,10 @@ public class Code01_MonotonousStack {
     //数组中无重复值
     public static int[][] getNearLessNoRepeat(int[] arr) {
         int[][] res = new int[arr.length][2];
-        // 只存位置！
+        // 只存位置！位置中存的值，从栈底到栈顶，由小到大
         Stack<Integer> stack = new Stack<>();
         for (int i = 0; i < arr.length; i++) { // 当遍历到i位置的数，arr[i]
-            while (!stack.isEmpty() && arr[stack.peek()] > arr[i]) {
+            while (!stack.isEmpty() && arr[stack.peek()] > arr[i]) { //当前数落不上去的时候
                 int j = stack.pop();
                 int leftLessIndex = stack.isEmpty() ? -1 : stack.peek();
                 res[j][0] = leftLessIndex;
@@ -60,8 +60,9 @@ public class Code01_MonotonousStack {
                     res[popi][1] = i;
                 }
             }
+            //push
             if (!stack.isEmpty() && arr[stack.peek().get(0)] == arr[i]) {
-                stack.peek().add(Integer.valueOf(i));
+                stack.peek().add(i);
             } else {
                 ArrayList<Integer> list = new ArrayList<>();
                 list.add(i);

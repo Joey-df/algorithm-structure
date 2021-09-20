@@ -1,5 +1,8 @@
 package monotonous_stack;
 
+import java.util.HashMap;
+import java.util.Stack;
+
 /**
  * 496. 下一个更大元素 I
  * 给你两个 没有重复元素 的数组 nums1 和 nums2 ，其中nums1 是 nums2 的子集。
@@ -31,8 +34,37 @@ package monotonous_stack;
  */
 public class Problem_0496_NextGreaterElementI {
 
-//    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
-//
-//    }
+    //使用单调栈，求出nums2中每个nums[i]右边比自己大的元素
+    //因为nums1是nums2的子集，所以遍历一边nums2，即得到nums1的答案
+    public static int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        int n = nums2.length;
+        int[] nextGreaterIndex = new int[n]; //存放nums[i]右边比自己大的元素的index
+        Stack<Integer> stack = new Stack<>(); //存的是下标
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            map.put(nums2[i], i);
+            while (!stack.isEmpty() && nums2[stack.peek()] < nums2[i]) {
+                nextGreaterIndex[stack.pop()] = i;
+            }
+            stack.push(i);
+        }
+        while (!stack.isEmpty()) {
+            nextGreaterIndex[stack.pop()] = -1;
+        }
+        int m = nums1.length;
+        int[] ans = new int[m];
+        for (int i = 0; i < m; i++) {
+            int index = map.get(nums1[i]);
+            ans[i] = nextGreaterIndex[index]==-1 ? -1 : nums2[nextGreaterIndex[index]];
+            //System.out.print(ans[i] + " ");
+        }
+        return ans;
+    }
 
+    public static void main(String[] args) {
+        //[1,3,5,2,4]
+        //[6,5,4,3,2,1,7]
+        int[] nums1 = {1,3,5,2,4}, nums2 = {6,5,4,3,2,1,7};
+        nextGreaterElement(nums1,nums2);
+    }
 }

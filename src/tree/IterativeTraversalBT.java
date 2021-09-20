@@ -1,6 +1,7 @@
 package tree;
 
 import java.util.LinkedList;
+import java.util.Stack;
 
 /**
  * 迭代遍历二叉树
@@ -60,15 +61,14 @@ public class IterativeTraversalBT {
     //左 根 右
     public static void inOrder(TreeNode root) {
         if (root == null) return;
-        //root不为空
-        LinkedList<TreeNode> stack = new LinkedList<>();
+        Stack<TreeNode> stack = new Stack<>();
         TreeNode cur = root;
-        while (!stack.isEmpty() || cur != null) {
-            if (cur != null) {
-                stack.offerLast(cur);
-                cur = cur.left;//往左窜
+        while (cur!=null || !stack.isEmpty()) {
+            if (cur!=null) {
+                stack.push(cur);
+                cur = cur.left;
             } else {
-                TreeNode node = stack.pollLast();
+                TreeNode node = stack.pop();
                 System.out.print(node.val + " ");
                 cur = node.right;
             }

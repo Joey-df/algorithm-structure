@@ -1,5 +1,7 @@
 package monotonous_stack;
 
+import java.util.Stack;
+
 /**
  * 402. 移掉 K 位数字
  * 给你一个以字符串表示的非负整数 num 和一个整数 k ，移除这个数中的 k 位数字，使得剩下的数字最小。
@@ -27,8 +29,36 @@ package monotonous_stack;
  */
 public class Problem_0402_RemoveKDigits {
 
-//    public String removeKdigits(String num, int k) {
-//
-//    }
+    public static String removeKdigits(String num, int k) {
+        //从底向上单调递增的栈
+        Stack<Integer> stack = new Stack<>();
+        char[] str = num.toCharArray();
+        int count = 0;
+        int n = str.length;
+        for (int i = 0; i < n; i++) {
+            int cur = str[i]-'0';
+            while (!stack.isEmpty() && stack.peek() > cur && ++count <= k) { //"1432219"
+                stack.pop();
+            }
+            stack.push(cur);
+        }
+        while(count < k){ //"1112  1"这种case
+            stack.pop();
+            count++;
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int c: stack) {
+            sb.append(c);
+        }
+        while (sb.length()>1 && sb.charAt(0)=='0') {
+            sb.deleteCharAt(0);
+        }
+        return sb.toString().length()>0 ? sb.toString() : "0";
+    }
 
+    public static void main(String[] args) {
+        String num = "100001";
+        int k = 1;
+        System.out.println(removeKdigits(num, k));
+    }
 }

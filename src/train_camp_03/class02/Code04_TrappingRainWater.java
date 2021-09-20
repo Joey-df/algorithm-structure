@@ -17,12 +17,12 @@ public class Code04_TrappingRainWater {
         //{3,1,2,5,2,4}
         int[] lTor = new int[N]; //i位置之前的最大值 组成的数组
         lTor[0] = nums[0];
-        int[] rTol = new int[N]; //i位置之后的最大值 组成的数组
-        rTol[N - 1] = nums[N - 1];
         for (int i = 1; i < N; i++) {
             lTor[i] = Math.max(lTor[i - 1], nums[i]);
         }
 
+        int[] rTol = new int[N]; //i位置之后的最大值 组成的数组
+        rTol[N - 1] = nums[N - 1];
         for (int i = N - 2; i >= 0; i--) {
             rTol[i] = Math.max(rTol[i + 1], nums[i]);
         }

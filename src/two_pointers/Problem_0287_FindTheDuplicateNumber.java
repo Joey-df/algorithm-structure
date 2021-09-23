@@ -27,7 +27,21 @@ package two_pointers;
 //算法原型：单链表的第一个入环节点
 public class Problem_0287_FindTheDuplicateNumber {
 
-//    public static int findDuplicate(int[] nums) {
-//
-//    }
+    public static int findDuplicate(int[] nums) {
+        if (nums==null || nums.length<2) return -1;
+        //想象 链表的head 为0
+        int s = nums[0];
+        int f = nums[nums[0]];
+        while (s!=f) {
+            s = nums[nums[s]];
+            f = nums[nums[f]];
+        }
+        f = 0;
+        while (s!=f) {
+            s = nums[s];
+            f = nums[f];
+        }
+        return s;
+    }
+
 }

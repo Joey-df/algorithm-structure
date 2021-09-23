@@ -17,7 +17,7 @@ package slide_window;
  * 需要反复练习
  * 24.leetcode高频题目全讲（二十四）讲解
  */
-public class Problem_340_Longest_Substring_with_At_Most_K_Distinct_Characters {
+public class Problem_0340_LongestSubstringWithAtMostKDistinctCharacters {
 
     public static int process(String s, int k) {
         if (s == null || "".equals(s) || s.length() == 0 || k <= 0) {
@@ -28,19 +28,18 @@ public class Problem_340_Longest_Substring_with_At_Most_K_Distinct_Characters {
         char[] str = s.toCharArray();
         int N = str.length;
         int[] map = new int[128];//记账表
-        for (int i = 0; i < N; i++) { //尝试每一个开头
-            while (R < N &&
-                    (diff < k || (diff == k && map[str[R]] > 0))) {//窗口往右扩，扩不动了 停
+        for (int l = 0; l < N; l++) { //尝试每一个开头
+            while (R < N && (diff < k || (diff == k && map[str[R]] > 0))) {//窗口往右扩，扩不动了 停
                 diff += map[str[R]] == 0 ? 1 : 0;
                 map[str[R++]]++;
             }
             //R来到下一个违规的位置
-            ans = Math.max(ans, R - i);
-            //i即将++,需要处理i位置的状态
-            if (map[str[i]] == 1) {
+            ans = Math.max(ans, R - l);
+            //l即将++，l位置的字符出窗口
+            if (map[str[l]] == 1) {
                 diff--;
             }
-            map[str[i]]--;
+            map[str[l]]--;
         }
         return ans;
     }

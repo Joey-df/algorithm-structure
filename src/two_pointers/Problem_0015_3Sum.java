@@ -20,6 +20,56 @@ import java.util.List;
  */
 public class Problem_0015_3Sum {
 
+    public static List<List<Integer>> threeSum(int[] arr) {
+        List<List<Integer>> ans = new ArrayList<>();
+        if (arr == null || arr.length == 0) return ans;
+        return threeSum(arr, 0, 0);
+    }
 
+    //在arr[start...N-1]区间求和为target的不重复的二元组
+    public static List<List<Integer>> twoSum(int[] arr, int start, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        if (arr == null || arr.length == 0) return ans;
+        Arrays.sort(arr);
+        int n = arr.length;
+        int l = start, r = n - 1;
+        while (l < r) {
+            if (arr[l] + arr[r] < target) l++;
+            else if (arr[l] + arr[r] > target) r--;
+            else { //==
+                if (l == start || arr[l] != arr[l - 1]) {
+                    List<Integer> sub = new ArrayList<>();
+                    sub.add(arr[l]);
+                    sub.add(arr[r]);
+                    ans.add(sub);
+                }
+                l++;
+                r--;
+            }
+        }
+        return ans;
+    }
+
+    public static List<List<Integer>> threeSum(int[] arr, int start, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        if (arr == null || arr.length == 0) return ans;
+        Arrays.sort(arr);
+        int n = arr.length;
+        for (int i = start; i < n; i++) {
+            if (i == start || arr[i] != arr[i - 1]) {
+                List<List<Integer>> twoSum = twoSum(arr, i + 1, target - arr[i]);
+                for (List<Integer> list : twoSum) {
+                    list.add(0, arr[i]);
+                    ans.add(new ArrayList<>(list));
+                }
+            }
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {-1, 0, 1, 2, -1, -4};
+        System.out.println(threeSum(nums));
+    }
 
 }

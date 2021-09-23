@@ -25,29 +25,37 @@ package array;
  */
 public class Problem_0031_NextPermutation {
 
+    // 654  4 76321
+    // 654  6 12347
     //流程
-    //从右往左(N-2开始)，找第一个升序的元素下标i
-    //从右往左(N-1开始)，找第一个比nums[i]大的元素下标j
+    //从右往左(N-2开始)，找第一个降序的元素下标firstLess
+    //从右往左(N-1开始)，找第一个比nums[firstLess]大的元素下标j
     //交换i,j对应元素
-    //将nums[i+1...]整体反转
+    //将nums[firstLess+1...]整体反转
     public static void nextPermutation(int[] nums) {
-        if (nums==null || nums.length<2) {
-            return;
-        }
-        int i=nums.length-2;
-        for (; i>=0; i--) {
-            if (nums[i] < nums[i+1]) break;
-        }
-        System.out.println("i: " + i);
-        if (i > -1) { //防止nums是完全降序的情况[5,4,3,2,1]
-            int j=nums.length-1;
-            for (; j>i ; j--) {
-                if (nums[j] > nums[i]) break;
+        int N = nums.length;
+        int firstLess = -1; //从右往左，第一个下降的位置
+        for (int i = N - 2; i >= 0; i--) {
+            if (nums[i] < nums[i + 1]) {
+                firstLess = i;
+                break;
             }
-            System.out.println("j: " +j);
-            swap(nums, i, j);
         }
-        reverse(nums, i+1, nums.length-1);
+        if (firstLess < 0) { //最大的排列，下一个排列是最小的排列
+            reverse(nums, 0, N - 1);
+        } else {
+            int rightClosestMore = -1;
+            // 找最靠右的、同时比nums[firstLess]大的数，位置在哪
+            // 这里其实也可以用二分优化，但是这种优化无关紧要了
+            for (int i = N - 1; i > firstLess; i--) {
+                if (nums[i] > nums[firstLess]) {
+                    rightClosestMore = i;
+                    break;
+                }
+            }
+            swap(nums, firstLess, rightClosestMore);
+            reverse(nums, firstLess + 1, N - 1);
+        }
     }
 
     private static void swap(int[] arr, int i, int j) {

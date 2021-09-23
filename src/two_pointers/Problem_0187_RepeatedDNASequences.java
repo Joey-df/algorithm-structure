@@ -1,31 +1,58 @@
 package two_pointers;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
- * 187. Repeated DNA Sequences
- * The DNA sequence is composed of a series of nucleotides abbreviated as 'A', 'C', 'G', and 'T'.
+ * 187. 重复的DNA序列
+ * 所有 DNA 都由一系列缩写为 'A'，'C'，'G' 和 'T' 的核苷酸组成，例如："ACGAATTCCG"。在研究 DNA 时，识别 DNA 中的重复序列有时会对研究非常有帮助。
+ * 编写一个函数来找出所有目标子串，目标子串的长度为 10，且在 DNA 字符串 s 中出现次数超过一次。
  *
- * For example, "ACGAATTCCG" is a DNA sequence.
- * When studying DNA, it is useful to identify repeated sequences within the DNA.
+ * 示例 1：
+ * 输入：s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
+ * 输出：["AAAAACCCCC","CCCCCAAAAA"]
  *
- * Given a string s that represents a DNA sequence, return all the 10-letter-long sequences (substrings) that occur more than once in a DNA molecule.
- * You may return the answer in any order.
+ * 示例 2：
+ * 输入：s = "AAAAAAAAAAAAA"
+ * 输出：["AAAAAAAAAA"]
  *
- * Example 1:
- * Input: s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
- * Output: ["AAAAACCCCC","CCCCCAAAAA"]
- *
- * Example 2:
- * Input: s = "AAAAAAAAAAAAA"
- * Output: ["AAAAAAAAAA"]
- *
- * Constraints:
- * 1 <= s.length <= 105
- * s[i] is either 'A', 'C', 'G', or 'T'.
+ * 提示：
+ * 0 <= s.length <= 10^5
+ * s[i] 为 'A'、'C'、'G' 或 'T'
  */
 public class Problem_0187_RepeatedDNASequences {
 
-//    public List<String> findRepeatedDnaSequences(String s) {
-//
-//    }
+    public static List<String> findRepeatedDnaSequences(String s) {
+        Set<String> set = new HashSet<>();
+        Set<String> ans = new HashSet<>();
+        for (int i = 0; i + 9 < s.length(); i++) {
+            String ten = s.substring(i, i + 10);
+            if (set.contains(ten)) {
+                ans.add(ten);
+            }
+            set.add(ten);
+        }
+        return new ArrayList<>(ans);
+    }
+
+    //from StefanPochmann
+    public static List<String> findRepeatedDnaSequences2(String s) {
+        Set<String> set = new HashSet<>();
+        Set<String> ans = new HashSet<>();
+        for (int i = 0; i + 9 < s.length(); i++) {
+            String ten = s.substring(i, i + 10);
+            if (!set.add(ten)) {  //add：之前没加过，返回true；之前已添加过，返回false
+                ans.add(ten);
+            }
+        }
+        return new ArrayList<>(ans);
+    }
+
+    public static void main(String[] args) {
+        String s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT";
+        System.out.println(findRepeatedDnaSequences(s));
+    }
 
 }

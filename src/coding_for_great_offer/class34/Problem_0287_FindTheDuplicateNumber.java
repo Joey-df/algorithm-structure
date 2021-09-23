@@ -6,6 +6,7 @@ public class Problem_0287_FindTheDuplicateNumber {
 		if (nums == null || nums.length < 2) {
 			return -1;
 		}
+		//想象 链表的head 为0
 		int slow = nums[0];
 		int fast = nums[nums[0]];
 		while (slow != fast) {

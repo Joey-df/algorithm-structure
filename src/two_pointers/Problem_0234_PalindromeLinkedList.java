@@ -20,7 +20,26 @@ import java.util.Stack;
  */
 public class Problem_0234_PalindromeLinkedList {
 
-//    public boolean isPalindrome(ListNode head) {
-//
-//    }
+    public boolean isPalindrome(ListNode head) {
+        if (head==null || head.next==null) return true;
+        ListNode s = head;
+        ListNode f = head;
+        while (f!=null && f.next!=null) {
+            s = s.next;
+            f = f.next.next;
+        }
+        //s: 奇数时来到中点，偶数时来到下中点
+        Stack<ListNode> stack = new Stack<>();
+        while (s!=null) {
+            stack.push(s);
+            s = s.next;
+        }
+        ListNode cur = head;
+        while (!stack.isEmpty()) {
+            if (cur.val!=stack.pop().val) return false;
+            cur = cur.next;
+        }
+        return true;
+    }
+
 }

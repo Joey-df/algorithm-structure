@@ -8,7 +8,21 @@ package two_pointers;
  */
 public class Problem_0011_ContainerWithMostWater {
 
-//    public static int maxArea(int[] height) {
-//
-//    }
+    public static int maxArea(int[] arr) {
+        if (arr==null || arr.length<2) return 0;
+        int n = arr.length;
+        int l = 0;
+        int r = n-1;
+        int ans = 0;
+        while (l < r) {
+            if (arr[l] < arr[r]) {
+                ans = Math.max(ans, arr[l]*(r-l));
+                l++;
+            } else {
+                ans = Math.max(ans, arr[r]*(r-l));
+                r--;
+            }
+        }
+        return ans;
+    }
 }

@@ -21,6 +21,7 @@ package dynamic_programming;
  * nums[i]的范围在[1, 65535]之间。
  * k的范围在[1, floor(nums.length / 3)]之间。
  */
+//coding_for_great_offer.class22.Code01_MaximumSumof3NonOverlappingSubarrays
 public class Problem_0689_MaximumSumOf3NonOverlappingSubarrays {
 
 //    public int[] maxSumOfThreeSubarrays(int[] nums, int k) {

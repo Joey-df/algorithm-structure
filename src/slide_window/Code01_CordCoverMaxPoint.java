@@ -1,4 +1,4 @@
-package coding_for_great_offer.class01;
+package slide_window;
 
 import java.util.Arrays;
 

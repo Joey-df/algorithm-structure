@@ -26,7 +26,15 @@ package two_pointers;
  */
 public class Problem_0167_TwoSumII {
 
-//    public int[] twoSum(int[] numbers, int target) {
-//
-//    }
+    public int[] twoSum(int[] arr, int target) {
+        if (arr==null || arr.length==0) return new int[]{-1,-1};
+        int n = arr.length;
+        int l = 0, r = n-1;
+        while (l<r) {
+            if (arr[l] + arr[r] == target) return new int[]{l+1,r+1};
+            else if (arr[l] + arr[r] < target) l++;
+            else r--;
+        }
+        return new int[]{-1,-1};
+    }
 }

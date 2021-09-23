@@ -36,7 +36,8 @@ public class Problem_76_Minimum_Window_Substring {
             }
             if (all == 0) {
                 while (map[str[L]] < 0) {
-                    map[str[L++]]++;
+                    map[str[L]]++;
+                    L++;
                 }
                 //收集答案
                 if (minLen == -1 || minLen > R - L + 1) {
@@ -44,9 +45,10 @@ public class Problem_76_Minimum_Window_Substring {
                     ansL = L;
                     ansR = R;
                 }
-                //尝试下一个位置，重新开始欠账
-                map[str[L++]]++;
                 all++;
+                //尝试下一个位置，重新开始欠账
+                map[str[L]]++;
+                L++;
             }
             R++;
         }

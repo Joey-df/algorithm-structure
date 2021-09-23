@@ -1,62 +1,53 @@
 package two_pointers;
 
 /**
- * Given a non-empty string s, you may delete at most one character.
- * Judge whether you can make it a palindrome.
+ * 680. Valid Palindrome II
+ * <p>
+ * Given a string s, return true if the s can be palindrome after deleting at most one character from it.
  * <p>
  * Example 1:
- * Input: "aba"
- * Output: True
+ * Input: s = "aba"
+ * Output: true
+ * <p>
  * Example 2:
- * Input: "abca"
- * Output: True
+ * Input: s = "abca"
+ * Output: true
  * Explanation: You could delete the character 'c'.
- * Note:
- * The string will only contain lowercase characters a-z. The maximum length of the string is 50000.
+ * <p>
+ * Example 3:
+ * Input: s = "abc"
+ * Output: false
+ * <p>
+ * Constraints:
+ * 1 <= s.length <= 10^5
+ * s consists of lowercase English letters.
  */
 public class Problem_0680_ValidPalindromeII {
-    public static boolean leftPlus(String s) {
+
+    public static boolean validPalindrome(String s) {
         char[] str = s.toCharArray();
-        int L = 0;
-        int R = str.length - 1;
-        boolean isFirstFind = false;
-        while (L < R) {
-            if (str[L] == str[R]) {
-                R--;
-            } else {
-                if (!isFirstFind) {
-                    isFirstFind = true;
-                } else {
-                    return false;
-                }
+        int l = 0, r = str.length - 1;
+        while (l < r) {
+            if (str[l] != str[r]) {
+                return isPalindrome(str, l + 1, r) || isPalindrome(str, l, r - 1);
             }
-            L++;
+            l++;
+            r--;
         }
         return true;
     }
 
-    public static boolean rightSub(String s) {
-        char[] str = s.toCharArray();
-        int L = 0;
-        int R = str.length - 1;
-        boolean isFirstFind = false;
-        while (L < R) {
-            if (str[L] == str[R]) {
-                L++;
-            } else {
-                if (!isFirstFind) {
-                    isFirstFind = true;
-                } else {
-                    return false;
-                }
-            }
-            R--;
+    public static boolean isPalindrome(char[] sc, int l, int r) {
+        while (l < r) {
+            if (sc[l] != sc[r]) return false;
+            l++;
+            r--;
         }
         return true;
     }
 
     public static void main(String[] args) {
-        String s = "deeee";
-        System.out.println(leftPlus(s) || rightSub(s));
+        String s = "abbb";
+        System.out.println(validPalindrome(s));
     }
 }

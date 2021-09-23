@@ -23,7 +23,38 @@ import linked_list.ListNode;
  */
 public class Problem_0328_OddEvenLinkedList {
 
-//    public ListNode oddEvenList(ListNode head) {
-//
-//    }
+    //使用分段指针
+    public ListNode oddEvenList(ListNode head) {
+        if (head == null || head.next == null || head.next.next == null) return head;
+        ListNode evenHead = null, evenTail = null;
+        ListNode oddHead = null, oddTail = null;
+        ListNode cur = head;
+        ListNode next = null;
+        int i = 0;
+        while (cur != null) {
+            next = cur.next;
+            cur.next = null;
+            if ((i & 1) == 0) { //偶数下标
+                if (evenHead == null) {
+                    evenHead = cur;
+                    evenTail = cur;
+                } else {
+                    evenTail.next = cur;
+                    evenTail = cur;
+                }
+            } else {
+                if (oddHead == null) {
+                    oddHead = cur;
+                    oddTail = cur;
+                } else {
+                    oddTail.next = cur;
+                    oddTail = cur;
+                }
+            }
+            i++;
+            cur = next;
+        }
+        evenTail.next = oddHead;
+        return evenHead;
+    }
 }

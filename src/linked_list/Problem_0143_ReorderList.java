@@ -16,24 +16,28 @@ package linked_list;
 public class Problem_0143_ReorderList {
 
     public static void reorderList(ListNode head) {
-        process(head);
+        reorder(head);
     }
 
     //O(N^2)的方法
     //递归含义：reorder以head为头的链表,返回新的头节点
-    private static ListNode process(ListNode head) {
+    private static ListNode reorder(ListNode head) {
         if (head == null || head.next == null || head.next.next == null) return head;
         //至少有三个节点
-        ListNode preTail = head;
-        do {
+        ListNode cur = head;
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode preTail = dummy;
+        while (cur.next!=null) {
             preTail = preTail.next;
-        } while (preTail.next != null && (preTail.next.next != null));
-
+            cur = cur.next;
+        }
+        //preTail: tail前一个节点
         ListNode tail = preTail.next;
         preTail.next = null;
         ListNode newHead = head.next;
         head.next = tail;
-        tail.next = process(newHead);
+        tail.next = reorder(newHead);
         return head;
     }
 

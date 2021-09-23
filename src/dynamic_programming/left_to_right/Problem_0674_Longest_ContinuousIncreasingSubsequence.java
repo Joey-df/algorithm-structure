@@ -1,4 +1,4 @@
-package two_pointers;
+package dynamic_programming.left_to_right;
 
 //674. Longest Continuous Increasing Subsequence
 /**

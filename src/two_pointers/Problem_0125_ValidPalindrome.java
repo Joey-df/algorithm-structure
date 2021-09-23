@@ -19,7 +19,7 @@ package two_pointers;
  * <p>
  * s consists only of printable ASCII characters.
  */
-public class Problem_125_Valid_Palindrome {
+public class Problem_0125_ValidPalindrome {
 
     private static boolean help(char s) {
         return ((s >= '0' && s <= '9') || (s >= 'a' && s <= 'z'));

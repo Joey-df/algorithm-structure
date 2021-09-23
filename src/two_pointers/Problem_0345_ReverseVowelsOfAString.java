@@ -4,8 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Write a function that takes a string as input and reverse only the vowels of a string.
- * <p>
+ * Given a string s, reverse only all the vowels in the string and return it.
+ * The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both cases.
+ *
  * Example 1:
  * <p>
  * Input: "hello"

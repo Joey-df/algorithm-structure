@@ -49,12 +49,12 @@ public class Problem_0026_RemoveDuplicatesFromSortedArray {
         if (nums == null || nums.length == 0) {
             return 0;
         }
-        int done = 0;
-        for (int i = 1; i < nums.length; i++) {
-            if (nums[i] > nums[i - 1]) {
-                nums[++done] = nums[i];
+        int index = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (i < 1 || nums[i] != nums[i - 1]) {
+                nums[index++] = nums[i];
             }
         }
-        return done + 1;
+        return index;
     }
 }

@@ -9,7 +9,18 @@ import linked_list.ListNode;
  */
 public class Problem_0141_LinkedListCycle {
 
-//    public boolean hasCycle(ListNode head) {
-//
-//    }
+    public boolean hasCycle(ListNode head) {
+        if (head==null || head.next==null) return false;
+        ListNode s = head.next;
+        ListNode f = head.next.next;
+        while (s!=f) {
+            if (f==null || f.next==null) {
+                return false;
+            }
+            f = f.next.next;
+            s = s.next;
+        }
+        return true;
+    }
+
 }

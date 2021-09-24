@@ -1,8 +1,6 @@
 package slide_window;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * You are given an array of integers nums,
@@ -18,7 +16,7 @@ import java.util.List;
  * Explanation:
  * Window position                Max
  * ---------------               -----
- * [1  3  -1] -3  5  3  6  7       3
+ * [1  3  -1] -3  5  3  6  7      3
  * 1 [3  -1  -3] 5  3  6  7       3
  * 1  3 [-1  -3  5] 3  6  7       5
  * 1  3  -1 [-3  5  3] 6  7       5
@@ -35,25 +33,25 @@ import java.util.List;
  * 例如，arr = [4,3,5,4,3,3,6,7], W = 3
  * 返回：[5,5,5,4,6,7]
  */
-public class Problem_239_Sliding_Window_Maximum {
+public class Problem_0239_SlidingWindowMaximum {
 
     //nums = [1,3,-1,-3,5,3,6,7], k = 3
     public static int[] process(int[] nums, int k) {
         int L = 0, R = 0;
-        LinkedList<Integer> dQueue = new LinkedList<>(); //严格大-->小
+        LinkedList<Integer> dq = new LinkedList<>(); //严格大-->小
         int[] ans = new int[nums.length - k + 1];
         int index = 0;
         //[L,R) 初始为[0,0) 即窗口内一个元素也没有
         while (R < nums.length) {
             //元素从尾部进入双端队列
-            while (!dQueue.isEmpty() && nums[dQueue.peekLast()] <= nums[R]) { //R位置的元素要进窗口
-                dQueue.pollLast();
+            while (!dq.isEmpty() && nums[dq.peekLast()] <= nums[R]) { //R位置的元素要进窗口
+                dq.pollLast();
             }
             //while退出来的状态为 队列为空，或者队尾元素大于 > nums[R]
-            dQueue.offerLast(R);
+            dq.offerLast(R);
             if (R - L == k - 1) { //先让窗口涨到k的长度
-                ans[index++] = nums[dQueue.peekFirst()];
-                if (dQueue.peekFirst() == L) dQueue.pollFirst();
+                ans[index++] = nums[dq.peekFirst()];
+                if (dq.peekFirst() == L) dq.pollFirst();
                 L++;
             }
             R++;

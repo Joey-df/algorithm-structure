@@ -36,7 +36,7 @@ public class Code02_AllLessNumSubArray {
         LinkedList<Integer> maxWindow = new LinkedList<>();
         LinkedList<Integer> minWindow = new LinkedList<>();
         int R = 0;
-        for (int L = 0; L < N; L++) {
+        for (int L = 0; L < N; L++) { //枚举每一个窗口的左边界
             while (R < N) {
                 while (!maxWindow.isEmpty() && arr[maxWindow.peekLast()] <= arr[R]) {
                     maxWindow.pollLast();
@@ -46,7 +46,7 @@ public class Code02_AllLessNumSubArray {
                     minWindow.pollLast();
                 }
                 minWindow.addLast(R);
-                if (arr[maxWindow.peekFirst()] - arr[minWindow.peekFirst()] > sum) {
+                if (arr[maxWindow.peekFirst()] - arr[minWindow.peekFirst()] > sum) { //R来到初次不达标的位置
                     break;
                 } else {
                     R++;

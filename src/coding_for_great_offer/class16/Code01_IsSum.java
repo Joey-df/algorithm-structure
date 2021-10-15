@@ -120,6 +120,7 @@ public class Code01_IsSum {
         return dp[N - 1][sum - min];
     }
 
+    // 分治
     // arr中的值可能为正，可能为负，可能为0
     // 自由选择arr中的数字，能不能累加得到sum
     // 分治的方法

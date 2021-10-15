@@ -18,6 +18,7 @@ public class Code03_MSumToN {
 		return false;
 	}
 
+	// 判断num是否为2的某次方
 	public static boolean isMSum2(int num) {
 //		
 //		return num == (num & (~num + 1));

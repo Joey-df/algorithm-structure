@@ -1,5 +1,10 @@
 package dynamic_programming.left_to_right;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * 403. 青蛙过河
  * 一只青蛙想要过河。 假定河流被等分为若干个单元格，并且在每一个单元格内都有可能放有一块石子（也有可能没有）。
@@ -28,8 +33,63 @@ package dynamic_programming.left_to_right;
  */
 public class Problem_0403_FrogJump {
 
-//    public boolean canCross(int[] stones) {
-//
-//    }
+    public static boolean canCross(int[] stones) {
+        Set<Integer> set = new HashSet<>();
+        for (int stone: stones) set.add(stone);
+        int n = stones.length;
+        return fun(1,1,stones[n-1], set);
+    }
+
+    //当前来到cur位置，来到cur之前跳了pre步
+    //end为终止位置
+    //返回能否跳到end
+    //set：装的是每一个石子的位置（即数组中每个元素的值）
+    public static boolean fun(int cur, int pre, int end, Set<Integer> set) {
+        if (cur==end) return true;
+        if (!set.contains(cur)) return false;
+        //还没到end
+        return (pre>1 && fun(cur+pre-1, pre-1, end, set)) //跳k-1步
+                || fun(cur+pre, pre, end, set)
+                || fun(cur+pre+1, pre+1, end, set);
+    }
+
+
+    ////////////////////////////////////////
+    //两个可变参数，改记忆化搜索
+    public static boolean canCross2(int[] stones) {
+        Set<Integer> set = new HashSet<>();
+        for (int stone: stones) set.add(stone);
+        Map<Integer, Map<Integer,Boolean>> dp = new HashMap<>();
+        int n = stones.length;
+        return fun2(1,1,stones[n-1], set, dp);
+    }
+
+    //当前来到cur位置，来到cur之前跳了pre步
+    //end为终止位置
+    //返回能否跳到end
+    //set：装的是每一个石子的位置（即数组中每个元素的值）
+    //Map<Integer, Map<Integer,Boolean>> dp: <cur <pre, result>>
+    public static boolean fun2(int cur, int pre, int end, Set<Integer> set, Map<Integer, Map<Integer,Boolean>> dp) {
+        if (cur==end) return true;
+        if (!set.contains(cur)) return false;
+        if (dp.containsKey(cur) && dp.get(cur).containsKey(pre)) {
+            return dp.get(cur).get(pre);
+        }
+        //还没到end
+        boolean ans = (pre>1 && fun2(cur+pre-1, pre-1, end, set, dp))
+                || fun2(cur+pre, pre, end, set, dp)
+                || fun2(cur+pre+1, pre+1, end, set, dp);
+        if (!dp.containsKey(cur)) {
+            dp.put(cur, new HashMap<>());
+        }
+        dp.get(cur).put(pre, ans);
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        int[] stones = {0,1,3,5,6,8,12,17};
+        System.out.println(canCross(stones));
+        System.out.println(canCross2(stones));
+    }
 
 }

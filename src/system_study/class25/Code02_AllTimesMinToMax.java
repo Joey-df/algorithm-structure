@@ -7,6 +7,7 @@ import java.util.Stack;
  * 一定都可以算出(sub累加和 )* (sub中的最小值)是什么，
  * 那么所有子数组中，这个值最大是多少？
  */
+//该题，和leetcode84，本质上是一个问题
 public class Code02_AllTimesMinToMax {
 
     public static int max1(int[] arr) {

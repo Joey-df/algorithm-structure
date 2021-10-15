@@ -82,6 +82,7 @@ public class Code01_SubsquenceMaxModM {
 		return ans;
 	}
 
+	// 分治
 	// 如果arr的累加和很大，m也很大
 	// 但是arr的长度相对不大
 	public static int max4(int[] arr, int m) {

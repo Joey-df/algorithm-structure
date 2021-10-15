@@ -16,7 +16,7 @@ public class Code02_LongestSumSubArrayLength {
 			return 0;
 		}
 		// key:前缀和
-		// value : 0~value这个前缀和是最早出现key这个值的
+		// value : 前缀和key最早出现的位置
 		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 		map.put(0, -1); // important
 		int len = 0;

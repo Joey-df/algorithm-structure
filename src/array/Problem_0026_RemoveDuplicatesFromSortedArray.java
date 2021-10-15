@@ -40,7 +40,7 @@ package array;
  * Constraints:
  * <p>
  * 0 <= nums.length <= 3 * 10^4
- * -104 <= nums[i] <= 10^4
+ * -10^4 <= nums[i] <= 10^4
  * nums is sorted in ascending order.
  */
 public class Problem_0026_RemoveDuplicatesFromSortedArray {

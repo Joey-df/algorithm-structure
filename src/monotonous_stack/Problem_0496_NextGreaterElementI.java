@@ -36,6 +36,7 @@ public class Problem_0496_NextGreaterElementI {
 
     //使用单调栈，求出nums2中每个nums[i]右边比自己大的元素
     //因为nums1是nums2的子集，所以遍历一边nums2，即得到nums1的答案
+    //前提：nums1和nums2中所有整数 互不相同（无重复元素）
     public static int[] nextGreaterElement(int[] nums1, int[] nums2) {
         int n = nums2.length;
         int[] nextGreaterIndex = new int[n]; //存放nums[i]右边比自己大的元素的index

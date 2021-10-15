@@ -7,7 +7,7 @@ package system_study.class39;//本文件是Code02_SnacksWays问题的牛客题�
 import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.TreeMap;
-
+//分治
 public class Code02_SnacksWaysMain {
 
 	public static void main(String[] args) {

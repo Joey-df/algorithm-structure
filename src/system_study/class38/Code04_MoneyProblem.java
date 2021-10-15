@@ -51,6 +51,7 @@ public class Code04_MoneyProblem {
 		return Math.max(p1, p2);
 	}
 
+	//func3的暴力递归
 	public static int minMoney2(int[] d, int[] p) {
 		int allMoney = 0;
 		for (int i = 0; i < p.length; i++) {

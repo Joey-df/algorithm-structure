@@ -44,7 +44,7 @@ public class Problem_0003_LongestSubstringWithoutRepeatingCharacters {
         char[] str = s.toCharArray();
         int ans = 1;
         int pre = 1;//i-1位置往左推的长度
-        map[str[0]] = 0; //0位子字符上次出现在0位置
+        map[str[0]] = 0; //0位置字符上次出现在0位置
         for (int i = 1; i < str.length; i++) {
             int p1 = pre + 1;
             int p2 = i - map[str[i]];

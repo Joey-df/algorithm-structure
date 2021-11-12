@@ -6,45 +6,44 @@ import java.util.Map;
 //每天一遍LRU
 public class LRUCache {
 
-    //链表中的节点
-    static class Node {
+    //双向链表节点
+    private static class Node {
         int key;
         int value;
         Node next;
         Node last;
 
-        public Node(int key, int value) {
-            this.key = key;
-            this.value = value;
+        public Node(int k, int v) {
+            this.key = k;
+            this.value = v;
         }
     }
 
-    //双向链表
-    static class DoubleLinkedList {
+    private static class DoubleLinkedList {
         Node head;
         Node tail;
 
-        //addToTail
+        public DoubleLinkedList() {
+            head = null;
+            tail = null;
+        }
+
         public void addToTail(Node node) {
             if (node==null) return;
-            if (head == null && tail == null) { //第一个时
+            if (head == null && tail == null) {
                 head = node;
                 tail = node;
             } else {
-                node.last = tail;
                 tail.next = node;
+                node.last = tail;
                 tail = node;
             }
         }
 
-        //moveToTail
-        //前提：node在链表中；get或set的时候需要把node移到尾部，表示最近使用过
+        //前提：node必须在链表中
         public void moveToTail(Node node) {
-            if (tail == node) { //本来就是tail，不用动
-                return;
-            }
-            //node不是tail
-            //有可能是head 或 非head
+            if (node==null) return;
+            if (node == tail) return;
             if (node == head) {
                 head = head.next;
                 head.last = null;
@@ -56,24 +55,19 @@ public class LRUCache {
                 node.last.next = node.next;
                 node.next.last = node.last;
                 node.last = tail;
-                node.next = null;
                 tail.next = node;
                 tail = node;
             }
         }
 
-        //删头：容量满的时候，再添加节点 需要删头；返回被删除的head，在map中同步删除
-        public Node delHead() {
-            if (head == null) {
-                return null;
-            }
-            if (head==tail) { //链表中只有一个点
+        public Node removeHead() {
+            if (head == null) return null;
+            if (head==tail) {
                 Node res = head;
-                head =null;
-                tail = null;
+                head=null;
+                tail=null;
                 return res;
             }
-            //head不空 & 超过一个节点
             Node res = head;
             head = head.next;
             head.last = null;
@@ -82,39 +76,38 @@ public class LRUCache {
         }
     }
 
-    //LRU的属性
-    Map<Integer, Node> map;
+    HashMap<Integer, Node> map;
     DoubleLinkedList list;
     int capacity;
 
-    public LRUCache(int c) {
-        this.capacity = c;
+    public LRUCache(int capacity) {
+        this.capacity = capacity;
         this.map = new HashMap<>();
         this.list = new DoubleLinkedList();
     }
 
     public int get(int key) {
-        if (!map.containsKey(key)) {
-            return -1;//not contain
+        if (map.containsKey(key)) {
+            Node node = map.get(key);
+            list.moveToTail(node);
+            return node.value;
         }
-        Node node = map.get(key); //node的内存地址
-        list.moveToTail(node);
-        return node.value;
+        return -1;
     }
 
-    public void put(int key, int value){
-        if (map.containsKey(key)) { //修改
-            Node node = map.get(key);
-            node.value = value;
-            this.list.moveToTail(node);
-        } else { //新增
-            Node node = new Node(key, value);
-            if (map.size()==capacity) { //容量满了
-                Node oldHead = this.list.delHead();
-                map.remove(oldHead.key);
+    public void put(int k, int v) {
+        if (!map.containsKey(k)) {
+            if (map.size() == this.capacity) {
+                Node node = list.removeHead();
+                map.remove(node.key);
             }
-            this.list.addToTail(node);
-            map.put(key, node); //维护map
+            Node node = new Node(k, v);
+            map.put(k, node);
+            list.addToTail(node);
+        } else {
+            Node node = map.get(k);
+            node.value = v;
+            list.moveToTail(node);
         }
     }
 }

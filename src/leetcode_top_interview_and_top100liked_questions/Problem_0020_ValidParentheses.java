@@ -14,15 +14,13 @@ import java.util.Stack;
 public class Problem_0020_ValidParentheses {
 
     public static boolean isValid(String s) {
-        if (s == null || s.length() < 2) {
-            return false;
-        }
+        if (s == null || s.length() < 2) return false;
         Stack<Character> stack = new Stack<>();
         char[] str = s.toCharArray();
         for (char c : str) {
             if (c == '(' || c == '[' || c == '{') {
                 stack.push(c == '(' ? ')' : (c == '[' ? ']' : '}'));
-            } else {
+            } else { //右括号
                 if (stack.isEmpty() || stack.pop() != c) {
                     return false;
                 }

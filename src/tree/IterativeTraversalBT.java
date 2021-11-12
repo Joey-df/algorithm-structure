@@ -63,8 +63,8 @@ public class IterativeTraversalBT {
         if (root == null) return;
         Stack<TreeNode> stack = new Stack<>();
         TreeNode cur = root;
-        while (cur!=null || !stack.isEmpty()) {
-            if (cur!=null) {
+        while (cur != null || !stack.isEmpty()) {
+            if (cur != null) {
                 stack.push(cur);
                 cur = cur.left;
             } else {

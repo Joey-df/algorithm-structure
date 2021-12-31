@@ -1,7 +1,9 @@
 package data_structure.heap;
 
+import java.util.*;
+
 /**
- * 692. 前K个高频单词
+ * 692. 前K个高频单词(单词有相同出现频率，按字母顺序排序)
  * 给一非空的单词列表，返回前 k 个出现次数最多的单词。
  * 返回的答案应该按单词出现频率由高到低排序。如果不同的单词有相同出现频率，按字母顺序排序。
  *
@@ -28,8 +30,56 @@ package data_structure.heap;
  */
 public class Problem_0692_TopKFrequentWords {
 
-//    public List<String> topKFrequent(String[] words, int k) {
-//
-//    }
+    public static List<String> topKFrequent(String[] words, int k) {
+        // write code here
+        ArrayList<Node> list = new ArrayList<>();
+        HashMap<String, Integer> map = new HashMap<>();
+        int n = words.length;
+        for(int i=0;i<n;i++) {
+            map.put(words[i], map.getOrDefault(words[i],0)+1);
+        }
+        for(String key: map.keySet()) {
+            list.add(new Node(key, map.get(key)));
+        }
+        //小根堆: 出现次数从小到大，次数相等：字典序倒序
+        PriorityQueue<Node> heap = new PriorityQueue<>((o1,o2)-> o1.freq!=o2.freq ? o1.freq-o2.freq : o2.str.compareTo(o1.str));
+        for(Node node: list) {
+            if(heap.size() < k) {
+                heap.offer(node);
+            } else {
+                if(node.freq > heap.peek().freq || (node.freq == heap.peek().freq && node.str.compareTo(heap.peek().str) < 0)) {
+                    heap.poll();
+                    heap.offer(node);
+                }
+            }
+        }
+        String[][] help = new String[Math.min(k,heap.size())][2];
+        int i=help.length-1;
+        while(!heap.isEmpty()) {
+            Node node = heap.poll();
+            help[i] = new String[]{node.str, node.freq+""};
+            i--;
+        }
+        List<String> ans = new ArrayList<>();
+        for (String[] str : help) {
+            ans.add(str[0]);
+        }
+        return ans;
+    }
+
+    public static class Node {
+        String str;
+        int freq;
+        public Node(String s, int f) {
+            str=s;
+            freq=f;
+        }
+    }
+
+    public static void main(String[] args) {
+        String[] arr = {"i","love","leetcode","i","love","coding"};
+        int k=1;
+        System.out.println(topKFrequent(arr, k));
+    }
 
 }

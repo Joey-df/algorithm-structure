@@ -26,12 +26,14 @@ public class Problem_0563_BinaryTreeTilt {
         return process(root).tilt;
     }
 
+    //计算以x节点为头的二叉树的信息
     public static Info process(TreeNode x) {
         if (x == null) {
             return new Info(0, 0);
         }
         Info l = process(x.left);
         Info r = process(x.right);
+        //整个树的坡度：就是其所有节点的坡度之和（左子树的坡度+右子树的坡度+当前节点x为头的坡度）
         int tilt = l.tilt + r.tilt + Math.abs(l.sum - r.sum);
         int sum = l.sum + r.sum + x.val;
         return new Info(sum, tilt);

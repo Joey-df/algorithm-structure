@@ -34,19 +34,19 @@ public class Problem_0102_BinaryTreeLevelOrderTraversal {
         LinkedList<TreeNode> q = new LinkedList<>();
         q.offerFirst(root);
         while(!q.isEmpty()) {
-            int sz = q.size();
-            ArrayList<Integer> levelAns = new ArrayList<>();
-            while (sz-- > 0) {
-                TreeNode cur = q.pollLast();
-                levelAns.add(cur.val);
-                if (cur.left!=null) {
-                    q.offerFirst(cur.left);
+            int size = q.size();
+            ArrayList<Integer> cur = new ArrayList<>();
+            while (size-- > 0) {
+                TreeNode node = q.pollLast();
+                cur.add(node.val);
+                if (node.left!=null) {
+                    q.offerFirst(node.left);
                 }
-                if (cur.right!=null) {
-                    q.offerFirst(cur.right);
+                if (node.right!=null) {
+                    q.offerFirst(node.right);
                 }
             }
-            ans.add(levelAns);
+            ans.add(cur);
         }
         return ans;
     }

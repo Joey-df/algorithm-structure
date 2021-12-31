@@ -6,6 +6,7 @@ import java.util.Stack;
 //https://leetcode-cn.com/problems/largest-rectangle-in-histogram/
 public class Problem_0084_LargestRectangleInHistogram {
 
+    //方法1
     //思路
     //遍历求的数组中每个height[i]左边离自己最近比自己小的位置left，右边离自己最近比自己小的位置right
     //height[i]的答案为height[i]*(right-left-1)
@@ -41,6 +42,7 @@ public class Problem_0084_LargestRectangleInHistogram {
     }
 
 
+    //方法2：对方法1做了优化
     public static int largestRectangleArea2(int[] heights) {
         if (heights == null || heights.length == 0) return 0;
         //自底向上单调递增的栈

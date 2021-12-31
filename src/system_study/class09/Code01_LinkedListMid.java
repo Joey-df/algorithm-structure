@@ -21,7 +21,7 @@ public class Code01_LinkedListMid {
         }
     }
 
-    // head 头
+    //1）输入链表头节点，奇数长度返回中点，偶数长度返回上中点
     public static Node midOrUpMidNode(Node head) {
         if (head == null || head.next == null || head.next.next == null) {
             return head;
@@ -36,6 +36,7 @@ public class Code01_LinkedListMid {
         return slow;
     }
 
+    //2）输入链表头节点，奇数长度返回中点，偶数长度返回下中点
     public static Node midOrDownMidNode(Node head) {
         if (head == null || head.next == null) {
             return head;
@@ -49,6 +50,7 @@ public class Code01_LinkedListMid {
         return slow;
     }
 
+    //3）输入链表头节点，奇数长度返回中点前一个，偶数长度返回上中点前一个
     public static Node midOrUpMidPreNode(Node head) {
         if (head == null || head.next == null || head.next.next == null) {
             return null;
@@ -62,6 +64,7 @@ public class Code01_LinkedListMid {
         return slow;
     }
 
+    //4）输入链表头节点，奇数长度返回中点前一个，偶数长度返回下中点前一个
     public static Node midOrDownMidPreNode(Node head) {
         if (head == null || head.next == null) {
             return null;
@@ -150,15 +153,21 @@ public class Code01_LinkedListMid {
         System.out.println(ans1 != null ? ans1.value : "无");
         System.out.println(ans2 != null ? ans2.value : "无");
 
+        System.out.println("==========");
+
         ans1 = midOrDownMidNode(test);
         ans2 = right2(test);
         System.out.println(ans1 != null ? ans1.value : "无");
         System.out.println(ans2 != null ? ans2.value : "无");
 
+        System.out.println("==========");
+
         ans1 = midOrUpMidPreNode(test);
         ans2 = right3(test);
         System.out.println(ans1 != null ? ans1.value : "无");
         System.out.println(ans2 != null ? ans2.value : "无");
+
+        System.out.println("==========");
 
         ans1 = midOrDownMidPreNode(test);
         ans2 = right4(test);

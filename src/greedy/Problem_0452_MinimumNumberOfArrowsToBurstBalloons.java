@@ -21,7 +21,10 @@ public class Problem_0452_MinimumNumberOfArrowsToBurstBalloons {
     //    参照435
     public int findMinArrowShots(int[][] arrs) {
         if (arrs==null || arrs.length==0) return 0;
-        Arrays.sort(arrs, (a,b) -> a[1]<b[1] ? -1 : (a[1]>b[1]?1:0));
+        //等价于 (a,b) -> (a[1]-b[1])
+        //Integer.compare(a[1], b[1])
+        //主要是防止[[-2147483646,-2147483645],[2147483646,2147483647]]此种用例相减后越界
+        Arrays.sort(arrs, (a,b) -> Integer.compare(a[1], b[1]));
         int count=1;
         int prePos = arrs[0][1];
         int n = arrs.length;

@@ -24,11 +24,8 @@ public class MergeSort {
         int i = 0;//专为help服务
         while (pL <= mid && pR <= r) { //pL、pR都不越界时
             //谁小拷贝谁
-            if (arr[pL] <= arr[pR]) {
-                help[i++] = arr[pL++];//相等先拷贝左边的
-            } else {
-                help[i++] = arr[pR++];
-            }
+            //相等先拷贝左边的
+            help[i++] = arr[pL] <= arr[pR] ? arr[pL++] : arr[pR++];
         }
         //while出来时，一定是其中有一边越界了
         //以下两个while只会执行一个
@@ -74,14 +71,14 @@ public class MergeSort {
     }
 
     public static void main(String[] args) {
-        int arr[] = {9, 3, 2, 0, -1};
+        int arr[] = {9, 3, 50,100,2, 0, -1};
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }
         System.out.println();
         System.out.println("=================");
-//        mergeSort(arr, 0, arr.length - 1);
-        mergeSort2(arr);
+        mergeSort(arr, 0, arr.length - 1);
+//        mergeSort2(arr);
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }

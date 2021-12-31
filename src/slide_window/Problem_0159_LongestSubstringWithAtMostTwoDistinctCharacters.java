@@ -1,20 +1,18 @@
 package slide_window;
 
 /**
- * Given a string s , find the length of the longest substring t  that contains at most 2 distinct characters.
- * <p>
- * Example 1:
- * <p>
- * Input: "eceba"
- * Output: 3
- * Explanation: tis "ece" which its length is 3.
- * Example 2:
- * <p>
- * Input: "ccaabbb"
- * Output: 5
- * Explanation: tis "aabbb" which its length is 5.
+ * 159. 至多包含两个不同字符的最长子串
+ * 给定一个字符串 s ，找出 至多 包含两个不同字符的最长子串 t 。
+ * 示例 1:
+ * 输入: "eceba"
+ * 输出: 3
+ * 解释: t 是 "ece"，长度为3。
+ * 示例 2:
+ * 输入: "ccaabbb"
+ * 输出: 5
+ * 解释: t 是 "aabbb"，长度为5。
  */
-public class Problem_Longest_Substring_with_At_Most_Two_Distinct_Characters {
+public class Problem_0159_LongestSubstringWithAtMostTwoDistinctCharacters {
 
     public static int process(String s) {
         int L = 0, R = 0;

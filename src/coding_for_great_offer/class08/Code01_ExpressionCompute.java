@@ -27,21 +27,22 @@ public class Code01_ExpressionCompute {
     // 0) 负责的这一段的结果是多少
     // 1) 负责的这一段计算到了哪个位置
     public static int[] f(char[] str, int i) {
-        LinkedList<String> que = new LinkedList<String>();
+        //每个子过程一个quq
+        LinkedList<String> que = new LinkedList<>();
         int cur = 0;
-        int[] bra = null;
+        int[] sub = null;
         // 从i出发，开始撸串
         while (i < str.length && str[i] != ')') {
-            if (str[i] >= '0' && str[i] <= '9') {
+            if (str[i] >= '0' && str[i] <= '9') { //遇到的是数字字符
                 cur = cur * 10 + str[i++] - '0';
             } else if (str[i] != '(') { // 遇到的是运算符号
                 addNum(que, cur);
                 que.addLast(String.valueOf(str[i++]));
                 cur = 0;
             } else { // 遇到左括号了
-                bra = f(str, i + 1);
-                cur = bra[0];
-                i = bra[1] + 1;
+                sub = f(str, i + 1);
+                cur = sub[0];
+                i = sub[1] + 1;
             }
         }
         addNum(que, cur);
@@ -53,8 +54,9 @@ public class Code01_ExpressionCompute {
             int cur = 0;
             String top = que.pollLast();
             if (top.equals("+") || top.equals("-")) {
-                que.addLast(top);
+                que.addLast(top); //如果是加减号，拿出来再重新放回去
             } else {
+                //如果是乘除号，将倒数第二位置的数字与即将进来的num做运算后，得到的结果，放到队尾
                 cur = Integer.valueOf(que.pollLast());
                 num = top.equals("*") ? (cur * num) : (cur / num);
             }
@@ -62,6 +64,8 @@ public class Code01_ExpressionCompute {
         que.addLast(String.valueOf(num));
     }
 
+    //que中只剩下数字和加减号
+    //计算que中的结果
     public static int getNum(LinkedList<String> que) {
         int res = 0;
         boolean add = true;
@@ -73,7 +77,7 @@ public class Code01_ExpressionCompute {
                 add = true;
             } else if (cur.equals("-")) {
                 add = false;
-            } else {
+            } else { //数字
                 num = Integer.valueOf(cur);
                 res += add ? num : (-num);
             }
@@ -81,4 +85,9 @@ public class Code01_ExpressionCompute {
         return res;
     }
 
+    public static void main(String[] args) {
+        String s = "8*((-7+6)-4)+8*1";
+        int ans = calculate(s);
+        System.out.println(ans);
+    }
 }

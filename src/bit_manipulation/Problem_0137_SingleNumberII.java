@@ -42,5 +42,9 @@ public class Problem_0137_SingleNumberII {
     public static void main(String[] args) {
         int[] nums = new int[]{5, 5, 5, -6, -6, -6, -7};
         System.out.println(singleNumber(nums));
+        //1 1 1 1 4 4 4 4 2 2 k=4 n=2 k>n
+        //4 2 4  %k 得
+        //0 2 0  /n 得
+        //0 1 0
     }
 }

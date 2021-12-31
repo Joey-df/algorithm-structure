@@ -1,18 +1,17 @@
 package slide_window;
 
 /**
- * Given a string, find the length of the longest substring T that contains at most k distinct characters.
- * <p>
- * Example 1:
- * <p>
- * Input: s = "eceba", k = 2
- * Output: 3
- * Explanation: T is "ece" which its length is 3.
- * Example 2:
- * <p>
- * Input: s = "aa", k = 1
- * Output: 2
- * Explanation: T is "aa" which its length is 2.
+ * 340.至多包含K个不同字符的最长子串
+ * 给定一个字符串 s ，找出 至多 包含 k 个不同字符的最长子串 T。
+ * 示例 1:
+ * 输入: s = "eceba", k = 2
+ * 输出: 3
+ * 解释: 则 T 为 "ece"，所以长度为 3。
+ * 示例 2:
+ * 输入: s = "aa", k = 1
+ * 输出: 2
+ * 解释: 则 T 为 "aa"，所以长度为 2。
+ * ————————————————
  * 加锁的题 这个是好题
  * 需要反复练习
  * 24.leetcode高频题目全讲（二十四）讲解

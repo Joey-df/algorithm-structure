@@ -1,18 +1,19 @@
 package slide_window;
 
 /**
- * Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).
- *
- * Example:
- *
- * Input: S = "ADOBECODEBANC", T = "ABC"
- * Output: "BANC"
- * Note:
- *
- * If there is no such window in S that covers all characters in T, return the empty string "".
- * If there is such window, you are guaranteed that there will always be only one unique minimum window in S.
+ * 76. 最小覆盖子串
+ * 给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。
+ * 如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 "" 。
+ * 注意：
+ * 对于 t 中重复字符，我们寻找的子字符串中该字符数量必须不少于 t 中该字符数量。
+ * 如果 s 中存在这样的子串，我们保证它是唯一的答案。
+ * 示例 1：
+ * 输入：s = "ADOBECODEBANC", t = "ABC"
+ * 输出："BANC"
+ * 示例 2：
+ * 输入：s = "a", t = "a"
+ * 输出："a"
  */
-
 //时间复杂度 O(N)
 public class Problem_76_Minimum_Window_Substring {
     public static String process(String S, String T) {

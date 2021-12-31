@@ -3,23 +3,14 @@ package data_structure.heap;
 import java.util.*;
 
 /**
- * Given a non-empty array of integers, return the k most frequent elements.
- * <p>
- * Example 1:
- * <p>
- * Input: nums = [1,1,1,2,2,3], k = 2
- * Output: [1,2]
- * Example 2:
- * <p>
- * Input: nums = [1], k = 1
- * Output: [1]
- * Note:
- * <p>
- * You may assume k is always valid, 1 ≤ k ≤ number of unique elements.
- * Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
- * It's guaranteed that the answer is unique, in other words the set of the top k frequent elements is unique.
- * You can return the answer in any order.
- * <p>
+ * 347. 前 K 个高频元素
+ * 给你一个整数数组 nums 和一个整数 k ，请你返回其中出现频率前 k 高的元素。你可以按 任意顺序 返回答案。
+ * 示例 1:
+ * 输入: nums = [1,1,1,2,2,3], k = 2
+ * 输出: [1,2]
+ * 示例 2:
+ * 输入: nums = [1], k = 1
+ * 输出: [1]
  */
 //门槛堆
 //需要反复练习

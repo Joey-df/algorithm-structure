@@ -4,19 +4,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Given a string s, reverse only all the vowels in the string and return it.
- * The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both cases.
+ * 345. 反转字符串中的元音字母
+ * 给你一个字符串 s ，仅反转字符串中的所有元音字母，并返回结果字符串。
+ * 元音字母包括 'a'、'e'、'i'、'o'、'u'，且可能以大小写两种形式出现。
  *
- * Example 1:
- * <p>
- * Input: "hello"
- * Output: "holle"
- * Example 2:
- * <p>
- * Input: "leetcode"
- * Output: "leotcede"
- * Note:
- * The vowels does not include the letter "y".
+ * 示例 1：
+ * 输入：s = "hello"
+ * 输出："holle"
+ * 示例 2：
+ * 输入：s = "leetcode"
+ * 输出："leotcede"
  */
 public class Problem_0345_ReverseVowelsOfAString {
 
@@ -48,7 +45,7 @@ public class Problem_0345_ReverseVowelsOfAString {
         int L = 0;
         int R = str.length - 1;
         while (L < R) {
-            if (set.contains(str[L]) && set.contains(str[R])) {
+            if (set.contains(str[L]) && set.contains(str[R])) { //L R同时是元音字母
                 if (str[L] != str[R]) {
                     swap(str, L, R);
                 }

@@ -1,5 +1,8 @@
 package binary_search;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 /**
  * 354. 俄罗斯套娃信封问题
  * 给你一个二维整数数组 envelopes ，其中 envelopes[i] = [wi, hi] ，表示第 i 个信封的宽度和高度。
@@ -17,8 +20,62 @@ package binary_search;
  * 输出：1
  */
 public class Problem_0354_RussianDollEnvelopes {
+    
+    public static class Node {
+        int length;
+        int width;
+    
+        public Node(int l, int w) {
+            length = l;
+            width = w;
+        }
+    }
 
-//    public int maxEnvelopes(int[][] envelopes) {
-//
-//    }
+    //二位数组
+    //每个元素表示长宽
+    //Input: envelopes = [[5,4],[6,4],[6,7],[2,3]]
+    //Output: 3
+    public static int maxEnvelopes(int[][] envelopes) {
+        if (envelopes == null || envelopes.length == 0 || envelopes[0].length == 0) {
+            return 0;
+        }
+        int N = envelopes.length;
+        Node[] arr = new Node[N];
+        for (int i = 0; i < N; i++) {
+            arr[i] = new Node(envelopes[i][0], envelopes[i][1]);
+        }
+
+        Arrays.sort(arr, new Comparator<Node>() {
+            @Override
+            public int compare(Node o1, Node o2) {
+                //长度从小到大，长度相等的话，宽度从大到小
+                return o1.length != o2.length ?
+                        o1.length - o2.length :
+                        o2.width - o1.width;
+            }
+        });
+        int[] dp = new int[N];
+        int[] ends = new int[N];
+        dp[0] = 1;
+        int ans = dp[0];
+        ends[0] = arr[0].width;
+        int right = 0;
+        for (int i = 1; i < arr.length; i++) {
+            int l = 0;
+            int r = right;
+            while (l <= r) {
+                int m = (l + r) >> 1;
+                if (ends[m] >= arr[i].width) {
+                    r = m - 1;
+                } else {
+                    l = m + 1;
+                }
+            }
+            right = Math.max(right, l);
+            ends[l] = arr[i].width;
+            dp[i] = l + 1;
+            ans = Math.max(ans, dp[i]);
+        }
+        return ans;
+    }
 }

@@ -9,6 +9,10 @@ import tree.TreeNode;
  * 给定一棵搜索二叉树头节点，转化成首尾相接的有序双向链表
  * <p>
  * https://leetcode.com/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/
+ *
+ * 给定一个二叉搜索树，要求将其按照中序遍历转为一个双向循环链表，返回值最小的那个链表节点。
+ * 节点的右指针视为链表节点的next，左指针视为链表节点的prev。
+ *
  */
 public class Code04_BSTtoDoubleLinkedList {
 

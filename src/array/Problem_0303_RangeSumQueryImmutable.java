@@ -18,7 +18,6 @@ public class Problem_0303_RangeSumQueryImmutable {
         }
 
         public int sumRange(int left, int right) {
-            assert (left >= 0 && right >= left);
             return left == 0 ? preSum[right] : preSum[right] - preSum[left - 1];
         }
     }

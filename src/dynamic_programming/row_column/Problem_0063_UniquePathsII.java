@@ -1,20 +1,17 @@
 package dynamic_programming.row_column;
 
 /**
- * A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
- * The robot can only move either down or right at any point in time.
- * The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
- * Now consider if some obstacles are added to the grids. How many unique paths would there be?
- * 带障碍的网格
+ * 63. 不同路径 II
+ * 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
+ * 机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。
+ * 现在考虑网格中有障碍物。那么从左上角到右下角将会有多少条不同的路径？
  */
 
 //一个样本做行一个样本做列的对应模型
 public class Problem_0063_UniquePathsII {
 
-
     /**
      * 递归含义：机器人从[0,0]出发，到达[i,j]的方法数
-     *
      * @param grid 给定的网格，固定不变
      * @param i,j  [i,j]表示机器人要到达的位置
      * @return
@@ -45,7 +42,6 @@ public class Problem_0063_UniquePathsII {
 
     /**
      * dp[i][j]的含义：机器人从[0,0]出发，到达[i,j]位置的方法数是多少？
-     *
      * @param grid 输入的网格，固定不变
      * @return
      */

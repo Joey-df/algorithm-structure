@@ -6,18 +6,19 @@ import java.util.Arrays;
 import java.util.Stack;
 
 /**
- * // 本题测试链接 :
- * leetcode 1008题
+ * 1008. 根据前序遍历的arr构造BST
+ * 返回与给定前序遍历 preorder 相匹配的二叉搜索树（binary search tree）的根结点。
  * https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/
  * 已知一棵搜索二叉树上没有重复值的节点，
  * 现在有一个数组arr，是这棵搜索二叉树先序遍历的结果
  * 请根据arr生成整棵树并返回头节点
- * <p>
+ *
  * 最优解：
  * 使用单调栈优化
  */
-public class Code01_ConstructBinarySearchTreeFromPreorderTraversal {
+public class Problem_1008_ConstructBinarySearchTreeFromPreorderTraversal {
 
+    //方法1：
     //思路：
     //根据搜索二叉树的性质，每个节点左边的节点值都比自己小，右边的节点值都比自己大
     //给定arr是先序遍历结果，arr[0]是根节点，右边<arr[0]的范围去建左树，>arr[0]的范围去建右树
@@ -62,6 +63,8 @@ public class Code01_ConstructBinarySearchTreeFromPreorderTraversal {
         return ans;
     }
 
+
+    //方法2：利用单调栈优化
     public TreeNode bstFromPreorder2(int[] arr) {
         if (arr == null || arr.length == 0) return null;
         int[] help = help(arr);

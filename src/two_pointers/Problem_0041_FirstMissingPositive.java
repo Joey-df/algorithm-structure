@@ -1,34 +1,26 @@
 package two_pointers;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
- * Given an unsorted integer array nums, find the smallest missing positive integer.
- * <p>
- * Follow up: Could you implement an algorithm that runs in O(n) time and uses constant extra space.?
- * <p>
- * <p>
- * <p>
- * Example 1:
- * <p>
- * Input: nums = [1,2,0]
- * Output: 3
- * Example 2:
- * <p>
- * Input: nums = [3,4,-1,1]
- * Output: 2
- * Example 3:
- * <p>
- * Input: nums = [7,8,9,11,12]
- * Output: 1
- * <p>
- * <p>
- * Constraints:
- * <p>
- * 0 <= nums.length <= 300
- * -231 <= nums[i] <= 231 - 1
+ * 41. 缺失的第一个正数
+ * 给你一个未排序的整数数组 nums ，请你找出其中没有出现的最小的正整数。
+ * 请你实现时间复杂度为 O(n) 并且只使用常数级别额外空间的解决方案。
+ * 示例 1：
+ * 输入：nums = [1,2,0]
+ * 输出：3
+ * 示例 2：
+ * 输入：nums = [3,4,-1,1]
+ * 输出：2
+ * 示例 3：
+ * 输入：nums = [7,8,9,11,12]
+ * 输出：1
  */
 
 //寻找缺失的最小正数
 public class Problem_0041_FirstMissingPositive {
+    //方法1：双指针
     //初始L=0；R=越界位置
     //表示：[0,L-1]已经放好了i+1的数
     //R表示预期的是收集1~R的数
@@ -51,5 +43,22 @@ public class Problem_0041_FirstMissingPositive {
         int t = arr[i];
         arr[i] = arr[j];
         arr[j] = t;
+    }
+
+    //方法2
+    public static int firstMissingPositive2(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 1;
+        }
+        Set<Integer> set = new HashSet<>();
+        for (int n : nums) {
+            if (n > 0)
+                set.add(n);
+        }
+        int ans = 1;
+        while (set.contains(ans)) {
+            ans++;
+        }
+        return ans;
     }
 }

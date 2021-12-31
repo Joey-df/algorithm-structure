@@ -46,6 +46,7 @@ public class Problem_0403_FrogJump {
     //set：装的是每一个石子的位置（即数组中每个元素的值）
     public static boolean fun(int cur, int pre, int end, Set<Integer> set) {
         if (cur==end) return true;
+        //cur不在set中表示跳落水中了，当前cur不在石头上
         if (!set.contains(cur)) return false;
         //还没到end
         return (pre>1 && fun(cur+pre-1, pre-1, end, set)) //跳k-1步

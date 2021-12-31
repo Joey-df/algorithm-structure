@@ -4,24 +4,16 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * You are given a perfect binary tree where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:
- *
+ * 116. 填充每个节点的下一个右侧节点指针
+ * 给定一个 完美二叉树 ，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：
  * struct Node {
  *   int val;
  *   Node *left;
  *   Node *right;
  *   Node *next;
  * }
- * Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
- *
- * Initially, all next pointers are set to NULL.
- *
- *
- *
- * Follow up:
- *
- * You may only use constant extra space.
- * Recursive approach is fine, you may assume implicit stack space does not count as extra space for this problem.
+ * 填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。
+ * 初始状态下，所有 next 指针都被设置为 NULL。
  */
 //满二叉树
 public class Problem_0116_PopulatingNextRightPointersInEachNode {

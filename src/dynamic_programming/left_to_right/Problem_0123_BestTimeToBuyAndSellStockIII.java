@@ -8,15 +8,11 @@ package dynamic_programming.left_to_right;
 
 public class Problem_0123_BestTimeToBuyAndSellStockIII {
 
-    public static int maxProfit(int[] prices, int k) {
-        if (prices == null || prices.length < 2) return 0;
-        return process(prices, k);
-    }
-
     //动态规划
     //一个样本做行，一个样本左列的对应模型
     //dp[i][j] 表示prices[0...i]范围上做k次交易，获取的最大利润是多少？
-    public static int process(int[] prices, int k) {
+    public static int maxProfit(int[] prices, int k) {
+        if (prices == null || prices.length < 2) return 0;
         int n = prices.length;
         int[][] dp = new int[n][k + 1];
         //第一行表示：prices[0]上的值做k次交易  全0
@@ -48,7 +44,7 @@ public class Problem_0123_BestTimeToBuyAndSellStockIII {
     //动态规划
     //一个样本做行，一个样本左列的对应模型
     //dp[i][j] 表示prices[0...i]范围上做k次交易，获取的最大利润是多少？
-    public static int bestWay(int[] prices, int k) {
+    public static int maxProfit2(int[] prices, int k) {
         int[][] dp = new int[prices.length][k + 1];
         //一个N长度的数组中上坡的个数最大为N/2。  如1212  有两个上坡
         if (k >=prices.length/2) { //Leetcode stock II
@@ -76,7 +72,7 @@ public class Problem_0123_BestTimeToBuyAndSellStockIII {
         int k=1;
         int maxProfit = maxProfit(prices, k);
         System.out.println("maxProfit = " + maxProfit);
-        int bestWay = bestWay(prices, k);
+        int bestWay = maxProfit2(prices, k);
         System.out.println("bestWay = " + bestWay);
     }
 }

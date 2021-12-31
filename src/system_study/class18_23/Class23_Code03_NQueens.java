@@ -1,5 +1,8 @@
 package system_study.class18_23;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * N皇后问题是指在N*N的棋盘上要摆N个皇后，
  * 要求任何两个皇后不同行、不同列， 也不在同一条斜线上
@@ -14,33 +17,50 @@ public class Class23_Code03_NQueens {
             return 0;
         }
         int[] record = new int[n];
-        return process1(0, record, n);
+        List<List<String>> ans = new ArrayList<>();
+        int res = process1(0, record, n, ans);
+        System.out.println("detail : " + ans);
+        return res;
     }
 
-    // 当前来到i行，一共是0~N-1行
+    // int[] record 长度为n
+    // 使用一维数组表示n*n的棋盘
+    // record[x] = y 之前的第x行的皇后，放在了y列上
+    // 当前来到i行，一共是0~n-1行
     // 在i行上放皇后，所有列都尝试
     // 必须要保证跟之前所有的皇后不打架
-    // int[] record record[x] = y 之前的第x行的皇后，放在了y列上
+    // ans:收集所有摆放方法的答案
     // 返回：不关心i以上发生了什么，i.... 后续有多少合法的方法数
-    public static int process1(int i, int[] record, int n) {
-        if (i == n) {
+    public static int process1(int i, int[] record, int n, List<List<String>> ans) {
+        if (i == n) { //i到终止行，此时是一种正确的摆法
+            List<String> cur = new ArrayList<>();
+            for (int j = 0; j < n; j++) { //收集所有答案
+                cur.add(j + "," + record[j]);
+            }
+            ans.add(cur);
             return 1;
         }
+        //i没到终止行，还需要摆皇后
         int res = 0;
-        // i行的皇后，放哪一列呢？j列，
+        // i行的皇后，放哪一列呢？j列，0～n-1列都尝试
         for (int j = 0; j < n; j++) {
             if (isValid(record, i, j)) {
                 record[i] = j;
-                res += process1(i + 1, record, n);
+                res += process1(i + 1, record, n, ans);
             }
         }
         return res;
     }
 
+    //判断当前皇后摆在(i,j)位置，是否和0～i-1行的皇后打架
     public static boolean isValid(int[] record, int i, int j) {
-        // 0..i-1
-        for (int k = 0; k < i; k++) {
-            if (j == record[k] || Math.abs(record[k] - j) == Math.abs(i - k)) {
+        // 判断的行范围：0..i-1，
+        for (int k = 0; k < i; k++) { // (i,j) 与 (k,record[k])
+            if (
+                    i == k // 不用判断共行，因为不在同一行
+                    || j == record[k] //表示共列
+                    || Math.abs(record[k] - j) == Math.abs(i - k) //表示共斜线
+            ) {
                 return false;
             }
         }
@@ -80,7 +100,7 @@ public class Class23_Code03_NQueens {
     }
 
     public static void main(String[] args) {
-        int n = 15;
+        int n = 4;
 
         long start = System.currentTimeMillis();
         System.out.println(num2(n));

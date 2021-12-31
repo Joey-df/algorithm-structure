@@ -5,13 +5,10 @@ package data_structure.stack_queue;
  * 设计你的循环队列实现。
  * 循环队列是一种线性数据结构，其操作表现基于 FIFO（先进先出）原则并且队尾被连接在队首之后以形成一个循环。
  * 它也被称为“环形缓冲器”。
- *
  * 循环队列的一个好处是我们可以利用这个队列之前用过的空间。
  * 在一个普通队列里，一旦一个队列满了，我们就不能插入下一个元素，即使在队列前面仍有空间。
  * 但是使用循环队列，我们能使用这些空间去存储新的值。
- *
  * 你的实现应该支持如下操作：
- *
  * MyCircularQueue(k): 构造器，设置队列长度为 k 。
  * Front: 从队首获取元素。如果队列为空，返回 -1 。
  * Rear: 获取队尾元素。如果队列为空，返回 -1 。
@@ -19,10 +16,7 @@ package data_structure.stack_queue;
  * deQueue(): 从循环队列中删除一个元素。如果成功删除则返回真。
  * isEmpty(): 检查循环队列是否为空。
  * isFull(): 检查循环队列是否已满。
- *
- *
  * 示例：
- *
  * MyCircularQueue circularQueue = new MyCircularQueue(3); // 设置长度为 3
  * circularQueue.enQueue(1);  // 返回 true
  * circularQueue.enQueue(2);  // 返回 true
@@ -33,45 +27,90 @@ package data_structure.stack_queue;
  * circularQueue.deQueue();  // 返回 true
  * circularQueue.enQueue(4);  // 返回 true
  * circularQueue.Rear();  // 返回 4
- *
  * 提示：
- *
  * 所有的值都在 0 至 1000 的范围内；
  * 操作数将在 1 至 1000 的范围内；
  * 请不要使用内置的队列库。
  */
 public class Problem_0622_DesignCircularQueue {
 
-//    static class MyCircularQueue {
-//
-//        public MyCircularQueue(int k) {
-//
-//        }
-//
-//        public boolean enQueue(int value) {
-//
-//        }
-//
-//        public boolean deQueue() {
-//
-//        }
-//
-//        public int Front() {
-//
-//        }
-//
-//        public int Rear() {
-//
-//        }
-//
-//        public boolean isEmpty() {
-//
-//        }
-//
-//        public boolean isFull() {
-//
-//        }
-//    }
+    static class MyCircularQueue {
+
+        int[] arr;
+        int front; //front
+        int rear; //rear
+        int size; //size
+
+        public MyCircularQueue(int k) {
+            arr = new int[k];
+            front = 0;
+            rear = -1;
+            size = k;
+        }
+
+        public boolean enQueue(int value) {
+            if (isFull()) return false;
+
+            //when rear is last element
+            if (rear == size - 1) {
+                rear = -1;
+            }
+
+            arr[++rear] = value;
+            return true;
+        }
+
+        public boolean deQueue() {
+            if (isEmpty()) return false;
+
+            //when only one element
+            if (front == rear) {
+                //reset
+                front = 0;
+                rear = -1;
+            } else {
+                //if front is last pos, then reset to first position
+                //otherwise increment
+                if (front == size - 1) {
+                    front = 0;
+                } else {
+                    front++;
+                }
+            }
+
+            return true;
+        }
+
+        public int Front() {
+            if (isEmpty()) return -1;
+
+            return arr[front];
+        }
+
+        public int Rear() {
+            if (isEmpty()) return -1;
+
+            return arr[rear];
+        }
+
+        public boolean isEmpty() {
+            //front is default value
+            //rear is default value
+            return (front == 0 && rear == -1);
+        }
+
+        public boolean isFull() {
+            //when front is at first pos,
+            //rear is last elemnt
+            if (front == 0 && rear == size - 1) return true;
+
+            //when fron is not at first pos
+            //previous all pos is also occupied
+            if (front != 0 && rear == front - 1) return true;
+
+            return false;
+        }
+    }
 
     /**
      * Your MyCircularQueue object will be instantiated and called as such:

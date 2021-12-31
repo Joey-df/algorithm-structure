@@ -15,7 +15,7 @@ package array;
  */
 public class Problem_0485_MaxConsecutiveOnes {
 
-    public int findMaxConsecutiveOnes(int[] nums) {
+    public static int findMaxConsecutiveOnes(int[] nums) {
         int count = 0;
         int max = 0;
         for (int num : nums) {
@@ -29,4 +29,20 @@ public class Problem_0485_MaxConsecutiveOnes {
         return max;
     }
 
+    public static int findMaxConsecutiveOnes2(int[] arr) {
+        if (arr==null || arr.length==0) return 0;
+        int pre = arr[0]==1 ? 1: 0;
+        int ans=pre;
+        for (int i=1;i<arr.length;i++) {
+            int cur = arr[i]==1 ? pre+1 : 0;
+            ans = Math.max(ans, cur);
+            pre = cur;
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1,1,0,1,1,1};
+        System.out.println(findMaxConsecutiveOnes2(arr));
+    }
 }

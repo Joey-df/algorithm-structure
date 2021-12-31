@@ -52,4 +52,31 @@ public class Problem_0674_Longest_ContinuousIncreasingSubsequence {
         return ans;
     }
 
+    //给定整体无序的整形数组nums
+    //返回最长连续子数组的起始位置
+    //如{7,8,1,2,3,4,5,4,3}, 返回2
+    //解释：最长连续子数组为{1,2,3,4,5},起始位置是2
+    public static int fun(int[] nums) {
+        if(nums==null||nums.length==0) return -1;
+        int n=nums.length;
+        int[] dp = new int[n]; //dp[i]:必须以i位置结尾的最长连续子数组的长度是多长？
+        dp[0]=1;
+        int max=1; //最长连续子数组的长度
+        int ansIndex=0;
+        for(int i=1;i<n;i++) {
+            dp[i]=nums[i]-nums[i-1]==1 ? dp[i-1]+1 : 1;
+            if (dp[i] > max) {
+                max=dp[i];
+                ansIndex=i-max+1;
+            }
+        }
+        return ansIndex;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {7,8,10,11,4,3};
+        int index = fun(arr);
+        System.out.println(index);
+    }
+
 }

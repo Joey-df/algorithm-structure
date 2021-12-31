@@ -44,7 +44,8 @@ public class Problem_0664_StrangePrinter {
             ans = r-l+1; //每次刷一个位置的字符，最大就是str[l,r]的长度
             //枚举所有可能的右部分的第一个位置
             for (int i = l+1; i <= r; i++) {
-                int cur = fun(str, l,i-1, dp) + fun(str, i, r, dp) - (str[l]==str[i]?1:0); //所有两部分左边沿的第一个字符一样的话，可以合成一次
+                //所有两部分左边沿的第一个字符一样的话，可以合成一次
+                int cur = fun(str, l,i-1, dp) + fun(str, i, r, dp) - (str[l]==str[i]?1:0);
                 ans = Math.min(ans, cur);
             }
         }

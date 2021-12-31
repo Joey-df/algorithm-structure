@@ -2,16 +2,15 @@ package leetcode_top_interview_and_top100liked_questions;
 
 
 /**
- * Given two binary strings a and b, return their sum as a binary string.
- * <p>
- * Example 1:
- * <p>
- * Input: a = "11", b = "1"
- * Output: "100"
- * Example 2:
- * <p>
- * Input: a = "1010", b = "1011"
- * Output: "10101"
+ * 67. 二进制求和
+ * 给你两个二进制字符串，返回它们的和（用二进制表示）。
+ * 输入为 非空 字符串且只包含数字 1 和 0。
+ * 示例 1:
+ * 输入: a = "11", b = "1"
+ * 输出: "100"
+ * 示例 2:
+ * 输入: a = "1010", b = "1011"
+ * 输出: "10101"
  */
 //和leetcode2同类型的题
 public class Problem_0067_AddBinary {

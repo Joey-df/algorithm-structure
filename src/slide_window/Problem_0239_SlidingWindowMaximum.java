@@ -3,25 +3,22 @@ package slide_window;
 import java.util.LinkedList;
 
 /**
- * You are given an array of integers nums,
- * there is a sliding window of size k which is moving from the very left of the array to the very right.
- * You can only see the k numbers in the window. Each time the sliding window moves right by one position.
- * <p>
- * Return the max sliding window.
- * <p>
- * Example 1:
- * <p>
- * Input: nums = [1,3,-1,-3,5,3,6,7], k = 3
- * Output: [3,3,5,5,6,7]
- * Explanation:
- * Window position                Max
+ * 239. 滑动窗口最大值
+ * 给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。
+ * 你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
+ * 返回滑动窗口中的最大值。
+ * 示例 1：
+ * 输入：nums = [1,3,-1,-3,5,3,6,7], k = 3
+ * 输出：[3,3,5,5,6,7]
+ * 解释：
+ * 滑动窗口的位置                最大值
  * ---------------               -----
- * [1  3  -1] -3  5  3  6  7      3
- * 1 [3  -1  -3] 5  3  6  7       3
- * 1  3 [-1  -3  5] 3  6  7       5
- * 1  3  -1 [-3  5  3] 6  7       5
- * 1  3  -1  -3 [5  3  6] 7       6
- * 1  3  -1  -3  5 [3  6  7]      7
+ * [1  3  -1] -3  5  3  6  7       3
+ *  1 [3  -1  -3] 5  3  6  7       3
+ *  1  3 [-1  -3  5] 3  6  7       5
+ *  1  3  -1 [-3  5  3] 6  7       5
+ *  1  3  -1  -3 [5  3  6] 7       6
+ *  1  3  -1  -3  5 [3  6  7]      7
  * 窗口内最大值的更新结构：
  * 单调双端队列，从左往右依次从大到小，
  * R++时，元素从尾部进(如果尾部的元素 < 当前要进入的元素，则从尾部弹出)、

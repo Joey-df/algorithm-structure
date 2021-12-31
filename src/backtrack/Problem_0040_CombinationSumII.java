@@ -3,27 +3,23 @@ package backtrack;
 import java.util.*;
 
 /**
- * 40. Combination Sum II
- * Given a collection of candidate numbers (candidates) and a target number (target),
- * find all unique combinations in candidates where the candidate numbers sum to target.
+ * 40. 组合总和 II
+ * 给定一个数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。
+ * candidates 中的每个数字在每个组合中只能使用一次。
+ * 注意：解集不能包含重复的组合。
  *
- * Each number in candidates may only be used once in the combination.
- *
- * Note: The solution set must not contain duplicate combinations.
- *
- * Example 1:
- * Input: candidates = [10,1,2,7,6,1,5], target = 8
- * Output:
+ * 示例 1:
+ * 输入: candidates = [10,1,2,7,6,1,5], target = 8,
+ * 输出:
  * [
  * [1,1,6],
  * [1,2,5],
  * [1,7],
  * [2,6]
  * ]
- *
- * Example 2:
- * Input: candidates = [2,5,2,1,2], target = 5
- * Output:
+ * 示例 2:
+ * 输入: candidates = [2,5,2,1,2], target = 5,
+ * 输出:
  * [
  * [1,2,2],
  * [5]
@@ -49,7 +45,7 @@ public class Problem_0040_CombinationSumII {
             ans.add(new ArrayList<>(path));
         } else {
             //if (rest<0) return;//如果题目要求nums为正数数组，加上这句
-            Set<Integer> set = new HashSet<>();
+            Set<Integer> set = new HashSet<>(); //每个index位置一个set，用于在当前位置去重
             for (int i = index; i < nums.length; i++) {
                 if (!set.contains(nums[i])) {
                     set.add(nums[i]);

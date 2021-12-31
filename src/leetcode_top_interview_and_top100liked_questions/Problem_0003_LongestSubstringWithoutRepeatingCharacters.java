@@ -11,7 +11,7 @@ package leetcode_top_interview_and_top100liked_questions;
  * 链接：https://leetcode-cn.com/problems/longest-substring-without-repeating-characters
  */
 public class Problem_0003_LongestSubstringWithoutRepeatingCharacters {
-    public static int lengthOfLongestSubstring(String s) {
+    public static int lengthOfLongestSubstring1(String s) {
         if (s == null || "".equals(s) || s.length() == 0) {
             return 0;
         }
@@ -32,8 +32,8 @@ public class Problem_0003_LongestSubstringWithoutRepeatingCharacters {
         return ans;
     }
 
-    //最长无重复子串长度
-    public static int fun(String s) {
+    //方法二
+    public static int lengthOfLongestSubstring2(String s) {
         if (s == null || s.length() == 0) return 0;
         if (s.length() == 1) return 1;
         int[] map = new int[256];//表示每个位置的字符上次出现的位置
@@ -57,7 +57,7 @@ public class Problem_0003_LongestSubstringWithoutRepeatingCharacters {
     }
 
     public static void main(String[] args) {
-        System.out.println(fun("abcdab"));
-        System.out.println(lengthOfLongestSubstring("abcdab"));
+        System.out.println(lengthOfLongestSubstring1("abcdab"));
+        System.out.println(lengthOfLongestSubstring2("abcdab"));
     }
 }

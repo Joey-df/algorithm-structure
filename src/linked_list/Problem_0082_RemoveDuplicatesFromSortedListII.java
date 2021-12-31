@@ -4,12 +4,14 @@ import java.util.HashMap;
 
 /**
  * 82. 删除排序链表中的重复元素 II
- * 存在一个按升序排列的链表，给你这个链表的头节点 head ，请你删除链表中所有存在数字重复情况的节点，只保留原始链表中 没有重复出现 的数字。
- *
+ * 存在一个按升序排列的链表，给你这个链表的头节点 head，
+ * 请你删除链表中所有存在数字重复情况的节点，只保留原始链表中 没有重复出现 的数字。
+ * <p>
  * 返回同样按升序排列的结果链表。
  */
 public class Problem_0082_RemoveDuplicatesFromSortedListII {
 
+    //方法1：使用hashMap+迭代
     // [1,1,2,3,3,4,4,5]
     public ListNode deleteDuplicates(ListNode head) {
         if (head == null || head.next == null) return head;
@@ -35,4 +37,43 @@ public class Problem_0082_RemoveDuplicatesFromSortedListII {
     }
 
 
+    //方法2：使用递归
+    public ListNode deleteDuplicates2(ListNode head) {
+        if (head == null || head.next == null) return head;
+
+        if (head.val == head.next.val) {
+            while (head.next != null && head.val == head.next.val) {
+                head = head.next;
+            }
+            return deleteDuplicates2(head.next);
+        } else {
+            head.next = deleteDuplicates2(head.next);
+        }
+        return head;
+    }
+
+    //方法3：快慢指针
+    public ListNode deleteDuplicates3(ListNode head) {
+        // use two pointers,
+        // slow - track the node before the dup nodes,
+        // fast - to find the last node of dups.
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode slow = dummy;
+        ListNode fast = head;
+        while (fast != null) {
+            while (fast.next != null && fast.val == fast.next.val) {
+                fast = fast.next;    //while loop to find the last node of the dups.
+            }
+            if (slow.next != fast) { //duplicates detected.
+                slow.next = fast.next; //remove the dups.
+                fast = slow.next;     //reposition the fast pointer.
+            } else { //no dup, move down both pointer.
+                slow = slow.next;
+                fast = fast.next;
+            }
+
+        }
+        return dummy.next;
+    }
 }

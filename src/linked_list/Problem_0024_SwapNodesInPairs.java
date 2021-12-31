@@ -36,6 +36,15 @@ public class Problem_0024_SwapNodesInPairs {
         return second;
     }
 
+    public ListNode swapPairs3(ListNode head) {
+        if (head==null || head.next==null) return head;
+        ListNode second=head.next;
+        ListNode third=head.next.next;
+        second.next=head;
+        head.next=swapPairs3(third);
+        return second;
+    }
+
     //迭代方法
     public ListNode swapPairs2(ListNode head) {
         ListNode dummy = new ListNode(0);

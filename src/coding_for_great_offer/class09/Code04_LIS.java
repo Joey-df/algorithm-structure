@@ -10,7 +10,7 @@ package coding_for_great_offer.class09;
 public class Code04_LIS {
 
     //O(N*logN)
-    public static int lis(int[] arr) {
+    public static int lengthOfLIS(int[] arr) {
         if (arr == null || arr.length == 0) {
             return 0;
         }

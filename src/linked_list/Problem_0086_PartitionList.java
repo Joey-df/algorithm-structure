@@ -20,8 +20,43 @@ package linked_list;
  */
 public class Problem_0086_PartitionList {
 
-//    public ListNode partition(ListNode head, int x) {
-//
-//    }
+    //使用分段指针
+    public ListNode partition(ListNode head, int x) {
+        if (head == null || head.next == null) return head;
+        ListNode lessHead = null;
+        ListNode lessTail = null; // 小于x区的头尾
+        ListNode geHead = null;
+        ListNode geTail = null; // 大于等于x区的头尾
+        ListNode cur = head;
+        ListNode next = null; // save next node
+        while (cur != null) {
+            next = cur.next;
+            cur.next = null; // important
+            if (cur.val < x) {
+                if (lessHead == null) {
+                    lessHead = cur;
+                    lessTail = cur;
+                } else {
+                    lessTail.next = cur;
+                    lessTail = cur;
+                }
+            } else { //>=
+                if (geHead == null) {
+                    geHead = cur;
+                    geTail = cur;
+                } else {
+                    geTail.next = cur;
+                    geTail = cur;
+                }
+            }
+            cur = next;
+        }
+        if (lessHead == null) {
+            return geHead;
+        } else {
+            lessTail.next = geHead;
+            return lessHead;
+        }
+    }
 
 }

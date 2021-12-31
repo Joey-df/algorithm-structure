@@ -18,7 +18,7 @@ public class AllSubSequences {
         String str = "123";
         char[] arr = str.toCharArray();
         List<String> ans = new ArrayList<>();
-        process1(arr, 0, "", ans);
+        process1(arr, 0, new ArrayList<>(), ans);
         for (int i = 0; i < ans.size(); i++) {
             System.out.println(ans.get(i));
         }
@@ -39,16 +39,24 @@ public class AllSubSequences {
      * @param path [0,i-1]做决定形成的字符串存在path里
      * @param ans  专为收集答案
      */
-    public static void process1(char[] arr, int i, String path, List<String> ans) {
+    public static void process1(char[] arr, int i, ArrayList<Character> path, List<String> ans) {
         if (arr == null || arr.length == 0) return;
         //base case 收集答案的时机
         if (i == arr.length) {//表示[0,arr.length-1]已经做好决定了，此时path就是一种答案
-            ans.add(path);
+            StringBuilder sb = new StringBuilder();
+            for (char c: path) {
+                sb.append(c);
+            }
+            ans.add(sb.toString());
             return;
         }
         //i<arr.length
+        //不要i位置字符
         process1(arr, i + 1, path, ans);
-        process1(arr, i + 1, path + arr[i], ans);
+        //要i位置字符
+        path.add(arr[i]);
+        process1(arr, i + 1, path, ans);
+        path.remove(path.size()-1); //恢复现场
     }
 
     /**

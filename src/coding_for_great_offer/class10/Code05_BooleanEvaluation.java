@@ -1,7 +1,7 @@
 package coding_for_great_offer.class10;
 
 /**
- * <p>
+ * 布尔运算
  * 给定一个只由 0(假)、1(真)、&(逻辑与)、|(逻辑或)和^(异或)五种字符组成 的字符串express，再给定一个布尔值 desired。
  * 返回express能有多少种组合 方式，可以达到desired的结果。
  * 【举例】

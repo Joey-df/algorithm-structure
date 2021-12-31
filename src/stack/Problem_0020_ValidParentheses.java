@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Stack;
 
 /**
+ * 20. 有效的括号
  * Given a string s containing just the characters '(', ')', '{', '}', '[' and ']',
  * determine if the input string is valid.
  * <p>

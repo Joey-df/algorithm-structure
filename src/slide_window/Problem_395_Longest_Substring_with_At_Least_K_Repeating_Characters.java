@@ -1,26 +1,17 @@
 package slide_window;
 
 /**
- * Find the length of the longest substring T of a given string (consists of lowercase letters only) such that every character in T appears no less than k times.
- * <p>
- * Example 1:
- * <p>
- * Input:
- * s = "aaabb", k = 3
- * <p>
- * Output:
- * 3
- * <p>
- * The longest substring is "aaa", as 'a' is repeated 3 times.
- * Example 2:
- * <p>
- * Input:
- * s = "ababbc", k = 2
- * <p>
- * Output:
- * 5
- * <p>
- * The longest substring is "ababb", as 'a' is repeated 2 times and 'b' is repeated 3 times.
+ * 395. 至少有 K 个重复字符的最长子串
+ * 给你一个字符串 s 和一个整数 k ，请你找出 s 中的最长子串， 要求该子串中的每一字符出现次数都不少于 k 。
+ * 返回这一子串的长度。
+ * 示例 1：
+ * 输入：s = "aaabb", k = 3
+ * 输出：3
+ * 解释：最长子串为 "aaa" ，其中 'a' 重复了 3 次。
+ * 示例 2：
+ * 输入：s = "ababbc", k = 2
+ * 输出：5
+ * 解释：最长子串为 "ababb" ，其中 'a' 重复了 2 次， 'b' 重复了 3 次。
  */
 public class Problem_395_Longest_Substring_with_At_Least_K_Repeating_Characters {
 

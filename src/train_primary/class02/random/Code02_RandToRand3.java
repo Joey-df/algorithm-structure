@@ -15,8 +15,11 @@ public class Code02_RandToRand3 {
     public static int equalPReturn01() {
         int ans = 0;
         do {
-            ans = noEqualP();
-        } while (ans == noEqualP());
+            ans = noEqualP(); //第一次掷骰子
+        } while (ans == noEqualP()); //第二次掷骰子，如果个第一次一样，重做
+        // 什么时候会从do while出来：
+        // 两次ans 1 0 或者 0 1
+        // 必等概率返回0和1
         return ans;
     }
 

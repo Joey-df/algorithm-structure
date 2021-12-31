@@ -1,30 +1,19 @@
 package dynamic_programming.range;
 
 /**
- * Given a string, your task is to count how many palindromic substrings in this string.
- * 
- * The substrings with different start indexes or end indexes are counted as
- * different substrings even they consist of same characters.
- * 
- * Example 1:
- * 
- * Input: "abc"
- * Output: 3
- * Explanation: Three palindromic strings: "a", "b", "c".
- * 
- * 
- * Example 2:
- * 
- * Input: "aaa"
- * Output: 6
- * Explanation: Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
- * 
- * 
- * Note:
- * 
- * The input string length won't exceed 1000.
+ * 647. 回文子串
+ * 给你一个字符串 s ，请你统计并返回这个字符串中 回文子串 的数目。
+ * 具有不同开始位置或结束位置的子串，即使是由相同的字符组成，也会被视作不同的子串。
+ * 示例 1：
+ * 输入：s = "abc"
+ * 输出：3
+ * 解释：三个回文子串: "a", "b", "c"
+ * 示例 2：
+ * 输入：s = "aaa"
+ * 输出：6
+ * 解释：6个回文子串: "a", "a", "a", "aa", "aa", "aaa"
  */
-public class Problem_647_Palindromic_Substrings {
+public class Problem_0647_Palindromic_Substrings {
 
     public static int process(String s) {
         if ("".equals(s) || s.length() == 0) return 1;

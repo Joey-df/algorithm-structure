@@ -1,26 +1,19 @@
 package two_pointers;
 
 /**
- * 680. Valid Palindrome II
- * <p>
- * Given a string s, return true if the s can be palindrome after deleting at most one character from it.
- * <p>
- * Example 1:
- * Input: s = "aba"
- * Output: true
- * <p>
- * Example 2:
- * Input: s = "abca"
- * Output: true
- * Explanation: You could delete the character 'c'.
- * <p>
- * Example 3:
- * Input: s = "abc"
- * Output: false
- * <p>
- * Constraints:
- * 1 <= s.length <= 10^5
- * s consists of lowercase English letters.
+ * 680. 验证str最多删除一个字符能否变成回文串
+ * 给定一个非空字符串 s，最多删除一个字符。判断是否能成为回文字符串。
+ *
+ * 示例 1:
+ * 输入: s = "aba"
+ * 输出: true
+ * 示例 2:
+ * 输入: s = "abca"
+ * 输出: true
+ * 解释: 你可以删除c字符。
+ * 示例 3:
+ * 输入: s = "abc"
+ * 输出: false
  */
 public class Problem_0680_ValidPalindromeII {
 
@@ -29,14 +22,17 @@ public class Problem_0680_ValidPalindromeII {
         int l = 0, r = str.length - 1;
         while (l < r) {
             if (str[l] != str[r]) {
+                //如果str[l] != str[r]时，判断分别删掉str[l]、str[r]后是否为回文串
                 return isPalindrome(str, l + 1, r) || isPalindrome(str, l, r - 1);
             }
+            //str[l] == str[r]时，l++，r--
             l++;
             r--;
         }
         return true;
     }
 
+    //验证sc[l,r]范围上是否为回文串
     public static boolean isPalindrome(char[] sc, int l, int r) {
         while (l < r) {
             if (sc[l] != sc[r]) return false;

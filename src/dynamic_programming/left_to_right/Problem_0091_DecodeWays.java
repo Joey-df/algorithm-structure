@@ -65,12 +65,10 @@ public class Problem_0091_DecodeWays {
         return p1 + (p2 != -1 ? p2 : 0);
     }
 
+    //动态规划
     public int numDecodings2(String s) {
         if (s == null || s.length() == 0) return 0;
-        return dpWay(s.toCharArray());
-    }
-
-    public int dpWay(char[] str) {
+        char[] str = s.toCharArray();
         int n = str.length;
         int[] dp = new int[n + 1];
         dp[n] = 1;

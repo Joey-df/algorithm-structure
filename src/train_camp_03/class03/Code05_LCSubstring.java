@@ -10,7 +10,7 @@ package train_camp_03.class03;
 public class Code05_LCSubstring {
 
     //dp[i][i]的含义：
-    //str1[0,i]  str2[0,j]的最长公共子串有多长？
+    //最长公共子串必须 同时以str1[i]、str2[j]结尾 的 最大长度是多少。
     public static String lcSubstr(String s1, String s2) {
         if (s1.length() == 0 || s2.length() == 0) {
             return "";
@@ -43,6 +43,8 @@ public class Code05_LCSubstring {
         }
         return s1.substring(end - max + 1, end + 1);
     }
+
+
 
     public static void main(String[] args) {
         System.out.println(lcSubstr("12abc1234qwe", "12xyb1234789"));

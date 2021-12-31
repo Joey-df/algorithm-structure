@@ -15,7 +15,7 @@ import java.util.List;
  * 输出:
  * [2,3]
  */
-public class Problem_0442_FindAllDuplicatesInAnArray {
+public class    Problem_0442_FindAllDuplicatesInAnArray {
 
     //平凡解
     public List<Integer> findDuplicates(int[] nums) {

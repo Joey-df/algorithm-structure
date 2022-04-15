@@ -62,10 +62,10 @@ public class Code02_MaxSubBSTHead {
 
     // 每一棵子树
     public static class Info {
-        public Node maxSubBSTHead;
-        public int maxSubBSTSize;
-        public int min;
-        public int max;
+        public Node maxSubBSTHead; //最大BST的头节点
+        public int maxSubBSTSize; //最大BST大小(节点个数)
+        public int min; //整棵树的最小值
+        public int max; //整棵树的最大值
 
         public Info(Node h, int size, int mi, int ma) {
             maxSubBSTHead = h;

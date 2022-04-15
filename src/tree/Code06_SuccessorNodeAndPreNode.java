@@ -1,4 +1,4 @@
-package system_study.class11;
+package tree;
 
 /**
  * 二叉树结构如下定义：
@@ -24,7 +24,7 @@ package system_study.class11;
  * 前驱节点：若有左子树，当前节点左子树的最右节点（例如1节点的前驱节点为5）；若无左子树，则：当前节点是其父节点的右子树（5节点的前驱节点为2）；
  * 后继节点：若有右子树，当前节点右子树的最左节点（1节点的后继节点为6），若无右子树，则：当前节点为其父节点的左子树（6节点的后继节点为3）。
  */
-public class Code06_SuccessorNode {
+public class Code06_SuccessorNodeAndPreNode {
 
     public static class Node {
         public int value;

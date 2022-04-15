@@ -54,7 +54,7 @@ public class Code02_LargestComponentSizebyCommonFactor {
     }
 
     // O(1)
-    // m,n 要是正数，不能有任何一个等于0
+    // a,b 要是正数，不能有任何一个等于0
     public static int gcd(int a, int b) {
         return b == 0 ? a : gcd(b, a % b);
     }
@@ -98,7 +98,7 @@ public class Code02_LargestComponentSizebyCommonFactor {
             int f1 = find(i);
             int f2 = find(j);
             if (f1 != f2) {
-                int big = sizes[f1] >= sizes[f2] ? f1 : f1;
+                int big = sizes[f1] >= sizes[f2] ? f1 : f2;
                 int small = big == f1 ? f2 : f1;
                 parents[small] = big;
                 sizes[big] = sizes[f1] + sizes[f2];

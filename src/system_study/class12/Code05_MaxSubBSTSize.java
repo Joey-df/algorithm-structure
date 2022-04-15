@@ -62,10 +62,10 @@ public class Code05_MaxSubBSTSize {
 
 	// 任何子树
 	public static class Info {
-		public boolean isAllBST;
-		public int maxSubBSTSize;
-		public int min;
-		public int max;
+		public boolean isAllBST; //整体是否是BST
+		public int maxSubBSTSize; //最大BST的大小
+		public int min; //整棵树的最小值
+		public int max; //整棵树的最大值
 
 		public Info(boolean is, int size, int mi, int ma) {
 			isAllBST = is;

@@ -31,15 +31,13 @@ public class Problem_0099_RecoverBinarySearchTree {
                 cur = cur.left;
             } else {
                 TreeNode node = s.pop();
-                if (pre==null) { //第一个节点
-                    pre = node;
-                } else {
-                    if (pre.val > node.val) {
-                        if (first==null) first = pre; //只设置一次
-                        second = node; //注意这行每次都要设置
+                if (pre!=null && pre.val > node.val) {
+                    if (first==null) {
+                        first = pre; //只设置一次
                     }
-                    pre = node;
+                    second = node; //注意这行每次都要设置
                 }
+                pre = node;
                 cur = node.right;
             }
         }

@@ -30,11 +30,13 @@ package math;
  * 提示：
  * 1 <= num <= 10^8
  */
+// 结论：
+// 求一个正数N的所有因子，只需要从 1～根号N 范围上试，即可
 public class Problem_0507_PerfectNumber {
 
     public boolean checkPerfectNumber(int num) {
         if (num <= 1) return false;
-        int sum = 1;//1是一个因子
+        int sum = 1; // 1是一个因子
         int mid = (int) Math.sqrt(num);
         for (int x = 2; x <= mid; x++) {
             if (num % x == 0) {

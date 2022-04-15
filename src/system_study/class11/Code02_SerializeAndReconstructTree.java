@@ -46,7 +46,7 @@ public class Code02_SerializeAndReconstructTree {
         if (head == null) {
             ans.add(null);
         } else {
-            ans.add(String.valueOf(head.value));
+            ans.offer(String.valueOf(head.value));
             pres(head.left, ans);
             pres(head.right, ans);
         }

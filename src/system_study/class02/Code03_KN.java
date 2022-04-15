@@ -37,8 +37,8 @@ public class Code03_KN {
         for (int num : arr) {
             for (int i = 0; i < 32; i++) {
                 // 第二种写法：
-                //if (((num >> i) & 1) != 0) {
-                if ((num & (1 << i)) != 0) { //取出num第i位的状态是0还是1
+                if (((num >> i) & 1) == 1) {
+//                if ((num & (1 << i)) != 0) { //取出num第i位的状态是0还是1
                     count[i]++;
                 }
             }

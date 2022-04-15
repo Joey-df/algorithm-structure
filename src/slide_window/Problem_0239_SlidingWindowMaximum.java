@@ -49,7 +49,7 @@ public class Problem_0239_SlidingWindowMaximum {
             if (R - L == k - 1) { //先让窗口涨到k的长度
                 ans[index++] = nums[dq.peekFirst()];
                 if (dq.peekFirst() == L) dq.pollFirst();
-                L++;
+                L++; // 窗口形成之后，L才会和R同步往右动
             }
             R++;
         }

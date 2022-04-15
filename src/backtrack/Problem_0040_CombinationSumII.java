@@ -36,15 +36,15 @@ public class Problem_0040_CombinationSumII {
         return ans;
     }
 
-    //nums 固定参数
+    //nums 有序正数数组 固定参数
     //[0,index-1]已经做好决定了，所做决定形成的路径，存在path中
     //[index...]自由选择，凑出rest
     //ans 收集答案使用
     private static void process(int[] nums, int index, int rest, List<Integer> path, List<List<Integer>> ans) {
+        if (rest<0) return;
         if (rest==0){
             ans.add(new ArrayList<>(path));
         } else {
-            //if (rest<0) return;//如果题目要求nums为正数数组，加上这句
             Set<Integer> set = new HashSet<>(); //每个index位置一个set，用于在当前位置去重
             for (int i = index; i < nums.length; i++) {
                 if (!set.contains(nums[i])) {
@@ -59,7 +59,7 @@ public class Problem_0040_CombinationSumII {
 
 
     public static void main(String[] args) {
-        int[] nums = {10,1,-2,7,6,1,5,3};
+        int[] nums = {10,1,2,7,6,1,5};
         int target=8;
         System.out.println(combinationSum2(nums, target));
     }

@@ -10,13 +10,13 @@ import linked_list.ListNode;
 public class Problem_0141_LinkedListCycle {
 
     public boolean hasCycle(ListNode head) {
-        if (head==null || head.next==null || head.next.next==null) {
+        if (head==null || head.next==null) {
             return false;
         }
-        ListNode f = head.next.next;
         ListNode s = head.next;
+        ListNode f = head.next.next;
         while (s!=f) {
-            if(f.next==null || f.next.next==null) {
+            if(f==null || f.next==null) {
                 return false;
             }
             s = s.next;

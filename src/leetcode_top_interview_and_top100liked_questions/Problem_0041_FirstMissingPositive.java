@@ -36,22 +36,25 @@ public class Problem_0041_FirstMissingPositive {
         return ans;
     }
 
-    //初始L=0；R=越界位置
-    //表示：[0,L-1]已经放好了i+1的数
-    //R表示预期的是收集1~R的数
+    //时间复杂度：O(n)，
+    //额外空间复杂度：O(1)
+    //初始l=0；r=越界位置
+    //表示：[0,l-1]范围上每一个位置i上已经放好了i+1的数
+    //r表示预期的是收集1~r的数
     public static int firstMissingPositive2(int[] nums) {
-        int L = 0;
-        int R = nums.length;
-        while (L < R) { //L==R时停
-            if (nums[L] == L + 1) {
-                L++;
-            } else if (nums[L] < L || nums[L] > R || nums[nums[L] - 1] == nums[L]) {
-                swap(nums, L, --R);
+        int l = 0;
+        int r = nums.length;
+        while (l < r) { //l==r时停
+            if (nums[l] == l + 1) {
+                l++;
+            } else if (nums[l] <= l || nums[l] > r || nums[nums[l] - 1] == nums[l]) {
+                swap(nums, l, --r);
             } else {
-                swap(nums, L, nums[L] - 1); //把i放到i-1位置
+                swap(nums, l, nums[l] - 1); //把i放到i-1位置
             }
         }
-        return L + 1;
+        //[0,l-1]范围上每一个位置i上已经放好了i+1的数，即已经收集好[0,l]，所以返回l+1
+        return l + 1;
     }
 
     private static void swap(int[] arr, int i, int j) {

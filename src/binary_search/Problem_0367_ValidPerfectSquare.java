@@ -21,14 +21,30 @@ public class Problem_0367_ValidPerfectSquare {
         int r = num;
         while (l <= r) {
             int m = l + ((r - l) >> 1);
-            if (Math.pow(m, 2) > num) {
-                r = m-1;
-            } else if (Math.pow(m, 2) < num) {
-                l = m+1;
+            if (power(m, 2) > num) {
+                r = m - 1;
+            } else if (power(m, 2) < num) {
+                l = m + 1;
             } else {
                 return true;
             }
         }
         return false;
+    }
+
+    public static long power(int num, int power) {
+        long ans = 1;
+        long base = num;
+        for (; power != 0; power >>= 1) {
+            if ((power & 1) != 0) {
+                ans *= base;
+            }
+            base *= base;
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(power(3, 2));
     }
 }

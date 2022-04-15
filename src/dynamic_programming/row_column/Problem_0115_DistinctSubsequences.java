@@ -19,6 +19,7 @@ package dynamic_programming.row_column;
 //115. 不同的子序列
 //https://leetcode-cn.com/problems/distinct-subsequences/
 //train_camp_04.class02.Code04_DistinctSubsequences
+//coding_for_great_offer/class17/Code04_DistinctSubseq.java
 public class Problem_0115_DistinctSubsequences {
 
     //S = "rabbbit", T = "rabbit"
@@ -31,8 +32,9 @@ public class Problem_0115_DistinctSubsequences {
         int[][] dp = new int[n][m];
         //dp[i][j]含义
         //str1[0...i]，通过删除得到str2[0...j]的方法数
-        dp[0][0] = str1[0] == str2[0] ? 1 : 0;
+        dp[0][0] = str1[0] == str2[0] ? 1 : 0; //相等：一种方法（不删），不等：0种方法
         for (int i = 1; i < n; i++) { //第一列
+            //dp[i][0] = str1[0...i]范围上 str2[0]字符的个数
             dp[i][0] = dp[i - 1][0] + (str1[i] == str2[0] ? 1 : 0);
         }
         for (int j = 1; j < m; j++) {
@@ -40,8 +42,10 @@ public class Problem_0115_DistinctSubsequences {
         }
         for (int i = 1; i < n; i++) {
             for (int j = 1; j < m; j++) {
-                dp[i][j] = dp[i - 1][j]
-                        + (str1[i] == str2[j] ? dp[i - 1][j - 1] : 0);
+                dp[i][j] = dp[i - 1][j]; //不考虑str1[i]
+                if (str1[i] == str2[j]) { //保留str1[i]，有条件的：str1[i] == str2[j]
+                    dp[i][j] += dp[i - 1][j - 1];
+                }
             }
         }
         return dp[n - 1][m - 1];

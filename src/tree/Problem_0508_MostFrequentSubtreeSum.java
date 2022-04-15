@@ -31,19 +31,18 @@ import java.util.function.Function;
  * 提示： 假设任意子树元素和均可以用 32 位有符号整数表示。
  */
 public class Problem_0508_MostFrequentSubtreeSum {
-    //提交的时候去掉static，否则会有莫名其妙的问题
-    private static Map<Integer,Integer> map = new HashMap<>();
-    private static int maxCount=0; //出现最多的次数
+    private int maxCount=0; //出现最多的次数
 
-    public static int[] findFrequentTreeSum(TreeNode root) {
-        fun(root);
+    public int[] findFrequentTreeSum(TreeNode root) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        fun(root,map);
         List<Integer> list = new ArrayList<>();
         for (int key: map.keySet()) {
             if (map.get(key)==maxCount) {
                 list.add(key);
             }
         }
-        System.out.println(list);
+        //System.out.println(list);
         //List转整型数组
         return list.stream().mapToInt(a->a).toArray();
     }
@@ -51,10 +50,10 @@ public class Problem_0508_MostFrequentSubtreeSum {
     //递归含义
     //返回以x为头的数的子树和
     //map:用来收集每个节点的子树和 <子树和，出现的次数>
-    public static int fun(TreeNode x) {
+    public int fun(TreeNode x, HashMap<Integer, Integer> map) {
         if (x==null) return 0;
-        int l = fun(x.left);
-        int r = fun(x.right);
+        int l = fun(x.left,map);
+        int r = fun(x.right,map);
         int sum = l + r + x.val;
         map.put(sum, map.getOrDefault(sum,0)+1);
         maxCount = Math.max(maxCount, map.get(sum));
@@ -65,7 +64,7 @@ public class Problem_0508_MostFrequentSubtreeSum {
         TreeNode root = new TreeNode(5);
         root.left=new TreeNode(2);
         root.right=new TreeNode(-3);
-        findFrequentTreeSum(root);
+        new Problem_0508_MostFrequentSubtreeSum().findFrequentTreeSum(root);
     }
 
 }

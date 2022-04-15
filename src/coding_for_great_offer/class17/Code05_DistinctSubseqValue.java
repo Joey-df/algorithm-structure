@@ -6,6 +6,7 @@ import java.util.HashMap;
  * 给定一个字符串Str
  * 返回Str的所有子序列中有多少不同的字面值
  */
+// 不同字面值的子序列
 // 本题测试链接 : https://leetcode.com/problems/distinct-subsequences-ii/
 public class Code05_DistinctSubseqValue {
 

@@ -26,7 +26,7 @@ public class Problem_0034_FindFirstAndLastPositionOfElementInSortedArray {
     private static int findLeftBound(int[] nums, int target) {
         int l = 0;
         int r = nums.length - 1;
-        int ans = -1;
+        int ans = -1; // 题意要求，没找到返回-1
         while (l <= r) {
             int mid = l + ((r - l) >> 1);
             if (nums[mid] > target) {

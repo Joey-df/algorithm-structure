@@ -1,5 +1,6 @@
 package hash_map;
 
+import java.util.HashMap;
 import java.util.TreeMap;
 
 /**
@@ -30,7 +31,7 @@ public class Problem_0594_LongestHarmoniousSubsequence {
     //遍历map抓最大值
     public int findLHS(int[] nums) {
         //<nums[i], freq>
-        TreeMap<Integer, Integer> map = new TreeMap<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
         for (int num : nums) {
             map.put(num, map.getOrDefault(num, 0) + 1);
         }

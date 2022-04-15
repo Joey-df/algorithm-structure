@@ -33,6 +33,7 @@ public class Code04_DistinctSubsequences {
         }
         //第一列 s[0,i]经过删除变成t[0]
         for (int i = 1; i < s.length; i++) {
+            //dp[i][0] = s[0...i]范围上 t[0]字符的个数
             dp[i][0] = dp[i - 1][0] + (s[i] == t[0] ? 1 : 0);
         }
 

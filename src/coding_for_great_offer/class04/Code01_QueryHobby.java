@@ -44,31 +44,36 @@ public class Code01_QueryHobby {
     public static int findLeftBound(ArrayList<Integer> arr, int target) {
         int l = 0;
         int r = arr.size() - 1;
+        int ans = arr.size();
         while (l <= r) {
             int m = l + ((r - l) >> 1);
             if (arr.get(m) >= target) {
+                ans = m;
                 r = m - 1;
             } else {
                 l = m + 1;
             }
         }
-        //如果找到了，l就是>=target最左的位置，如果没找到，l会来到arr.length+1的位置
-        return l;
+        // 如果找到了，l就是>=target最左的位置；
+        // 如果没找到，l会来到 arr.length 的位置 (即越界位置)
+        return ans;
     }
 
     // 在有序数组arr中，找<=target最右的位置
     public static int findRightBound(ArrayList<Integer> arr, int target) {
         int l = 0;
         int r = arr.size() - 1;
+        int ans = -1;
         while (l <= r) {
             int m = l + ((r - l) >> 1);
             if (arr.get(m) <= target) {
+                ans = m;
                 l = m + 1;
             } else {
                 r = m - 1;
             }
         }
-        return r;//如果没找到，r会来到-1位置
+        return ans;//如果没找到，r会来到-1位置
     }
 
     public static class QueryBox1 {

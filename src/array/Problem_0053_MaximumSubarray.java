@@ -1,4 +1,4 @@
-package greedy;
+package array;
 
 /**
  * 53. 子数组最大累加和

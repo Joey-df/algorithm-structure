@@ -14,12 +14,12 @@ public class Problem_0153_FindMinimumInRotatedSortedArray {
 
     //O(N)
     public int findMin(int[] nums) {
-        if (nums==null || nums.length==0) {
+        if (nums == null || nums.length == 0) {
             return -1;
         }
         int idx = 0;
-        for(int i = 1; i < nums.length; i++) {
-            if(nums[i] < nums[i-1]){
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] < nums[i - 1]) {
                 idx = i;
                 break;
             }
@@ -40,9 +40,11 @@ public class Problem_0153_FindMinimumInRotatedSortedArray {
         int end = num.length - 1;
         while (start < end) {
             int mid = (start + end) / 2;
+            // 如果mid位置的值小于前一个位置，必定是答案（0～mid是升序）
             if (mid > 0 && num[mid] < num[mid - 1]) {
                 return num[mid];
             }
+            // 如果mid位置是制高点，答案一定在右边
             if (num[start] <= num[mid] && num[mid] > num[end]) {
                 start = mid + 1;
             } else {
@@ -50,5 +52,22 @@ public class Problem_0153_FindMinimumInRotatedSortedArray {
             }
         }
         return num[start];
+    }
+
+    public int findMin3(int[] nums) {
+        if (nums == null || nums.length == 0) {     //corner case
+            return -1;
+        }
+        int left = 0;
+        int right = nums.length - 1;
+        while (left < right) {   //leave the while loop when we have only one element
+            int mid = left + (right - left) / 2;
+            if (nums[mid] > nums[right]) {
+                left = mid + 1;   //skip the nums[mid] since it is not the candidate
+            } else {
+                right = mid;
+            }
+        }
+        return nums[left];   //return the only element left
     }
 }

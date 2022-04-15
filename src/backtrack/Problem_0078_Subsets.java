@@ -49,7 +49,7 @@ public class Problem_0078_Subsets {
         }
     }
 
-    public static List<List<Integer>> ways(int[] nums) {
+    public static List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
         LinkedList<Integer> path = new LinkedList<>();
         process(nums, 0, path, ans);
@@ -58,6 +58,6 @@ public class Problem_0078_Subsets {
 
     public static void main(String[] args) {
         int[] nums = {1, 2, 3};
-        System.out.println(ways(nums));
+        System.out.println(subsets(nums));
     }
 }

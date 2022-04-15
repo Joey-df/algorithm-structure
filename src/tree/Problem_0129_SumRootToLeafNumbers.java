@@ -46,7 +46,7 @@ public class Problem_0129_SumRootToLeafNumbers {
         if (root == null) return;
         //第一次到达 add
         path.add(root.val);
-        //遇到叶子节点就搜集答案
+        //遇到叶子节点就收集答案
         if (root.left == null && root.right == null) {
             int pathSum = 0;
             for (int num : path) { //4,8,9 ==> 489

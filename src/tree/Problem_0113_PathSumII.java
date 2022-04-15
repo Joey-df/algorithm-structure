@@ -21,8 +21,7 @@ public class Problem_0113_PathSumII {
         path.add(x.val); //第一次到达 add
         if (x.left==null && x.right==null) { //叶子节点收集答案
             int sum = 0;
-            int[] arr = path.stream().mapToInt(a -> a).toArray();
-            for (int value : arr) {
+            for (int value : path) {
                 sum += value;
             }
             if (sum == targetSum) ans.add(new ArrayList<>(path));

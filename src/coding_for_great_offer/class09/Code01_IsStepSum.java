@@ -20,7 +20,7 @@ public class Code01_IsStepSum {
                 //System.out.println(m);
                 return true;
             } else if (f(m) > num) {
-                r = m - 1;
+                r = m - 1; //左边找
             } else {
                 l = m + 1;
             }

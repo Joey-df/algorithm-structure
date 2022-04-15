@@ -23,11 +23,15 @@ import java.util.Queue;
  */
 public class Problem_0104_MaximumDepthOfBinaryTree {
 
+    //二叉树递归套路
     public static int maxDepth(TreeNode root) {
         if (root==null) return 0;
-        return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+        int l = maxDepth(root.left);
+        int r = maxDepth(root.right);
+        return Math.max(l,r) + 1;
     }
 
+    //层序遍历解法
     public static int maxDepth2(TreeNode root) {
         if (root == null) return 0;
         Queue<TreeNode> q = new LinkedList<>();
@@ -35,7 +39,7 @@ public class Problem_0104_MaximumDepthOfBinaryTree {
         int height = 0;
         while (!q.isEmpty()) {
             int size = q.size();
-            height++;
+            height++; // 只要发现新层就+1
             for (int i = 0; i < size; i++) {
                 TreeNode cur = q.poll();
                 if (cur.left!=null) q.offer(cur.left);

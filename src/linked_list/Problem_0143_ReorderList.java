@@ -23,28 +23,11 @@ import java.util.List;
 public class Problem_0143_ReorderList {
 
     public static void reorderList(ListNode head) {
-        HashMap<Integer, ListNode> map = new HashMap<>();
-        for (int i = 1; head != null; head = head.next, i++) {
-            map.put(i, head);
-        }
-        ListNode dummy = new ListNode(-1);
-        ListNode cur = dummy;
-        for (int i = 1, j = map.size(); i <= j; i++, j--) {   //1,2,3,4
-            cur.next = map.get(i);                     //cur->1
-            if (i != j) {
-                map.get(i).next = map.get(j);           //1->4
-            }
-            map.get(j).next = null;                     //4->null
-            cur = map.get(j);                          ///cur = 4,then 1->4
-        }
-    }
-
-
-    public static void reorderList2(ListNode head) {
         List<ListNode> nodes = new ArrayList<>();
         for (ListNode cur = head; cur != null; cur = cur.next) {
-            nodes.add(cur);
+            nodes.add(cur); // 把每个node的内存地址放到list中
         }
+        // 下面使用双指针重连
         int l = 0;
         int r = nodes.size() - 1;
         ListNode dummy = new ListNode(-1);
@@ -60,7 +43,7 @@ public class Problem_0143_ReorderList {
 
     //O(N^2)的方法
     //递归含义：reorder以head为头的链表,返回新的头节点
-    private static ListNode reorderList3(ListNode head) {
+    private static ListNode reorderList2(ListNode head) {
         if (head == null || head.next == null || head.next.next == null) return head;
         //至少有三个节点
         ListNode cur = head;
@@ -76,7 +59,7 @@ public class Problem_0143_ReorderList {
         preTail.next = null;
         ListNode newHead = head.next;
         head.next = tail;
-        tail.next = reorderList3(newHead);
+        tail.next = reorderList2(newHead);
         return head;
     }
 
@@ -87,6 +70,6 @@ public class Problem_0143_ReorderList {
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
 
-        reorderList3(head);
+        reorderList2(head);
     }
 }

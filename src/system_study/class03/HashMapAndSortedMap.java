@@ -100,6 +100,10 @@ public class HashMapAndSortedMap {
         treeMap.put(7, "我是7");
         treeMap.put(1, "我是1");
         treeMap.put(2, "我是2");
+        //TreeMap是按照key按照字典序升序组织的
+        for (int k : treeMap.keySet()) {
+            System.out.println(k + "\t" + treeMap.get(k));
+        }
 
         System.out.println(treeMap.containsKey(1));
         System.out.println(treeMap.containsKey(10));

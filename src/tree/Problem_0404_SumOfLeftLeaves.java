@@ -20,22 +20,26 @@ import java.util.Queue;
 public class Problem_0404_SumOfLeftLeaves {
 
     public int sumOfLeftLeaves(TreeNode root) {
-        if (root==null) return 0;
-        if (root.left==null && root.right==null) return 0;
+        if (root == null) return 0;
+        if (root.left == null && root.right == null) return 0;
         Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
         int ans = 0;
+        TreeNode l = null;
+        TreeNode r = null;
         while (!q.isEmpty()) {
             int size = q.size();
             for (int i = 0; i < size; i++) {
                 TreeNode cur = q.poll();
-                if (cur.left!=null) {
-                    q.offer(cur.left);
-                    if (cur.left.left==null && cur.left.right==null) {
-                        ans += cur.left.val;
+                l = cur.left;
+                r = cur.right;
+                if (l != null) {
+                    q.offer(l);
+                    if (l.left == null && l.right == null) { // 叶子节点
+                        ans += l.val;
                     }
                 }
-                if (cur.right!=null) q.offer(cur.right);
+                if (r != null) q.offer(r);
             }
         }
         return ans;

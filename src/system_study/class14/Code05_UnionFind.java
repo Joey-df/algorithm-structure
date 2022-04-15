@@ -37,7 +37,9 @@ public class Code05_UnionFind {
 
     public static class UnionFind<V> {
         public HashMap<V, Node<V>> nodes;
+        // 存放每个节点与父亲节点的对应关系
         public HashMap<Node<V>, Node<V>> parents;
+        // sizeMap中，只有代表节点，才有记录，key为代表节点
         public HashMap<Node<V>, Integer> sizeMap;
 
         public UnionFind(List<V> values) {

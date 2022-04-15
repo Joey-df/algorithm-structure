@@ -16,7 +16,7 @@ package backtrack;
  * 输出：-1
  *
  * 提示：
- * 1 <= n <= 231 - 1
+ * 1 <= n <= 2^31 - 1
  */
 public class Problem_0556_NextGreaterElementIII {
 

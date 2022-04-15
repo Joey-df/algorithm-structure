@@ -1,9 +1,8 @@
 package math;
 
 /**
- * Given a non-negative integer c, decide whether there're two integers a and b such that a2 + b2 = c.
- *
- *
+ * Given a non-negative integer c,
+ * decide whether there're two integers a and b such that a^2 + b^2 = c.
  *
  * Example 1:
  *
@@ -42,7 +41,8 @@ public class Problem_0633_SumOfSquareNumbers {
         int left = 0;
         int right = (int) Math.sqrt(n);
         while (left <= right) {
-            int a = (int) Math.pow(left, 2), b = (int) Math.pow(right, 2);
+            int a = (int) Math.pow(left, 2);
+            int b = (int) Math.pow(right, 2);
             if (a + b == n) return true;
             if (a + b < n) {
                 left++;

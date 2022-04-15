@@ -1,6 +1,4 @@
-package leetcode_top_interview_and_top100liked_questions;
-
-import linked_list.ListNode;
+package linked_list;
 
 /**
  * 148. 排序链表

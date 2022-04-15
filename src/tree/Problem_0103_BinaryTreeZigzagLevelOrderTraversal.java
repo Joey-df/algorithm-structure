@@ -29,21 +29,21 @@ public class Problem_0103_BinaryTreeZigzagLevelOrderTraversal {
             return ans;
         }
         LinkedList<TreeNode> q=new LinkedList<>();
-        q.addFirst(root);
+        q.offer(root); // addLast或者addFirst，这里无所谓
         boolean leftToRight=true;
         while (!q.isEmpty()) {
             List<Integer> sub = new ArrayList<>();
             int size = q.size();
             for (int i=0; i<size; i++) {
                 if (leftToRight) {
-                    TreeNode node = q.poll();
+                    TreeNode node = q.pollFirst();
                     sub.add(node.val);
                     if (node.left!=null) q.addLast(node.left);
                     if (node.right!=null) q.addLast(node.right);
                 } else {
                     TreeNode node = q.pollLast();
                     sub.add(node.val);
-                    if (node.right!=null) q.addFirst(node.right);
+                    if (node.right!=null) q.addFirst(node.right); //注意这里是，先右后左
                     if (node.left!=null) q.addFirst(node.left);
                 }
             }

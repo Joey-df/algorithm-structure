@@ -24,13 +24,15 @@ public class Code01_FriendCircles {
         return unionFind.sets();
     }
 
+    // 内部使用数组实现
+    // 相比于hash表的实现，常数时间小
     public static class UnionFind {
         // parent[i] = k ： i的父亲是k
         private int[] parent;
         // size[i] = k ： 如果i是代表节点，size[i]才有意义，否则无意义
         // i所在的集合大小是多少
         private int[] size;
-        // 辅助结构
+        // 辅助结构（栈）
         private int[] help;
         // 一共有多少个集合
         private int sets;
@@ -47,7 +49,7 @@ public class Code01_FriendCircles {
         }
 
         // 从i开始一直往上，往上到不能再往上，代表节点，返回
-        // 这个过程要做路径压缩
+        // 这个过程要做路径压缩（扁平化）
         private int find(int i) {
             int hi = 0;
             while (i != parent[i]) {

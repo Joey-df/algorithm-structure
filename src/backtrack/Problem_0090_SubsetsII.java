@@ -3,7 +3,7 @@ package backtrack;
 import java.util.*;
 
 /**
- * 90. 子集 II
+ * 90. 数组的所有子集(子序列)【有重复值】
  * 给你一个整数数组 nums ，其中可能包含重复元素，请你返回该数组所有可能的子集（幂集）。
  * 解集 不能 包含重复的子集。返回的解集中，子集可以按 任意顺序 排列。
  *
@@ -22,13 +22,8 @@ public class Problem_0090_SubsetsII {
     public static void process(int[] nums, int index, List<Integer> path, List<List<Integer>> ans, Set<String> set) {
         int N = nums.length;
         if (index == N) {
-            int[] sub = new int[path.size()];
-            for (int i = 0; i < path.size(); i++) {
-                sub[i] = path.get(i);
-            }
-            Arrays.sort(sub);
             StringBuilder sb = new StringBuilder();
-            for (int n : sub) {
+            for (int n : path) {
                 sb.append(n);
             }
             if (!set.contains(sb.toString())) {
@@ -47,6 +42,7 @@ public class Problem_0090_SubsetsII {
 
 
     public static List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums); //题目要求是幂集，起始就是先排序的再求所有子序列的意思
         List<List<Integer>> ans = new ArrayList<>();
         List<Integer> path = new ArrayList<>();
         Set<String> set = new HashSet<>();
@@ -55,7 +51,7 @@ public class Problem_0090_SubsetsII {
     }
 
     public static void main(String[] args) {
-        int[] nums = {1,2,2};
+        int[] nums = {4,4,4,1,4};
         System.out.println(subsetsWithDup(nums));
     }
 }

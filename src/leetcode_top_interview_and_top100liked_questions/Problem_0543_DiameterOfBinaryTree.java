@@ -3,7 +3,7 @@ package leetcode_top_interview_and_top100liked_questions;
 import tree.TreeNode;
 
 /**
- * 543. 二叉树的直径
+ * 543. 二叉树节点间的最长路径（最大距离）
  * 给定一棵二叉树，你需要计算它的直径长度。
  * 一棵二叉树的直径长度是任意两个结点路径长度中的最大值。
  * 这条路径可能穿过也可能不穿过根结点。

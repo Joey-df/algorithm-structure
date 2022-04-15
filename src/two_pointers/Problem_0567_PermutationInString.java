@@ -56,7 +56,43 @@ public class Problem_0567_PermutationInString {
             }
             map[str2[start] - 'a']++;
         }
-        return false;
+        return all == 0;
     }
 
+
+    public boolean checkInclusion2(String s1, String s2) {
+        if (s1.length() > s2.length()) return false;
+        char[] str1 = s1.toCharArray();
+        char[] str2 = s2.toCharArray();
+        int n = str1.length;
+        int m = str2.length;
+        int all = n;//总欠帐数量
+        int[] map = new int[26]; //欠帐表
+        for (char c : str1) map[c - 'a']++;
+        //在str2中，先让窗口成长到n的长度
+        for (int end = 0; end < n; end++) {
+            if (map[str2[end] - 'a'] > 0) {
+                all--; //还款
+            }
+            map[str2[end] - 'a']--;
+        }
+
+        //枚举每个i位置开始的窗口（窗口大小固定为n）
+        for (int start = 0, end = n; end < m; start++, end++) {
+            //每个位置开始的窗口，都判断一次
+            if (all == 0) return true;
+            //右边进一个
+            if (map[str2[end] - 'a'] > 0) {
+                all--;
+            }
+            map[str2[end] - 'a']--;
+
+            //左边出一个
+            if (map[str2[start] - 'a'] >= 0) {
+                all++; //重新欠账
+            }
+            map[str2[start] - 'a']++;
+        }
+        return all == 0;
+    }
 }

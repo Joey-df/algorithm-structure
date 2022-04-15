@@ -24,15 +24,15 @@ package greedy;
 public class Problem_0121_BestTimeToBuyAndSellStock {
 
     public int maxProfit(int[] prices) {
-        if (prices==null || prices.length==0) {
+        if (prices==null || prices.length<2) {
             return 0;
         }
-        int min = prices[0]; // 当前位置之前找到的最小值
+        int preMin = prices[0]; // 当前i位置之前找到的最小值
         int n = prices.length;
         int ans = 0;
         for (int i = 1; i < n; i++) {
-            ans = Math.max(ans, prices[i]-min);
-            min = Math.min(min, prices[i]);
+            ans = Math.max(ans, prices[i]-preMin);
+            preMin = Math.min(preMin, prices[i]);
         }
         return ans;
     }

@@ -23,7 +23,7 @@ public class FindValleyElement {
         }
         int L = 1, R = N - 2;
         while (L < R) { //L==R退出
-            int mid = L + ((R - L) >> 2);
+            int mid = L + ((R - L) >> 1);
             if (arr[mid] < arr[mid + 1] && arr[mid] < arr[mid - 1]) {
                 return mid;
             } else if (arr[mid] > arr[mid - 1]) {

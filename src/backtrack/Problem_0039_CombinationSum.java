@@ -35,9 +35,9 @@ import java.util.List;
 public class Problem_0039_CombinationSum {
 
     public static List<List<Integer>> combinationSum(int[] nums, int target) {
-        List<List<Integer>> list = new ArrayList<>();
-        backtrack(list, new ArrayList<>(), nums, target, 0);
-        return list;
+        List<List<Integer>> ans = new ArrayList<>();
+        backtrack(ans, new ArrayList<>(), nums, target, 0);
+        return ans;
     }
 
     //nums 固定输入数组 正数数组
@@ -51,6 +51,7 @@ public class Problem_0039_CombinationSum {
         } else if (rest == 0) { //还有0需要拼凑，说明之前所做的决定 path中是一个合法的决定 收集答案
             ans.add(new ArrayList<>(path));
         } else { //rest > 0 还有数需要拼凑
+            // [index...]每个位置都试
             for (int i = index; i < nums.length; i++) {
                 path.add(nums[i]);
                 backtrack(ans, path, nums, rest - nums[i], i); // not i + 1 because we can reuse same elements
@@ -60,7 +61,7 @@ public class Problem_0039_CombinationSum {
     }
 
     public static void main(String[] args) {
-        int[] nums={1,2,3};
-        System.out.println(combinationSum(nums, 4));
+        int[] nums={2,3,6,7};
+        System.out.println(combinationSum(nums, 7));
     }
 }

@@ -1,73 +1,65 @@
 package tree;
 
-import java.util.LinkedList;
 import java.util.Stack;
 
 /**
- * Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.
+ * 230. 二叉搜索树中第K小的元素
+ * 给定一个二叉搜索树的根节点 root，和一个整数 k，
+ * 请你设计一个算法查找其中第 k 个最小元素（从 1 开始计数）。
  *
- * Example 1:
- *
- * Input: root = [3,1,4,null,2], k = 1
- *    3
- *   / \
- *  1   4
- *   \
- *    2
- * Output: 1
- * Example 2:
- *
- * Input: root = [5,3,6,2,4,null,null,1], k = 3
- *        5
- *       / \
- *      3   6
- *     / \
- *    2   4
- *   /
- *  1
- * Output: 3
- * Follow up:
- * What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? How would you optimize the kthSmallest routine?
- *
- * Constraints:
- *
- * The number of elements of the BST is between 1 to 10^4.
- * You may assume k is always valid, 1 ≤ k ≤ BST's total elements.
+ * 树中的节点数为 n 。
+ * 1 <= k <= n <= 10^4
+ * 0 <= Node.val <= 10^4
  */
 public class Problem_0230_KthSmallestElementInABST {
-    //中序遍历的结果，数到第k个返回
+
+    int count = 0;
+    TreeNode ans = null;
+    // 方法1：使用递归中序遍历
+    // 数到第k个，收集答案
     public int kthSmallest(TreeNode root, int k) {
-        LinkedList<Integer> q = new LinkedList<>();
-        inOrder(root, q);
-        return q.get(k-1); //第k个下标是k-1
+        inOrder(root, k);
+        return ans.val;
     }
 
 
-    private void inOrder(TreeNode root, LinkedList<Integer> ans) {
-        if (root==null) {
+    private void inOrder(TreeNode root, int k) {
+        if (root == null) {
             return;
         }
-        inOrder(root.left, ans);
-        ans.addLast(root.val);
-        inOrder(root.right, ans);
+        inOrder(root.left, k);
+        if (++count==k) {
+            ans = root;
+        }
+        inOrder(root.right, k);
     }
 
-    //迭代版本的中序遍历
-    private void in(TreeNode root, LinkedList<Integer> ans) {
-        if (root==null) {
-            return;
-        }
+
+    // 方法2
+    // 使用迭代版本的中序遍历
+    // 数到第k个，直接返回
+    public static int kthSmallest2(TreeNode root, int k) {
+        TreeNode node = in(root, k);
+        return node.val;
+    }
+
+    private static TreeNode in(TreeNode root, int k) {
+        TreeNode res = null;
         Stack<TreeNode> stack = new Stack<>();
         TreeNode cur = root;
-        while(!stack.isEmpty() || cur != null) {
+        while (cur != null || !stack.isEmpty()) {
             if (cur != null) {
                 stack.push(cur);
                 cur = cur.left;
             } else {
                 TreeNode node = stack.pop();
-                ans.addLast(node.val);
+                if (--k == 0) {
+                    res = node;
+                    break;
+                }
                 cur = node.right;
             }
         }
+        return res;
     }
 }

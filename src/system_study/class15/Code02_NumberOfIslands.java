@@ -178,7 +178,7 @@ public class Code02_NumberOfIslands {
         private int[] parent;
         private int[] size;
         private int[] help;
-        private int col;
+        private int col; // 列数
         private int sets;
 
         public UnionFind2(char[][] board) {
@@ -206,7 +206,7 @@ public class Code02_NumberOfIslands {
             return r * col + c;
         }
 
-        // 原始位置 -> 下标
+        // 原始位置 -> 下标（i是转换后的下标）
         private int find(int i) {
             int hi = 0;
             while (i != parent[i]) {

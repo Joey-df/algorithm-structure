@@ -1,7 +1,5 @@
 package system_study.class01;
 
-import system_study.util.ArrayUtil;
-
 import java.util.Arrays;
 
 //选择排序
@@ -9,7 +7,7 @@ import java.util.Arrays;
 //arr[0～N-1]范围上，找到最小值所在的位置，然后把最小值交换到0位置。
 //arr[1～N-1]范围上，找到最小值所在的位置，然后把最小值交换到1位置。
 //arr[2～N-1]范围上，找到最小值所在的位置，然后把最小值交换到2位置。
-//…
+//...
 //arr[N-1～N-1]范围上，找到最小值位置，然后把最小值交换到N-1位置。
 //
 //估算：
@@ -31,13 +29,74 @@ public class Code01_SelectionSort {
             for (int j = i + 1; j < arr.length; j++) { // i ~ N-1 上找最小值的下标
                 minIndex = arr[j] < arr[minIndex] ? j : minIndex;
             }
-            ArrayUtil.swap(arr, i, minIndex);
+            swap(arr, i, minIndex);
         }
+    }
+
+    public static void swap(int[] arr, int i, int j) {
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
     }
 
     // for test
     public static void comparator(int[] arr) {
         Arrays.sort(arr);
+    }
+
+    // for test
+    public static int[] generateRandomArray(int maxSize, int maxValue) {
+        // Math.random()   [0,1)
+        // Math.random() * N  [0,N)
+        // (int)(Math.random() * N)  [0, N-1]
+        int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
+        for (int i = 0; i < arr.length; i++) {
+            // [-? , +?]
+            arr[i] = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
+        }
+        return arr;
+    }
+
+    // for test
+    public static int[] copyArray(int[] arr) {
+        if (arr == null) {
+            return null;
+        }
+        int[] res = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            res[i] = arr[i];
+        }
+        return res;
+    }
+
+    // for test
+    public static boolean isEqual(int[] arr1, int[] arr2) {
+        if ((arr1 == null && arr2 != null) || (arr1 != null && arr2 == null)) {
+            return false;
+        }
+        if (arr1 == null && arr2 == null) {
+            return true;
+        }
+        if (arr1.length != arr2.length) {
+            return false;
+        }
+        for (int i = 0; i < arr1.length; i++) {
+            if (arr1[i] != arr2[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // for test
+    public static void printArray(int[] arr) {
+        if (arr == null) {
+            return;
+        }
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
     }
 
     // for test
@@ -47,22 +106,23 @@ public class Code01_SelectionSort {
         int maxValue = 100;
         boolean succeed = true;
         for (int i = 0; i < testTime; i++) {
-            int[] arr1 = ArrayUtil.generateRandomArray(maxSize, maxValue);
-            int[] arr2 = ArrayUtil.copyArray(arr1);
+            int[] arr1 = generateRandomArray(maxSize, maxValue);
+            int[] arr2 = copyArray(arr1);
             selectionSort(arr1);
             comparator(arr2);
-            if (!ArrayUtil.isEqual(arr1, arr2)) {
+            if (!isEqual(arr1, arr2)) {
                 succeed = false;
-                ArrayUtil.printArray(arr1);
-                ArrayUtil.printArray(arr2);
+                printArray(arr1);
+                printArray(arr2);
                 break;
             }
         }
         System.out.println(succeed ? "Nice!" : "Fucking fucked!");
 
-        int[] arr = ArrayUtil.generateRandomArray(maxSize, maxValue);
-        ArrayUtil.printArray(arr);
+        int[] arr = generateRandomArray(maxSize, maxValue);
+        printArray(arr);
         selectionSort(arr);
-        ArrayUtil.printArray(arr);
+        printArray(arr);
     }
+
 }

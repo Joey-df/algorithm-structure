@@ -15,6 +15,8 @@ public class Problem_0108_ConvertSortedArrayToBinarySearchTree {
         return build(nums, 0, nums.length-1);
     }
 
+    //递归含义
+    //arr[l,r]范围上,构造出高度平衡的BST，返回头节点
     private static TreeNode build(int[] arr, int l, int r) {
         if (l>r) return null;
         int m = l+ ((r-l) >>1);

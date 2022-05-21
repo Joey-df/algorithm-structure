@@ -19,7 +19,7 @@ public class Problem_0062_UniquePaths {
 			o1 /= gcd;
 			o2 /= gcd;
 		}
-		return (int) o1;
+		return (int) (o1 / o2);
 	}
 
 	// 调用的时候，请保证初次调用时，m和n都不为0

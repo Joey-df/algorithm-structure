@@ -28,6 +28,7 @@ public class Code04_DifferentBTNum {
 		return dp[N];
 	}
 
+	// c(2N, N) / (N + 1)
 	public static long num2(int N) {
 		if (N < 0) {
 			return 0;
@@ -35,16 +36,16 @@ public class Code04_DifferentBTNum {
 		if (N < 2) {
 			return 1;
 		}
-		long a = 1;
-		long b = 1;
-		for (int i = 1, j = N + 1; i <= N; i++, j++) {
-			a *= i;
-			b *= j;
-			long gcd = gcd(a, b);
-			a /= gcd;
-			b /= gcd;
+		long x = 1; // 分子
+		long y = 1; // 分母
+		for (int i = N + 1, j = 1; i <= (N << 1); j++, i++) {
+            x *= i;
+            y *= j;
+			long gcd = gcd(x, y);
+            x /= gcd;
+            y /= gcd;
 		}
-		return (b / a) / (N + 1);
+		return (x / y) / (N + 1);
 	}
 
 	public static long gcd(long m, long n) {

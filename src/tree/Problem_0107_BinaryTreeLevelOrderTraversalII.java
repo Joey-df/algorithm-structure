@@ -25,7 +25,30 @@ import java.util.*;
  */
 public class Problem_0107_BinaryTreeLevelOrderTraversalII {
 
+    //方法1：使用LinkedList + 头插法
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        List<List<Integer>> ans = new LinkedList<>();
+        if (root == null) {
+            return ans;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            List<Integer> level = new ArrayList<>();
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                level.add(node.val);
+                if (node.left != null) queue.offer(node.left);
+                if (node.right != null) queue.offer(node.right);
+            }
+            ans.add(0, level);
+        }
+        return ans;
+    }
+
+    // 方法2：ArrayList+反转
+    public List<List<Integer>> levelOrderBottom2(TreeNode root) {
         List<List<Integer>> ans = new ArrayList<>();
         if (root==null) return ans;
         Queue<TreeNode> q = new LinkedList<>();

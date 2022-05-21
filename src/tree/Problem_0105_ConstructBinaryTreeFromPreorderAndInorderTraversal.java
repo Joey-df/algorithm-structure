@@ -23,7 +23,10 @@ import java.util.HashMap;
  */
 public class Problem_0105_ConstructBinaryTreeFromPreorderAndInorderTraversal {
 
+    // 先序：根 左 右
+    // 中序：左 根 右
     public static TreeNode buildTree(int[] preorder, int[] inorder) {
+        //<in_val，对应数组中的index>
         HashMap<Integer, Integer> map = new HashMap<>();
         for (int i=0;i<inorder.length;i++) {
             map.put(inorder[i], i);
@@ -38,10 +41,10 @@ public class Problem_0105_ConstructBinaryTreeFromPreorderAndInorderTraversal {
     private static TreeNode build(int[] pre, int l1, int r1, int[] in, int l2, int r2, HashMap<Integer,Integer> map) {
         if (l1>r1 && l2>r2) return null; //注意是&&的关系
         TreeNode root = new TreeNode(pre[l1]);
-        int pos = map.get(pre[l1]);
-        int leftLen = pos-l2;
-        root.left = build(pre, l1+1, l1+leftLen, in, l2, pos-1, map);
-        root.right = build(pre, l1+leftLen+1, r1, in, pos+1, r2, map);
+        int rootPos = map.get(pre[l1]);
+        int leftLen = rootPos-l2; //左子树节点数量
+        root.left = build(pre, l1+1, l1+leftLen, in, l2, rootPos-1, map);
+        root.right = build(pre, l1+leftLen+1, r1, in, rootPos+1, r2, map);
         return root;
     }
 }

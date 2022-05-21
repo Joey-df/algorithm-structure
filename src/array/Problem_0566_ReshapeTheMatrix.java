@@ -26,4 +26,10 @@ public class Problem_0566_ReshapeTheMatrix {
         return ans;
     }
 
+    // 矩阵大小：N行 M列
+    // 返回，(row, col)这个坐标，转换为一维数组的坐标
+    public int index(int row, int col, int N, int M) {
+        return row * M + col;
+    }
+
 }

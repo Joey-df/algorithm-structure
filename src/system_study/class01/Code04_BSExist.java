@@ -1,7 +1,5 @@
 package system_study.class01;
 
-import system_study.util.ArrayUtil;
-
 import java.util.Arrays;
 
 //在一个有序数组中，找某个数是否存在
@@ -28,7 +26,7 @@ public class Code04_BSExist {
         return sortedArr[L] == num;
     }
 
-    // 暴力寻找
+    // for test
     public static boolean test(int[] sortedArr, int num) {
         for(int cur : sortedArr) {
             if(cur == num) {
@@ -39,13 +37,22 @@ public class Code04_BSExist {
     }
 
 
+    // for test
+    public static int[] generateRandomArray(int maxSize, int maxValue) {
+        int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
+        }
+        return arr;
+    }
+
     public static void main(String[] args) {
         int testTime = 500000;
         int maxSize = 10;
         int maxValue = 100;
         boolean succeed = true;
         for (int i = 0; i < testTime; i++) {
-            int[] arr = ArrayUtil.generateRandomArray(maxSize, maxValue);
+            int[] arr = generateRandomArray(maxSize, maxValue);
             Arrays.sort(arr);
             int value = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
             if (test(arr, value) != exist(arr, value)) {
@@ -55,4 +62,5 @@ public class Code04_BSExist {
         }
         System.out.println(succeed ? "Nice!" : "Fucking fucked!");
     }
+
 }

@@ -21,13 +21,13 @@ public class Code04_BricksFallingWhenHit {
 
     // 并查集
     public static class UnionFind {
-        private int N;
-        private int M;
+        private int N; // 行数
+        private int M; // 列数
         // 有多少块砖，连到了天花板上
         private int cellingAll;
         // 原始矩阵，因为炮弹的影响，1 -> 2
         private int[][] grid;
-        // cellingSet[i] = true; i 是头节点，所在的集合是天花板集合
+        // i 是头节点（代表节点）; cellingSet[i] = true, 代表i所在的集合是天花板集合
         private boolean[] cellingSet;
         private int[] fatherMap;
         private int[] sizeMap;
@@ -76,7 +76,7 @@ public class Code04_BricksFallingWhenHit {
 
         private int find(int row, int col) {
             int stackSize = 0;
-            int index = row * M + col;
+            int index = row * M + col; // 矩阵转一维数组，坐标变换
             while (index != fatherMap[index]) {
                 stack[stackSize++] = index;
                 index = fatherMap[index];

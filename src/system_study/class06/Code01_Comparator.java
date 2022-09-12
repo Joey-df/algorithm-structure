@@ -1,9 +1,6 @@
 package system_study.class06;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * 比较器

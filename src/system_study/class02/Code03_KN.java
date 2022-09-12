@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /**
- * 一个数组中有一种数出现K次，其他数都出现了N次，
- * N > 1,  K < N
+ * 一个数组中只有一种数出现K次，其他数都出现了N次，
+ * 1 <= K < N
  * 找到，出现了K次的数，
  * 要求，额外空间复杂度O(1)，时间复杂度O(N)
  */
@@ -38,12 +38,12 @@ public class Code03_KN {
             for (int i = 0; i < 32; i++) {
                 // 第二种写法：
                 if (((num >> i) & 1) == 1) {
-//                if ((num & (1 << i)) != 0) { //取出num第i位的状态是0还是1
+                // if ((num & (1 << i)) != 0) { //取出num第i位的状态是0还是1
                     count[i]++;
                 }
             }
         }
-        for (int i = 0; i < count.length; i++) {
+        for (int i = 0; i < 32; i++) {
             count[i] = (count[i] % n) / k;
         }
         int ans = 0;

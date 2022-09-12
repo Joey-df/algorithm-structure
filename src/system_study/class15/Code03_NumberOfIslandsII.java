@@ -84,7 +84,7 @@ public class Code03_NumberOfIslandsII {
 
         public int connect(int r, int c) {
             int index = index(r, c);
-            if (size[index] == 0) {
+            if (size[index] == 0) { // 等于0表示该位置之前没初始化过
                 parent[index] = index;
                 size[index] = 1;
                 sets++;

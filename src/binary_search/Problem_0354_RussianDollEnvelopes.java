@@ -45,15 +45,11 @@ public class Problem_0354_RussianDollEnvelopes {
             arr[i] = new Node(envelopes[i][0], envelopes[i][1]);
         }
 
-        Arrays.sort(arr, new Comparator<Node>() {
-            @Override
-            public int compare(Node o1, Node o2) {
-                //长度从小到大，长度相等的话，宽度从大到小
-                return o1.length != o2.length ?
-                        o1.length - o2.length :
-                        o2.width - o1.width;
-            }
-        });
+        Arrays.sort(arr, (Node o1, Node o2) ->
+                    //长度从小到大，长度相等的话，宽度从大到小
+                    o1.length != o2.length ?
+                    o1.length - o2.length :
+                    o2.width - o1.width);
         int[] dp = new int[N];
         int[] ends = new int[N];
         dp[0] = 1;

@@ -10,7 +10,8 @@ import java.util.Stack;
 //leetcode 115题 https://leetcode.com/problems/min-stack/
 public class Code05_GetMinStack {
 
-    public static class MinStack {
+    // 两个栈同步增长和减少
+    public static class MinStack1 {
 
         private Stack<Integer> normal;
         private Stack<Integer> min;
@@ -18,7 +19,7 @@ public class Code05_GetMinStack {
         /**
          * initialize your data structure here.
          */
-        public MinStack() {
+        public MinStack1() {
             normal = new Stack<>();
             min = new Stack<>();
         }
@@ -29,8 +30,49 @@ public class Code05_GetMinStack {
         }
 
         public void pop() {
-            normal.pop();
-            min.pop();
+            if (!normal.isEmpty()) {
+                normal.pop();
+                min.pop();
+            }
+        }
+
+        public int top() {
+            return normal.peek();
+        }
+
+        public int getMin() {
+            return min.peek();
+        }
+    }
+
+    // 最小栈额外空间节省的方法
+    public static class MinStack2 {
+
+        private Stack<Integer> normal;
+        private Stack<Integer> min;
+
+        /**
+         * initialize your data structure here.
+         */
+        public MinStack2() {
+            normal = new Stack<>();
+            min = new Stack<>();
+        }
+
+        public void push(int val) {
+            normal.push(val);
+            if (min.isEmpty() || val <= min.peek()) {
+                min.push(val);
+            }
+        }
+
+        public void pop() {
+            if (!normal.isEmpty()) {
+                int value = normal.pop();
+                if (value == min.peek()) {
+                    min.pop();
+                }
+            }
         }
 
         public int top() {

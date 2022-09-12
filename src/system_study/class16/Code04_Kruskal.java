@@ -9,6 +9,8 @@ import java.util.Set;
 import java.util.Stack;
 
 //undirected graph only
+//最小生成树算法
+//要求：无向图
 public class Code04_Kruskal {
 
     // Union-Find Set

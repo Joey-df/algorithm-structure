@@ -61,7 +61,8 @@ public class Code05_UnionFind {
                 path.push(cur);
                 cur = parents.get(cur);
             }
-            while (!path.isEmpty()) {
+            // 此时cur为代表节点
+            while (!path.isEmpty()) { // 扁平化操作
                 parents.put(path.pop(), cur);
             }
             return cur;
@@ -79,7 +80,7 @@ public class Code05_UnionFind {
                 int bSetSize = sizeMap.get(bHead);
                 Node<V> big = aSetSize >= bSetSize ? aHead : bHead;
                 Node<V> small = big == aHead ? bHead : aHead;
-                parents.put(small, big);
+                parents.put(small, big); // 小挂大
                 sizeMap.put(big, aSetSize + bSetSize);
                 sizeMap.remove(small);
             }

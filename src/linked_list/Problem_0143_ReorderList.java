@@ -41,27 +41,50 @@ public class Problem_0143_ReorderList {
         cur.next = null;  // eliminate the cycle
     }
 
-    //O(N^2)的方法
-    //递归含义：reorder以head为头的链表,返回新的头节点
-    private static ListNode reorderList2(ListNode head) {
-        if (head == null || head.next == null || head.next.next == null) return head;
-        //至少有三个节点
-        ListNode cur = head;
-        ListNode dummy = new ListNode(-1);
-        dummy.next = head;
-        ListNode preTail = dummy;
-        while (cur.next!=null) {
-            preTail = preTail.next;
-            cur = cur.next;
+
+    //最优解
+    public static void reorderList2(ListNode head) {
+        if (head == null || head.next == null || head.next.next == null) return;
+        //至少三个点
+        ListNode slow = head.next;
+        ListNode fast = head.next.next;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
-        //preTail: tail前一个节点
-        ListNode tail = preTail.next;
-        preTail.next = null;
-        ListNode newHead = head.next;
-        head.next = tail;
-        tail.next = reorderList2(newHead);
-        return head;
+        // slow来到中点位置（奇数时正好时中点，偶数长度时来到上中点）
+        ListNode newHead = slow.next; // 第二条小链表
+        slow.next = null;
+        newHead = reverse(newHead);
+        ListNode cur1 = head;
+        ListNode cur2 = newHead;
+        //合并两个链表
+        ListNode next1 = null, next2 = null;
+        while (cur1 != null && cur2 != null) {
+            next1 = cur1.next;
+            next2 = cur2.next;
+            cur1.next = cur2;
+            cur2.next = next1;
+            cur1 = next1;
+            cur2 = next2;
+        }
     }
+
+    public static ListNode reverse(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode pre = null;
+        ListNode next = null;
+        while (head != null) {
+            next = head.next;
+            head.next = pre;
+            pre = head;
+            head = next;
+        }
+        return pre;
+    }
+
 
     public static void main(String[] args) {
         ListNode head = new ListNode(1);

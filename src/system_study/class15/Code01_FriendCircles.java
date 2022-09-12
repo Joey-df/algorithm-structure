@@ -77,6 +77,7 @@ public class Code01_FriendCircles {
             }
         }
 
+        // 返回总共有多少个集合
         public int sets() {
             return sets;
         }

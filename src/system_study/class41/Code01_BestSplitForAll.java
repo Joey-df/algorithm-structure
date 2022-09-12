@@ -1,7 +1,14 @@
 package system_study.class41;
 
+//题目一
+//给定一个非负数组arr，长度为N，
+//那么有N-1种方案可以把arr切成左右两部分
+//每一种方案都有，min{左部分累加和，右部分累加和}
+//求这么多方案中，min{左部分累加和，右部分累加和}的最大值是多少？
+//整个过程要求时间复杂度O(N)
 public class Code01_BestSplitForAll {
 
+	// 暴力解
 	public static int bestSplit1(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return 0;
@@ -22,6 +29,7 @@ public class Code01_BestSplitForAll {
 		return ans;
 	}
 
+	// 最优解
 	public static int bestSplit2(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return 0;
@@ -34,7 +42,7 @@ public class Code01_BestSplitForAll {
 		int ans = 0;
 		int sumL = 0;
 		// [0...s]  [s+1...N-1]
-		for (int s = 0; s < N - 1; s++) {
+		for (int s = 0; s < N - 1; s++) { // s: 划分点
 			sumL += arr[s];
 			int sumR = sumAll - sumL;
 			ans = Math.max(ans, Math.min(sumL, sumR));

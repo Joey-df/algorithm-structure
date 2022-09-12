@@ -1,5 +1,7 @@
 package system_study.class41;
 
+// 测试链接
+// https://www.acwing.com/problem/content/284/
 // 四边形不等式：合并石子问题
 public class Code03_StoneMerge {
 
@@ -66,6 +68,8 @@ public class Code03_StoneMerge {
 		int[] s = sum(arr);
 		int[][] dp = new int[N][N];
 		int[][] best = new int[N][N];
+		// 对角线位置dp[i][i]=0, 最优划分点无意义，所以跳过
+		// 填倒数第二条对角线
 		for (int i = 0; i < N - 1; i++) {
 			best[i][i + 1] = i;
 			dp[i][i + 1] = w(s, i, i + 1);
@@ -74,15 +78,17 @@ public class Code03_StoneMerge {
 			for (int R = L + 2; R < N; R++) {
 				int next = Integer.MAX_VALUE;
 				int choose = -1;
+				// 下限：左边的格子  上限：右边的格子
 				for (int leftEnd = best[L][R - 1]; leftEnd <= best[L + 1][R]; leftEnd++) {
-					int cur = dp[L][leftEnd] + dp[leftEnd + 1][R];
+					// 求最小代价
+					int cur = dp[L][leftEnd] + dp[leftEnd + 1][R] + w(s, L, R);
 					if (cur <= next) {
 						next = cur;
 						choose = leftEnd;
 					}
 				}
 				best[L][R] = choose;
-				dp[L][R] = next + w(s, L, R);
+				dp[L][R] = next;
 			}
 		}
 		return dp[0][N - 1];

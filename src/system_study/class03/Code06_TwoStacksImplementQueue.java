@@ -30,21 +30,24 @@ public class Code06_TwoStacksImplementQueue {
 
         /** Push element x to the back of queue. */
         public void push(int x) {
-            pushToPop();
             s1.push(x);
+            pushToPop();
         }
 
         /** Removes the element from in front of queue and returns that element. */
         public int pop() {
-            pushToPop();
-            if (s2.isEmpty()) {
+            if (s1.isEmpty() && s2.isEmpty()) {
                 throw new RuntimeException("no element");
             }
+            pushToPop();
             return s2.pop();
         }
 
         /** Get the front element. */
         public int peek() {
+            if (s1.isEmpty() && s2.isEmpty()) {
+                throw new RuntimeException("no element");
+            }
             pushToPop();
             return s2.peek();
         }

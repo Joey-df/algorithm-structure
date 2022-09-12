@@ -6,7 +6,7 @@ import java.util.Queue;
 
 public class Code01_BFS {
 
-    // 从node出发，进行宽度优先遍历
+    // 从start出发，进行宽度优先遍历
     public static void bfs(Node start) {
         if (start == null) {
             return;

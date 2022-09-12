@@ -12,6 +12,7 @@ package system_study.class18_23;
  * 从左往右的尝试模型
  * 枚举行为：求每一个格子的时候，需要一个for循环
  */
+// 涉及枚举行为优化
 public class Class21_Code03_CoinsWayNoLimit {
 
     public static int coinsWay(int[] arr, int aim) {

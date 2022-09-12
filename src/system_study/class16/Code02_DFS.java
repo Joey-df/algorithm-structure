@@ -13,7 +13,7 @@ public class Code02_DFS {
         HashSet<Node> set = new HashSet<>();
         stack.add(node);
         set.add(node);
-        System.out.println(node.value);
+        System.out.println(node.value); // 入栈就打印
         while (!stack.isEmpty()) {
             Node cur = stack.pop();
             for (Node next : cur.nexts) {

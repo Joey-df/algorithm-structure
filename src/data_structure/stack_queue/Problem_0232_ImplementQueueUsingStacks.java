@@ -24,19 +24,19 @@ public class Problem_0232_ImplementQueueUsingStacks {
 
         /** Removes the element from in front of queue and returns that element. */
         public int pop() {
-            pushToPop();
-            if (pop.isEmpty()) {
+            if (push.isEmpty() && pop.isEmpty()) {
                 throw new RuntimeException("empty!!!!");
             }
+            pushToPop();
             return pop.pop();
         }
 
         /** Get the front element. */
         public int peek() {
-            pushToPop();
-            if (pop.isEmpty()) {
+            if (push.isEmpty() && pop.isEmpty()) {
                 throw new RuntimeException("empty!!!!");
             }
+            pushToPop();
             return pop.peek();
         }
 

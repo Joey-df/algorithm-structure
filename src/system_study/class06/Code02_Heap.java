@@ -18,7 +18,7 @@ public class Code02_Heap {
     public static class MyMaxHeap {
         private int[] heap;
         private final int limit;
-        private int heapSize;
+        private int heapSize; // 两层含义：1、代表堆中元素个数，2、堆中要加数应该加到哪个位置
 
         public MyMaxHeap(int limit) {
             heap = new int[limit];
@@ -40,7 +40,7 @@ public class Code02_Heap {
             }
             heap[heapSize] = value;
             // value  heapSize
-            heapInsert(heap, heapSize++);
+            heapInsert(heap, heapSize++); // 最后一步heapSize++
         }
 
         // 用户此时，让你返回最大值，并且在大根堆中，把最大值删掉
@@ -52,36 +52,36 @@ public class Code02_Heap {
             return ans;
         }
 
-
-
-
-
-
+        // 【上移】
         // 新加进来的数，现在停在了index位置，请依次往上移动，
         // 移动到0位置，或者干不掉自己的父亲了，停！
         private void heapInsert(int[] arr, int index) {
-            // [index]    [index-1]/2
-            // index == 0
+            // [index]   父亲：[index-1]/2
+            // 这个while包含了两个终止条件：index来到0位置、或者，arr[index]干不掉自己的父了
             while (arr[index] > arr[(index - 1) / 2]) {
                 swap(arr, index, (index - 1) / 2);
-                index = (index - 1) / 2;
+                index = (index - 1) / 2; //index来到父亲的位置
             }
         }
 
-        // 从index位置，往下看，不断的下沉
-        // 停：较大的孩子都不再比index位置的数大；已经没孩子了
+        // 【下沉】
+        // 从index位置，往下看，不断的
+        // 停：较大的孩子都不再比index位置的数大；或者，已经没孩子了
         private void heapify(int[] arr, int index, int heapSize) {
             int left = index * 2 + 1;
             while (left < heapSize) { // 如果有左孩子，有没有右孩子，可能有可能没有！
                 // 把较大孩子的下标，给largest
-                int largest = left + 1 < heapSize && arr[left + 1] > arr[left] ? left + 1 : left;
-                largest = arr[largest] > arr[index] ? largest : index;
-                if (largest == index) {
+                int right = left + 1;
+                // 找出左右孩子中较大的下标
+                int largest = right < heapSize && arr[right] > arr[left] ? right : left;
+                // arr[index]，以及左右孩子中，三者中最大值的下标
+                int maxIndex = arr[largest] > arr[index] ? largest : index;
+                if (maxIndex == index) { // arr[index]的左右孩子干不掉自己，停！
                     break;
                 }
                 // index和较大孩子，要互换
-                swap(arr, largest, index);
-                index = largest;
+                swap(arr, maxIndex, index);
+                index = maxIndex; // index下沉到较大孩子的位置
                 left = index * 2 + 1;
             }
         }

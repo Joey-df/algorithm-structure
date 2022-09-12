@@ -5,7 +5,7 @@ public class Code04_ArrayImplementStack {
 
     public static class MyStack {
         private final int limit;
-        private int top;
+        private int top; //即将要加入元素的下标
         private final int[] arr;
 
         public MyStack(int limit) {

@@ -19,17 +19,24 @@ public class Code02_ThrowChessPiecesProblem {
 	// 一定要验证出最高的不会碎的楼层！但是每次都是坏运气。
 	// 返回至少需要扔几次？
 	public static int Process1(int rest, int k) {
+	    // 没有楼层了，0次
 		if (rest == 0) {
 			return 0;
 		}
+		// 只剩1颗棋子了，只能一层一层的试，每次都是坏运气，最坏情况就是试遍剩下的所有楼层
 		if (k == 1) {
 			return rest;
 		}
 		int min = Integer.MAX_VALUE;
 		for (int i = 1; i != rest + 1; i++) { // 第一次扔的时候，仍在了i层
-			min = Math.min(min, Math.max(Process1(i - 1, k - 1), Process1(rest - i, k)));
+			// 两种情况：
+			// 情况1：碎了
+			int p1 = Process1(i - 1, k - 1);
+			// 情况2：没碎
+			int p2 = Process1(rest - i, k);
+			min = Math.min(min, Math.max(p1, p2));
 		}
-		return min + 1;
+		return min + 1; // +1表示第一次扔在i层的行为
 	}
 
 	public static int superEggDrop2(int kChess, int nLevel) {

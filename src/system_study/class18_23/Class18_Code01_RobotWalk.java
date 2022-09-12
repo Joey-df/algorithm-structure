@@ -87,12 +87,12 @@ public class Class18_Code01_RobotWalk {
         int[][] dp = new int[N + 1][K + 1];
         dp[aim][0] = 1; //第一列
         //整体从左往右，每一列从上往下
-        for (int rest = 1; rest <= K; rest++) {
-            dp[1][rest] = dp[2][rest - 1];
+        for (int rest = 1; rest <= K; rest++) { // 控制列
+            dp[1][rest] = dp[2][rest - 1]; // 单独算第一行
             for (int cur = 2; cur < N; cur++) {
                 dp[cur][rest] = dp[cur - 1][rest - 1] + dp[cur + 1][rest - 1];
             }
-            dp[N][rest] = dp[N - 1][rest - 1];
+            dp[N][rest] = dp[N - 1][rest - 1]; // 单独算最后一行
         }
         return dp[start][K];
     }

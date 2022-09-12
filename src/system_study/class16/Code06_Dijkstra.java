@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map.Entry;
 
 // no negative weight
+// 要求：有向无负权重的图
 public class Code06_Dijkstra {
 
     public static HashMap<Node, Integer> dijkstra1(Node from) {
@@ -76,16 +77,17 @@ public class Code06_Dijkstra {
         // 有一个点叫node，现在发现了一个从源节点出发到达node的距离为distance
         // 判断要不要更新，如果需要的话，就更新
         public void addOrUpdateOrIgnore(Node node, int distance) {
-            if (inHeap(node)) {
+            if (inHeap(node)) { // update
                 distanceMap.put(node, Math.min(distanceMap.get(node), distance));
                 insertHeapify(node, heapIndexMap.get(node));
             }
-            if (!isEntered(node)) {
+            if (!isEntered(node)) { // add
                 nodes[size] = node;
                 heapIndexMap.put(node, size);
                 distanceMap.put(node, distance);
                 insertHeapify(node, size++);
             }
+            // ignore
         }
 
         public NodeRecord pop() {

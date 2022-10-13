@@ -7,6 +7,6 @@ package slide_window;
  * 如果车从第i个加油站出发，最终 可以回到这个加油站，那么第i个加油站就算良好出发点，否则就不算。
  * 请返回长度为N的boolean型数组res，res[i]代表第 i 个加油站是不是良好出发点。
  */
-public class Problem_134_Gas_Station {
+public class Problem_0134_GasStation {
 
 }

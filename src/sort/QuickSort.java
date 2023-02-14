@@ -64,6 +64,7 @@ public class QuickSort {
             return;
         }
         if (L < R) {
+            // L 3 R 7     5  -> [0,4] -> [3,7]
             swap(arr, L + (int) (Math.random() * (R - L + 1)), R); //随机快排：随机一个数与arr[R]交换
             int[] range = partition(arr, L, R);
             quickSort(arr, L, range[0] - 1);

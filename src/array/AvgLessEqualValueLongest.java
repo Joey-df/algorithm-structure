@@ -77,7 +77,7 @@ public class AvgLessEqualValueLongest {
                 System.out.println("子数组平均值不小于：" + value);
                 System.out.println("方法1得到的最大长度：" + ans1);
                 System.out.println("方法2得到的最大长度：" + ans2);
-                System.out.println("======");
+                System.out.println("========");
             }
         }
         System.out.println("测试结束");

@@ -89,7 +89,7 @@ public class Code01_AVLTreeMap {
 			return pre;
 		}
 
-		private AVLNode<K, V> findLastNoSmallIndex(K key) {
+		private AVLNode<K, V> findLastNoSmallIndex(K key) { // >=key离key最近的
 			AVLNode<K, V> ans = null;
 			AVLNode<K, V> cur = root;
 			while (cur != null) {

@@ -3,7 +3,7 @@ package system_study.class15;
 /**
  * Leetcode
  *
- * 547. Friend Circles
+ * 547.Friend Circles
  */
 // 本题为leetcode原题
 // 测试链接：https://leetcode.com/problems/friend-circles/

@@ -3,7 +3,7 @@ package leetcode_top_interview_and_top100liked_questions;
 /**
  * 编写一个函数来查找字符串数组中的最长公共前缀。
  * <p>
- * 如果不存在公共前缀，返回空字符串 ""。
+ * 如果不存在公共前缀，返回空字符串""。
  * <p>
  * 示例 1：
  * <p>

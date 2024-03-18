@@ -5,12 +5,12 @@ public class Code04_ArrayImplementStack {
 
     public static class MyStack {
         private final int limit;
-        private int top;
+        private int size;
         private final int[] arr;
 
         public MyStack(int limit) {
             this.limit = limit;
-            this.top = 0;
+            this.size = 0;
             this.arr = new int[limit];
         }
 
@@ -19,7 +19,7 @@ public class Code04_ArrayImplementStack {
             if (isFull()) {
                 throw new RuntimeException("栈已满，不能再加入元素！");
             }
-            this.arr[top++] = val;
+            this.arr[size++] = val;
         }
 
         //弹栈
@@ -29,20 +29,20 @@ public class Code04_ArrayImplementStack {
             }
             //返回top-1位置的元素，然后top--；
             //写成一行就是this.arr[--top]
-            return this.arr[--top];
+            return this.arr[--size];
         }
 
         public boolean isEmpty() {
-            return top == 0;
+            return size == 0;
         }
 
         public boolean isFull() {
-            return top == limit;
+            return size == limit;
         }
 
         //栈中元素数量
         public int size() {
-            return top;
+            return size;
         }
 
         //获取栈顶元素，只是查看，不删除
@@ -50,12 +50,12 @@ public class Code04_ArrayImplementStack {
             if (isEmpty()) {
                 throw new RuntimeException("栈已空，无元素可以弹出！");
             }
-            return this.arr[top - 1];
+            return this.arr[size - 1];
         }
 
         //清空栈
         public void clear() {
-            while (top != 0) {
+            while (size != 0) {
                 pop();
             }
         }

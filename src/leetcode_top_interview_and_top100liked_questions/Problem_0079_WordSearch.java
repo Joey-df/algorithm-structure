@@ -6,13 +6,13 @@ package leetcode_top_interview_and_top100liked_questions;
  * 给定一个char[][] matrix，也就是char类型的二维数组，再给定一个字符串word，
  * 可以从任何一个某个位置出发，可以走上下左右，能不能找到word？
  * char[][] m =
- * { 
- * { 'a', 'b', 'z' }, 
- * { 'c', 'd', 'o' }, 
+ * {
+ * { 'a', 'b', 'z' },
+ * { 'c', 'd', 'o' },
  * { 'f', 'e', 'o' }
  * }
  * 不可以走重复路的情况下，返回能不能找到
- * 比如，word = "zoooz"，是不可以找到的，因为允许走一条路径中已经走过的字符不能重复走 
+ * 比如，word = "zoooz"，是不可以找到的，因为允许走一条路径中已经走过的字符不能重复走
  */
 public class Problem_0079_WordSearch {
 

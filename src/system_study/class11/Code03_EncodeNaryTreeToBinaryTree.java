@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Leetcode
  *
- * 431. Encode N-ary Tree to Binary Tree
+ * 431.Encode N-ary Tree to Binary Tree
  */
 // 本题测试链接：https://leetcode.com/problems/encode-n-ary-tree-to-binary-tree
 public class Code03_EncodeNaryTreeToBinaryTree {
